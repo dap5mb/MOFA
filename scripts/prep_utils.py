@@ -2,6 +2,38 @@ import os
 import numpy as np
 import pandas as pd
 
+def run_preflight_check(rna_df, csf_df, plasma_df, metadata_df):
+    """
+    Verifies that participant IDs in metadata are present and aligned across all omic matrices.
+    Returns a filtered metadata dataframe and cleaned views.
+    """
+    print("--- Running Pre-flight Integrity Check ---")
+    
+    # 1. Check for missing sex
+    meta = metadata_df.copy()
+    if 'sex' not in meta.columns:
+        raise ValueError("Metadata must contain a 'sex' column.")
+    
+    initial_count = len(meta)
+    meta = meta.dropna(subset=['sex'])
+    if len(meta) < initial_count:
+        print(f"Dropped {initial_count - len(meta)} samples with missing sex.")
+
+    # 2. Align IDs across all sources
+    meta_ids = set(meta.index)
+    rna_ids = set(rna_df.columns)
+    csf_ids = set(csf_df.columns)
+    pla_ids = set(plasma_df.columns)
+    
+    # Ensure every participant in metadata exists in at least one view
+    all_view_ids = rna_ids | csf_ids | pla_ids
+    common_ids = meta_ids.intersection(all_view_ids)
+    
+    print(f"Metadata IDs: {len(meta_ids)}, IDs in views: {len(all_view_ids)}")
+    print(f"Final aligned participant set: {len(common_ids)}")
+    
+    return meta.loc[list(common_ids)]
+
 def validate_and_intersect_views(
     rna_df: pd.DataFrame,
     csf_df: pd.DataFrame,
@@ -11,26 +43,23 @@ def validate_and_intersect_views(
 ):
     """
     Task 1.2.4: Final Matrix Validation & Sample Intersection
-    
-    Parameters:
-    - rna_df: Batch-corrected RNA-seq matrix (features x participant_id)
-    - csf_df: Log2-transformed & normalized CSF Proteomics matrix (features x participant_id)
-    - plasma_df: Log2-transformed & normalized Plasma Proteomics matrix (features x participant_id)
-    - metadata_df: Master sample manifest containing 'participant_id' and 'sex' (for multi-group setup)
     """
     os.makedirs(output_dir, exist_ok=True)
     
     print("=== Step 1: Validating Input Matrices & Metadata ===")
+    
+    # Pre-flight check and metadata cleanup
+    if "participant_id" in metadata_df.columns:
+        metadata_df = metadata_df.set_index("participant_id")
+    
+    metadata_df = run_preflight_check(rna_df, csf_df, plasma_df, metadata_df)
+    
     views = {
         "RNA_seq": rna_df,
         "CSF_Proteomics": csf_df,
         "Plasma_Proteomics": plasma_df
     }
-    
-    # Ensure metadata is indexed by participant_id
-    if "participant_id" in metadata_df.columns:
-        metadata_df = metadata_df.set_index("participant_id")
-    
+
     # --------------------------------------------------------------------------
     # 1. Inspect Sample Overlap Across Views
     # --------------------------------------------------------------------------

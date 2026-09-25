@@ -33,16 +33,19 @@ def verify_proteomics_scaling(df: pd.DataFrame, view_name: str):
     
     return gene_vars
 
-def normalize_proteomics(raw_df: pd.DataFrame) -> pd.DataFrame:
-    # Step 1: Log2 Transformation (handling non-detects/zeros)
-    log2_df = np.log2(raw_df + 1)
+def normalize_proteomics(raw_df: pd.DataFrame, log2_transform=True) -> pd.DataFrame:
+    # Step 1: Optional Log2 Transformation
+    if log2_transform:
+        norm_df = np.log2(raw_df + 1)
+    else:
+        norm_df = raw_df.copy()
     
     # Step 2: Sample-Level Median Centering
-    sample_medians = log2_df.median(axis=0, skipna=True)
+    sample_medians = norm_df.median(axis=0, skipna=True)
     global_median = sample_medians.median(skipna=True)
     
     # Subtract sample offset so every sample shares the exact same median
-    norm_df = log2_df.sub(sample_medians - global_median, axis=1)
+    norm_df = norm_df.sub(sample_medians - global_median, axis=1)
     
     return norm_df
 
