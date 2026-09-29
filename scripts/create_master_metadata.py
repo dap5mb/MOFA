@@ -1,6 +1,7 @@
+import os
 import pandas as pd
 
-def create_master_metadata(rnaseq_meta_path: str, proteomics_meta_path: str, output_path: str = None, cohort_filter: str = 'PPMI') -> pd.DataFrame:
+def create_master_metadata(rnaseq_meta_path: str, proteomics_meta_path: str, cohort: str, output_path: str = None) -> pd.DataFrame:
     """
     Harmonizes and merges RNA-seq and proteomics metadata for baseline visits (visit_month == 0.0)
     to create a master sample manifest for MOFA analysis for a specific cohort.
@@ -13,8 +14,8 @@ def create_master_metadata(rnaseq_meta_path: str, proteomics_meta_path: str, out
         Path to the proteomics metadata CSV file.
     output_path : str, optional
         Path to save the resulting master CSV file.
-    cohort_filter : str, optional
-        Specific cohort to filter by ('PPMI' or 'PDBP'). Defaults to 'PPMI'.
+    cohort : str, optional
+        Specific cohort to filter by ('PPMI' or 'PDBP'). 
         
     Returns:
     --------
@@ -26,8 +27,8 @@ def create_master_metadata(rnaseq_meta_path: str, proteomics_meta_path: str, out
     prot_df = pd.read_csv(proteomics_meta_path)
     
     # 2. Filter for baseline (visit_month == 0.0) and the specific study/cohort
-    rnaseq_baseline = rnaseq_df[(rnaseq_df['visit_month'] == 0.0) & (rnaseq_df['study'] == cohort_filter)].copy()
-    prot_baseline = prot_df[(prot_df['visit_month'] == 0.0) & (prot_df['cohort'] == cohort_filter)].copy()
+    rnaseq_baseline = rnaseq_df[(rnaseq_df['visit_month'] == 0.0) & (rnaseq_df['study'] == cohort)].copy()
+    prot_baseline = prot_df[(prot_df['visit_month'] == 0.0) & (prot_df['cohort'] == cohort)].copy()
 
     
     # 3. Rename RNA-seq sample ID to clearly indicate its view
@@ -80,7 +81,7 @@ def create_master_metadata(rnaseq_meta_path: str, proteomics_meta_path: str, out
         master_df = master_df.drop(columns=['cohort'])
 
     # 6. Optional cohort filtering (already handled in step 2)
-    master_df = master_df[master_df['study'] == cohort_filter].copy()
+    master_df = master_df[master_df['study'] == cohort].copy()
 
     # Drop missing sex records if present
     if 'sex' in master_df.columns:
@@ -92,7 +93,7 @@ def create_master_metadata(rnaseq_meta_path: str, proteomics_meta_path: str, out
         master_df.to_csv(output_path, index=False)
         print(f"Master metadata successfully saved to {output_path}")
         
-    print(f"Total unique baseline participants ({cohort_filter}): {master_df['participant_id'].nunique()}")
+    print(f"Total unique baseline participants ({cohort}): {master_df['participant_id'].nunique()}")
     print(f"Participants with RNA-seq: {master_df['rnaseq_sample_id'].notna().sum()}")
     print(f"Participants with CSF Proteomics: {master_df['csf_pro_sample_id'].notna().sum()}")
     print(f"Participants with Plasma Proteomics: {master_df['plasma_pro_sample_id'].notna().sum()}")
@@ -103,5 +104,6 @@ def create_master_metadata(rnaseq_meta_path: str, proteomics_meta_path: str, out
 # master_metadata = create_master_metadata(
 #     rnaseq_meta_path='path/to/rnaseq_meta.csv',
 #     proteomics_meta_path='path/to/proteomics_meta.csv',
-#     output_path='path/to/master_baseline_metadata.csv'
+#     output_path='path/to/master_baseline_metadata.csv',
+#     cohort = "PPMI"
 # )
