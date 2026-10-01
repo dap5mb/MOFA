@@ -148,14 +148,15 @@ def project_pdbp(model_path: str, input_dir: str, output_dir: str, cohort: str):
         ss_tot = np.sum((X_v - np.mean(X_v, axis=0)) ** 2)
         ss_res = np.sum((X_v - X_hat) ** 2)
         
-        # Per-factor R2 contribution approximation (marginal variance)
+        # Per-factor R2 contribution calculation based on reconstruction sum of squares
         r2_row = {}
         for i, f_name in enumerate(factor_names):
-            Z_single = np.zeros_like(Z_sub)
-            Z_single[:, i] = Z_sub[:, i]
-            X_hat_single = np.dot(Z_single, W_v.T)
-            ss_res_single = np.sum((X_v - X_hat_single) ** 2)
-            factor_r2 = max(0.0, (ss_res - ss_res_single) / ss_tot) * 100.0 if ss_tot > 0 else 0.0
+            Z_i = Z_sub[:, i:i+1]          # Samples x 1
+            W_i = W_v[:, i:i+1]            # Features x 1
+            X_hat_i = np.dot(Z_i, W_i.T)   # Samples x Features
+            
+            ss_factor = np.sum(X_hat_i ** 2)
+            factor_r2 = (ss_factor / ss_tot) * 100.0 if ss_tot > 0 else 0.0
             r2_row[f_name] = factor_r2
             
         r2_row["view"] = view
