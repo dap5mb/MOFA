@@ -30,7 +30,12 @@ def load_model_weights(model_path: str) -> dict:
         
         # Load weights and feature names per view
         for view_name in w_group.keys():
-            w_matrix = w_group[view_name][:]  # Shape: (features, factors) or (factors, features)
+            view_w = w_group[view_name]
+            if isinstance(view_w, h5py.Group):
+                first_key = list(view_w.keys())[0]
+                w_matrix = view_w[first_key][:]
+            else:
+                w_matrix = view_w[:]
             
             # Extract feature names for alignment
             if 'features' in f and view_name in f['features']:
