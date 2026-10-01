@@ -127,7 +127,7 @@ def evaluate_factor_associations(df: pd.DataFrame, output_dir: str, covariates: 
         print(f"Saved association heatmap to: {out_plot}")
 
 def compare_variance_replication(ppmi_r2_path: str, pdbp_r2_path: str, output_dir: str):
-    """Compares view-wise variance explained ($R^2$) between PPMI and PDBP."""
+    """Compares view-wise and factor-wise variance explained ($R^2$) between PPMI and PDBP."""
     if not os.path.exists(ppmi_r2_path) or not os.path.exists(pdbp_r2_path):
         print("Skipping R2 replication comparison (missing PPMI or PDBP R2 file).")
         return
@@ -136,31 +136,58 @@ def compare_variance_replication(ppmi_r2_path: str, pdbp_r2_path: str, output_di
     pdbp_r2 = pd.read_csv(pdbp_r2_path)
     
     print("Comparing variance explained ($R^2$) replication across cohorts...")
+    
+    # 1. Standardize view names to lower-case for clean joining
+    if "view" in ppmi_r2.columns:
+        ppmi_r2["view"] = ppmi_r2["view"].astype(str).str.lower()
+    if "view" in pdbp_r2.columns:
+        pdbp_r2["view"] = pdbp_r2["view"].astype(str).str.lower()
+        
+    factor_cols = [c for c in ppmi_r2.columns if c.startswith("Factor")]
+    
     if HAS_PLOT:
         fig, ax = plt.subplots(figsize=(10, 6))
         
-        # Aggregate total R2 per view for comparison if view column exists
+        # Check if view-level comparison can be made
         if "view" in ppmi_r2.columns and "view" in pdbp_r2.columns:
-            factor_cols_ppmi = [c for c in ppmi_r2.columns if c.startswith("Factor")]
-            factor_cols_pdbp = [c for c in pdbp_r2.columns if c.startswith("Factor")]
-            
-            ppmi_summary = ppmi_r2.groupby("view")[factor_cols_ppmi].sum().sum(axis=1).reset_index(name="PPMI_R2")
-            pdbp_summary = pdbp_r2.groupby("view")[factor_cols_pdbp].sum().sum(axis=1).reset_index(name="PDBP_R2")
-            
+            ppmi_summary = ppmi_r2.groupby("view")[factor_cols].sum().sum(axis=1).reset_index(name="PPMI_R2")
+            pdbp_summary = pdbp_r2.groupby("view")[factor_cols].sum().sum(axis=1).reset_index(name="PDBP_R2")
             comp_df = pd.merge(ppmi_summary, pdbp_summary, on="view", how="inner")
+            
             if not comp_df.empty:
-                comp_df.set_index("view")[["PPMI_R2", "PDBP_R2"]].plot(kind="bar", ax=ax, colormap="tab10")
-                ax.set_title("Variance Explained ($R^2$) Replication: PPMI vs. PDBP", fontsize=14, fontweight="bold")
+                comp_df.set_index("view")[["PPMI_R2", "PDBP_R2"]].plot(kind="bar", ax=ax, colormap="tab10", width=0.6)
+                ax.set_title("Variance Explained ($R^2$) Replication by View: PPMI vs. PDBP", fontsize=14, fontweight="bold")
                 ax.set_xlabel("Omic View", fontsize=12)
                 ax.set_ylabel("Total Variance Explained (%)", fontsize=12)
                 plt.xticks(rotation=0)
-                plt.legend(title="Cohort", frameon=True)
-                plt.tight_layout()
-                
-                out_path = os.path.join(output_dir, "cohort_variance_replication_comparison.png")
-                plt.savefig(out_path, dpi=300)
-                plt.close()
-                print(f"Saved replication comparison plot to: {out_path}")
+            else:
+                # Fallback: Compare Total R2 per Factor across all views
+                ppmi_fac = ppmi_r2[factor_cols].sum(axis=0).to_frame("PPMI_R2")
+                pdbp_fac = pdbp_r2[factor_cols].sum(axis=0).to_frame("PDBP_R2")
+                comp_fac = pd.concat([ppmi_fac, pdbp_fac], axis=1)
+                comp_fac.plot(kind="bar", ax=ax, colormap="tab10", width=0.7)
+                ax.set_title("Variance Explained ($R^2$) Replication per Factor: PPMI vs. PDBP", fontsize=14, fontweight="bold")
+                ax.set_xlabel("Latent Factors", fontsize=12)
+                ax.set_ylabel("Variance Explained (%)", fontsize=12)
+                plt.xticks(rotation=0)
+        else:
+            # Fallback: Compare Total R2 per Factor
+            ppmi_fac = ppmi_r2[factor_cols].sum(axis=0).to_frame("PPMI_R2")
+            pdbp_fac = pdbp_r2[factor_cols].sum(axis=0).to_frame("PDBP_R2")
+            comp_fac = pd.concat([ppmi_fac, pdbp_fac], axis=1)
+            comp_fac.plot(kind="bar", ax=ax, colormap="tab10", width=0.7)
+            ax.set_title("Variance Explained ($R^2$) Replication per Factor: PPMI vs. PDBP", fontsize=14, fontweight="bold")
+            ax.set_xlabel("Latent Factors", fontsize=12)
+            ax.set_ylabel("Variance Explained (%)", fontsize=12)
+            plt.xticks(rotation=0)
+            
+        plt.legend(title="Cohort", frameon=True)
+        plt.tight_layout()
+        
+        out_path = os.path.join(output_dir, "cohort_variance_replication_comparison.png")
+        plt.savefig(out_path, dpi=300)
+        plt.close()
+        print(f"Saved replication comparison plot to: {out_path}")
 
 def main():
     parser = argparse.ArgumentParser(description="Evaluate MOFA latent factors and metadata associations.")
