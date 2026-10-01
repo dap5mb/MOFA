@@ -21,11 +21,11 @@ except ImportError:
     HAS_PLOT = False
 
 def load_and_merge_factors_metadata(z_path: str, metadata_path: str) -> pd.DataFrame:
-    """Loads latent factor Z CSV and merges with sample clinical metadata."""
+    """Loads latent factor Z CSV and merges with sample clinical metadata with ID namespace diagnostics."""
     z_df = pd.read_csv(z_path)
     meta_df = pd.read_csv(metadata_path)
     
-    # Identify sample / participant ID column
+    # Identify sample / participant ID column in Z
     id_col = None
     for col in ["participant_id", "patient_id", "sample", "Unnamed: 0"]:
         if col in z_df.columns:
@@ -42,6 +42,14 @@ def load_and_merge_factors_metadata(z_path: str, metadata_path: str) -> pd.DataF
     if meta_id_col != "participant_id":
         meta_df = meta_df.rename(columns={meta_id_col: "participant_id"})
         
+    z_ids = set(z_df["participant_id"].astype(str))
+    meta_ids = set(meta_df["participant_id"].astype(str))
+    overlap = z_ids.intersection(meta_ids)
+    
+    print(f"ID Namespace Check: {len(z_ids)} IDs in Z matrix, {len(meta_ids)} IDs in metadata. Overlap: {len(overlap)}")
+    if len(overlap) == 0:
+        print(f"WARNING: Zero ID overlap between Z matrix (e.g., {list(z_ids)[:3]}) and metadata (e.g., {list(meta_ids)[:3]}). Please verify participant ID formatting/namespaces.")
+
     # Merge
     merged = pd.merge(z_df, meta_df, on="participant_id", how="inner", suffixes=("", "_meta"))
     print(f"Merged latent factors with metadata: {len(merged)} samples matched.")
@@ -129,15 +137,30 @@ def compare_variance_replication(ppmi_r2_path: str, pdbp_r2_path: str, output_di
     
     print("Comparing variance explained ($R^2$) replication across cohorts...")
     if HAS_PLOT:
-        # Plotting comparison if formats align
         fig, ax = plt.subplots(figsize=(10, 6))
-        # Implementation of comparative bar plot or scatter
-        plt.title("Variance Explained Replication ($R^2$)", fontsize=14, fontweight="bold")
-        plt.tight_layout()
-        out_path = os.path.join(output_dir, "cohort_variance_replication_comparison.png")
-        plt.savefig(out_path, dpi=300)
-        plt.close()
-        print(f"Saved replication comparison plot to: {out_path}")
+        
+        # Aggregate total R2 per view for comparison if view column exists
+        if "view" in ppmi_r2.columns and "view" in pdbp_r2.columns:
+            factor_cols_ppmi = [c for c in ppmi_r2.columns if c.startswith("Factor")]
+            factor_cols_pdbp = [c for c in pdbp_r2.columns if c.startswith("Factor")]
+            
+            ppmi_summary = ppmi_r2.groupby("view")[factor_cols_ppmi].sum().sum(axis=1).reset_index(name="PPMI_R2")
+            pdbp_summary = pdbp_r2.groupby("view")[factor_cols_pdbp].sum().sum(axis=1).reset_index(name="PDBP_R2")
+            
+            comp_df = pd.merge(ppmi_summary, pdbp_summary, on="view", how="inner")
+            if not comp_df.empty:
+                comp_df.set_index("view")[["PPMI_R2", "PDBP_R2"]].plot(kind="bar", ax=ax, colormap="tab10")
+                ax.set_title("Variance Explained ($R^2$) Replication: PPMI vs. PDBP", fontsize=14, fontweight="bold")
+                ax.set_xlabel("Omic View", fontsize=12)
+                ax.set_ylabel("Total Variance Explained (%)", fontsize=12)
+                plt.xticks(rotation=0)
+                plt.legend(title="Cohort", frameon=True)
+                plt.tight_layout()
+                
+                out_path = os.path.join(output_dir, "cohort_variance_replication_comparison.png")
+                plt.savefig(out_path, dpi=300)
+                plt.close()
+                print(f"Saved replication comparison plot to: {out_path}")
 
 def main():
     parser = argparse.ArgumentParser(description="Evaluate MOFA latent factors and metadata associations.")
