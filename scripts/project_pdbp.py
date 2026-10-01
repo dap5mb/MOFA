@@ -117,9 +117,11 @@ def project_pdbp(model_path: str, input_dir: str, output_dir: str, cohort: str):
     # Z_proj shape: (Samples, Factors)
     Z_proj = np.dot(X_mat, np.dot(W_mat, inv_wtw))
     
+    # Build DataFrame for Z_proj indexed by sample names
+    df_z = pd.DataFrame(Z_proj, index=X_full.columns, columns=W_full.columns)
+
     # 4. Compute view-wise variance explained (R2) for validation cohort
     r2_records = []
-    start_col = 0
     for view in views:
         file_path = os.path.join(input_dir, f"{cohort.lower()}_{view.lower()}_aligned.csv")
         if not os.path.exists(file_path) or view not in model_weights:
@@ -127,31 +129,30 @@ def project_pdbp(model_path: str, input_dir: str, output_dir: str, cohort: str):
         df_x = pd.read_csv(file_path, index_col=0)
         df_w = model_weights[view]
         common_features = df_x.index.intersection(df_w.index)
+        common_samples = df_x.columns.intersection(df_z.index)
         
-        X_v = df_x.loc[common_features].fillna(0).values.T # Samples x Features
-        W_v = df_w.loc[common_features].values             # Features x Factors
+        if len(common_samples) == 0:
+            continue
+            
+        X_v = df_x.loc[common_features, common_samples].fillna(0).values.T # Samples x Features
+        W_v = df_w.loc[common_features].values                             # Features x Factors
+        Z_sub = df_z.loc[common_samples].values                            # Samples x Factors
         
         num_factors = W_v.shape[1]
         factor_names = [f"Factor{i+1}" for i in range(num_factors)]
         
         # Reconstructed view: X_hat = Z * W^T
-        X_hat = np.dot(Z_proj, W_v.T)
+        X_hat = np.dot(Z_sub, W_v.T)
         
         # Variance explained R2 = 1 - Var(Residual) / Var(X)
         ss_tot = np.sum((X_v - np.mean(X_v, axis=0)) ** 2)
         ss_res = np.sum((X_v - X_hat) ** 2)
         
-        if ss_tot > 0:
-            total_r2 = max(0.0, 1.0 - (ss_res / ss_tot)) * 100.0
-        else:
-            total_r2 = 0.0
-            
         # Per-factor R2 contribution approximation (marginal variance)
         r2_row = {}
         for i, f_name in enumerate(factor_names):
-            # Zero out other factors to measure marginal contribution
-            Z_single = np.zeros_like(Z_proj)
-            Z_single[:, i] = Z_proj[:, i]
+            Z_single = np.zeros_like(Z_sub)
+            Z_single[:, i] = Z_sub[:, i]
             X_hat_single = np.dot(Z_single, W_v.T)
             ss_res_single = np.sum((X_v - X_hat_single) ** 2)
             factor_r2 = max(0.0, (ss_res - ss_res_single) / ss_tot) * 100.0 if ss_tot > 0 else 0.0
@@ -168,7 +169,6 @@ def project_pdbp(model_path: str, input_dir: str, output_dir: str, cohort: str):
         print(f"Saved projected variance explained R2 to: {r2_out_path}")
 
     # 5. Save projected factors Z
-    df_z = pd.DataFrame(Z_proj, index=X_full.columns, columns=W_full.columns)
     out_path = os.path.join(output_dir, f"{cohort.lower()}_latent_factors_Z.csv")
     df_z.to_csv(out_path)
     
