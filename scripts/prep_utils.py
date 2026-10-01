@@ -156,10 +156,10 @@ def validate_and_intersect_views(
 # plap_clean: log2 + normalized from Task 1.2.3 (proteins x participant_id)
 # ppmi_metadata: master sample manifest (indexed by participant_id)
 
-#aligned_views, aligned_meta, mofa_entry_df = validate_and_intersect_views(
+# aligned_views, aligned_meta, mofa_entry_df = validate_and_intersect_views(
 #    rna_df=rna_corrected,
 #    csf_df=csfp_clean,
 #    plasma_df=plap_clean,
 #    metadata_df=ppmi_metadata,
 #    output_dir="./ppmi_mofa_inputs"
-#)
+# )

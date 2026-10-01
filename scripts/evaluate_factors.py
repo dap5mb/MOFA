@@ -65,7 +65,7 @@ def evaluate_factor_associations(z_meta_path: str, output_dir: str, covariates: 
                 "Statistic": stat_val,
                 "P-value": pval
             })
-            
+    print(f"Total association results computed: {len(results)}")        
     res_df = pd.DataFrame(results)
     
     # Save association table
