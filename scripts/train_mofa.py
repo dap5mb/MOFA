@@ -10,6 +10,32 @@ import os
 # precision) and AlphaZ (per-group factor activity) are needed for an exact projection of PDBP.
 SAVED_EXPECTATIONS = ["W", "Z", "Sigma", "Tau", "AlphaZ"]
 
+def build_and_train(data: pd.DataFrame, n_factors=10, n_iter=1000, seed=0):
+    """
+    Builds and trains one MOFA model on a long-format table with the pipeline's settings.
+    Shared by train_mofa_with_seeds and subsample_stability.py so every model is trained identically.
+    """
+    ent = entry_point()
+    
+    # Load from long format as specified in mofa_prep
+    ent.set_data_df(data) 
+    
+    ent.set_data_options(scale_views=True)
+    
+    ent.set_model_options(factors=n_factors, 
+                          ard_factors=True, 
+                          ard_weights=True)
+    ent.set_train_options(
+        iter=n_iter, 
+        seed=seed,
+        convergence_mode="slow"
+    )
+    
+    ent.build()
+    
+    ent.run()
+    return ent
+
 def train_mofa_with_seeds(mofa_input_file, output_dir, n_seeds=5, n_factors=10, n_iter=1000):
     """
     Trains MOFA with multiple random initializations to check stability.
@@ -22,25 +48,7 @@ def train_mofa_with_seeds(mofa_input_file, output_dir, n_seeds=5, n_factors=10, 
     for seed in range(n_seeds):
         print(f"--- Training with Seed: {seed} ---")
         
-        ent = entry_point()
-        
-        # Load from long format as specified in mofa_prep
-        ent.set_data_df(data) 
-        
-        ent.set_data_options(scale_views=True)
-        
-        ent.set_model_options(factors=n_factors, 
-                              ard_factors=True, 
-                              ard_weights=True)
-        ent.set_train_options(
-            iter=n_iter, 
-            seed=seed,
-            convergence_mode="slow"
-        )
-        
-        ent.build()
-        
-        ent.run()
+        ent = build_and_train(data, n_factors=n_factors, n_iter=n_iter, seed=seed)
         
         # Save Model
         model_path = os.path.join(output_dir, f"model_seed_{seed}.hdf5")
