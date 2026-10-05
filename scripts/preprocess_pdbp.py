@@ -58,7 +58,18 @@ def get_model_features(model_path: str, view_name: str) -> list:
 def preprocess_pdbp_view(raw_df: pd.DataFrame, view_type: str, model_features: list) -> pd.DataFrame:
     """Applies normalization/transformation and aligns features to model."""
     if view_type == "RNA_seq":
-        norm_df = np.log1p(raw_df)
+        # Check if already log-transformed (e.g. from adjust_batch_effects.R)
+        flat_vals = raw_df.values.flatten()
+        flat_vals = flat_vals[~np.isnan(flat_vals)]
+        max_val = np.max(flat_vals) if len(flat_vals) > 0 else 0
+        
+        if max_val > 50:
+            print("PDBP RNA_seq: Raw count range detected. Applying log1p transformation...")
+            norm_df = np.log1p(raw_df)
+        else:
+            print("PDBP RNA_seq: Log-transformed/normalized range detected. Skipping log1p transformation...")
+            norm_df = raw_df.copy()
+            
         norm_df = norm_df.sub(norm_df.mean(axis=1, skipna=True), axis=0)
     elif "Proteomics" in view_type:
         if raw_df.max().max() > 50:
