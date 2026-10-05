@@ -127,63 +127,72 @@ def evaluate_factor_associations(df: pd.DataFrame, output_dir: str, covariates: 
         print(f"Saved association heatmap to: {out_plot}")
 
 def compare_variance_replication(ppmi_r2_path: str, pdbp_r2_path: str, output_dir: str):
-    """Compares view-wise and factor-wise variance explained ($R^2$) between PPMI and PDBP."""
+    """
+    Compares per-factor variance explained ($R^2$) between PPMI and PDBP for each view and
+    group (sex). R2 values from different views or groups have different denominators, so
+    they are compared side by side and never summed.
+    """
     if not os.path.exists(ppmi_r2_path) or not os.path.exists(pdbp_r2_path):
         print("Skipping R2 replication comparison (missing PPMI or PDBP R2 file).")
         return
-        
+
     ppmi_r2 = pd.read_csv(ppmi_r2_path)
     pdbp_r2 = pd.read_csv(pdbp_r2_path)
-    
+
     print("Comparing variance explained ($R^2$) replication across cohorts...")
-    
-    # 1. Standardize view names to lower-case for clean joining
-    if "view" in ppmi_r2.columns:
-        ppmi_r2["view"] = ppmi_r2["view"].astype(str).str.lower()
-    if "view" in pdbp_r2.columns:
-        pdbp_r2["view"] = pdbp_r2["view"].astype(str).str.lower()
-        
+
+    for df in (ppmi_r2, pdbp_r2):
+        for col in ("view", "group"):
+            if col not in df.columns:
+                raise ValueError(f"R2 file is missing a '{col}' column; regenerate it with extract_factors.py / project_pdbp.py.")
+            df[col] = df[col].astype(str)
+
     factor_cols = [c for c in ppmi_r2.columns if c.startswith("Factor")]
-    
+    keys = ["view", "group"]
+    ppmi_long = ppmi_r2.melt(id_vars=keys, value_vars=factor_cols, var_name="Factor", value_name="PPMI_R2")
+    pdbp_long = pdbp_r2.melt(id_vars=keys, value_vars=factor_cols, var_name="Factor", value_name="PDBP_R2")
+
+    # Join on lower-cased view and group names
+    for df in (ppmi_long, pdbp_long):
+        df["view_key"] = df["view"].str.lower()
+        df["group_key"] = df["group"].str.lower()
+    comp = pd.merge(ppmi_long, pdbp_long.drop(columns=keys), on=["view_key", "group_key", "Factor"], how="inner")
+
+    if comp.empty:
+        raise ValueError(
+            f"No overlapping (view, group) pairs between PPMI {sorted(set(zip(ppmi_r2.view, ppmi_r2.group)))} "
+            f"and PDBP {sorted(set(zip(pdbp_r2.view, pdbp_r2.group)))}."
+        )
+    comp = comp.drop(columns=["view_key", "group_key"])
+
+    out_csv = os.path.join(output_dir, "cohort_variance_replication_comparison.csv")
+    comp.to_csv(out_csv, index=False)
+    print(f"Saved replication comparison table to: {out_csv}")
+
+    # Agreement of the per-factor R2 profile within each view and group
+    for (view, group), sub in comp.groupby(keys):
+        if len(sub) > 2:
+            rho, _ = stats.spearmanr(sub["PPMI_R2"], sub["PDBP_R2"])
+            print(f"  {view} / {group}: Spearman rho of per-factor R2 = {rho:.2f}")
+
     if HAS_PLOT:
-        fig, ax = plt.subplots(figsize=(10, 6))
-        
-        # Check if view-level comparison can be made
-        if "view" in ppmi_r2.columns and "view" in pdbp_r2.columns:
-            ppmi_summary = ppmi_r2.groupby("view")[factor_cols].sum().sum(axis=1).reset_index(name="PPMI_R2")
-            pdbp_summary = pdbp_r2.groupby("view")[factor_cols].sum().sum(axis=1).reset_index(name="PDBP_R2")
-            comp_df = pd.merge(ppmi_summary, pdbp_summary, on="view", how="inner")
-            
-            if not comp_df.empty:
-                comp_df.set_index("view")[["PPMI_R2", "PDBP_R2"]].plot(kind="bar", ax=ax, colormap="tab10", width=0.6)
-                ax.set_title("Variance Explained ($R^2$) Replication by View: PPMI vs. PDBP", fontsize=14, fontweight="bold")
-                ax.set_xlabel("Omic View", fontsize=12)
-                ax.set_ylabel("Total Variance Explained (%)", fontsize=12)
-                plt.xticks(rotation=0)
-            else:
-                # Fallback: Compare Total R2 per Factor across all views
-                ppmi_fac = ppmi_r2[factor_cols].sum(axis=0).to_frame("PPMI_R2")
-                pdbp_fac = pdbp_r2[factor_cols].sum(axis=0).to_frame("PDBP_R2")
-                comp_fac = pd.concat([ppmi_fac, pdbp_fac], axis=1)
-                comp_fac.plot(kind="bar", ax=ax, colormap="tab10", width=0.7)
-                ax.set_title("Variance Explained ($R^2$) Replication per Factor: PPMI vs. PDBP", fontsize=14, fontweight="bold")
-                ax.set_xlabel("Latent Factors", fontsize=12)
-                ax.set_ylabel("Variance Explained (%)", fontsize=12)
-                plt.xticks(rotation=0)
-        else:
-            # Fallback: Compare Total R2 per Factor
-            ppmi_fac = ppmi_r2[factor_cols].sum(axis=0).to_frame("PPMI_R2")
-            pdbp_fac = pdbp_r2[factor_cols].sum(axis=0).to_frame("PDBP_R2")
-            comp_fac = pd.concat([ppmi_fac, pdbp_fac], axis=1)
-            comp_fac.plot(kind="bar", ax=ax, colormap="tab10", width=0.7)
-            ax.set_title("Variance Explained ($R^2$) Replication per Factor: PPMI vs. PDBP", fontsize=14, fontweight="bold")
-            ax.set_xlabel("Latent Factors", fontsize=12)
-            ax.set_ylabel("Variance Explained (%)", fontsize=12)
-            plt.xticks(rotation=0)
-            
-        plt.legend(title="Cohort", frameon=True)
+        views = sorted(comp["view"].unique())
+        groups = sorted(comp["group"].unique())
+        fig, axes = plt.subplots(len(views), len(groups), figsize=(5 * len(groups), 3.5 * len(views)),
+                                 squeeze=False, sharex=True)
+        for i, view in enumerate(views):
+            for j, group in enumerate(groups):
+                ax = axes[i][j]
+                sub = comp[(comp["view"] == view) & (comp["group"] == group)].set_index("Factor").reindex(factor_cols)
+                sub[["PPMI_R2", "PDBP_R2"]].plot(kind="bar", ax=ax, colormap="tab10", width=0.7, legend=(i == 0 and j == 0))
+                ax.set_title(f"{view} / {group}", fontsize=11)
+                ax.set_xlabel("")
+                ax.set_ylabel("Variance Explained (%)" if j == 0 else "")
+                ax.axhline(0, color="black", linewidth=0.5)
+                ax.tick_params(axis="x", rotation=90)
+        fig.suptitle("Variance Explained ($R^2$) Replication per View and Group: PPMI vs. PDBP", fontsize=13, fontweight="bold")
         plt.tight_layout()
-        
+
         out_path = os.path.join(output_dir, "cohort_variance_replication_comparison.png")
         plt.savefig(out_path, dpi=300)
         plt.close()

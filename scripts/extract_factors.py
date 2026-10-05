@@ -64,15 +64,15 @@ def extract_mofa_results(model_path: str, metadata_path: str, output_dir: str, t
     
     with h5py.File(model_path, 'r') as f:
         
-        # Retrieve view names safely from group keys
+        # mofapy2 stores view names as a dataset at views/views, in training order
+        # (which is also the row order of variance_explained/r2_per_factor)
         if 'views' in f:
-            if isinstance(f['views'], h5py.Group):
-                view_names = list(f['views'].keys())
-            else:
-                view_names = [v.decode('utf-8') if isinstance(v, bytes) else str(v) for v in f['views'][:]]
+            v_node = f['views']['views'] if isinstance(f['views'], h5py.Group) else f['views']
+            view_names = [v.decode('utf-8') if isinstance(v, bytes) else str(v) for v in v_node[:]]
         else:
             view_names = list(f['features'].keys())
-        
+        print(f"Views: {view_names}")
+
         print("\n=== 1. Extracting Variance Explained (R2) ===")
         if 'variance_explained' in f:
             v_grp = f['variance_explained']
@@ -85,9 +85,10 @@ def extract_mofa_results(model_path: str, metadata_path: str, output_dir: str, t
                         g_r2 = r2_data[group_name][:] # Shape: (views, factors)
                         factor_names = [f"Factor{i+1}" for i in range(g_r2.shape[1])]
                         
-                        views_idx = view_names if len(view_names) == g_r2.shape[0] else [f"View_{i}" for i in range(g_r2.shape[0])]
-                        
-                        df_r2 = pd.DataFrame(g_r2, index=views_idx, columns=factor_names)
+                        if len(view_names) != g_r2.shape[0]:
+                            raise ValueError(f"Found {len(view_names)} view names but R2 has {g_r2.shape[0]} view rows")
+
+                        df_r2 = pd.DataFrame(g_r2, index=view_names, columns=factor_names)
                         df_r2["group"] = group_name
                         df_r2["view"] = df_r2.index
                         r2_dfs.append(df_r2)
@@ -100,7 +101,17 @@ def extract_mofa_results(model_path: str, metadata_path: str, output_dir: str, t
                         
                         # Generate visualization plots
                         plot_variance_explained(full_r2_df, output_dir)
-            
+
+            if 'r2_total' in v_grp:
+                total_records = []
+                for group_name in v_grp['r2_total'].keys():
+                    g_tot = v_grp['r2_total'][group_name][:]  # Shape: (views,)
+                    for view_name, val in zip(view_names, g_tot):
+                        total_records.append({"view": view_name, "group": group_name, "R2_total": val})
+                tot_out_path = os.path.join(output_dir, "variance_explained_total.csv")
+                pd.DataFrame(total_records).to_csv(tot_out_path, index=False)
+                print(f"Saved total variance explained per view and group to: {tot_out_path}")
+
         print("\n=== 2. Extracting Latent Factors (Z Matrix) ===")
         z_dfs = []
         z_grp = f['expectations']['Z']
