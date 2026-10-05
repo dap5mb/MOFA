@@ -33,7 +33,34 @@ def verify_proteomics_scaling(df: pd.DataFrame, view_name: str):
     
     return gene_vars
 
-def normalize_proteomics(raw_df: pd.DataFrame, log2_transform=True) -> pd.DataFrame:
+def filter_proteomics(raw_df: pd.DataFrame, max_sample_zero_frac=0.50, max_protein_zero_frac=0.30,
+                      view_name: str = "Proteomics") -> pd.DataFrame:
+    """
+    QC filter on a raw intensity matrix (proteins x participant_id) where exact zeros are
+    non-detects. Drops samples with more than max_sample_zero_frac zeros first, then proteins
+    with more than max_protein_zero_frac zeros among the remaining samples.
+    Pass None for either threshold to skip that filter.
+    """
+    df = raw_df
+    if max_sample_zero_frac is not None:
+        sample_zero = (df == 0).mean(axis=0)
+        bad_samples = sample_zero.index[sample_zero > max_sample_zero_frac]
+        print(f"{view_name}: dropping {len(bad_samples)} / {df.shape[1]} samples with > {max_sample_zero_frac:.0%} zeros")
+        df = df.drop(columns=bad_samples)
+    if max_protein_zero_frac is not None:
+        protein_zero = (df == 0).mean(axis=1)
+        bad_proteins = protein_zero.index[protein_zero > max_protein_zero_frac]
+        print(f"{view_name}: dropping {len(bad_proteins)} / {df.shape[0]} proteins with > {max_protein_zero_frac:.0%} zeros")
+        df = df.drop(index=bad_proteins)
+    return df
+
+def normalize_proteomics(raw_df: pd.DataFrame, log2_transform=True, zeros_as_missing=True) -> pd.DataFrame:
+    # Step 0: Exact zeros in raw intensities are non-detects, not measurements. Kept as values they
+    # become log2(0 + 1) = 0, an extreme outlier (~17 log2 units below a typical protein) that
+    # dominated the plasma view's variance. Mark them missing; MOFA handles NaN natively.
+    if zeros_as_missing:
+        raw_df = raw_df.mask(raw_df == 0)
+
     # Step 1: Optional Log2 Transformation
     if log2_transform:
         norm_df = np.log2(raw_df + 1)

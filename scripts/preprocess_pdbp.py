@@ -15,6 +15,8 @@ import pandas as pd
 import numpy as np
 import re
 
+from proteomics_qc import filter_proteomics, normalize_proteomics
+
 
 def align_features_to_model(df: pd.DataFrame, model_features: list, view_type: str) -> pd.DataFrame:
     """
@@ -55,8 +57,14 @@ def get_model_features(model_path: str, view_name: str) -> list:
                         return [x.decode('utf-8') if isinstance(x, bytes) else str(x) for x in feat_ds[:]]
         raise KeyError(f"View '{view_name}' features not found in model {model_path}")
 
-def preprocess_pdbp_view(raw_df: pd.DataFrame, view_type: str, model_features: list) -> pd.DataFrame:
-    """Applies normalization/transformation and aligns features to model."""
+def preprocess_pdbp_view(raw_df: pd.DataFrame, view_type: str, model_features: list,
+                         zeros_as_missing: bool = True, max_sample_zero_frac: float = 0.50) -> pd.DataFrame:
+    """
+    Applies normalization/transformation and aligns features to model.
+    Proteomics uses the same steps as PPMI (proteomics_qc): sample QC on non-detect zeros,
+    zeros as missing, log2, sample-median centering. Proteins are not filtered here; the
+    protein set comes from the PPMI-trained model so no PDBP information enters feature selection.
+    """
     if view_type == "RNA_seq":
         # Check if already log-transformed (e.g. from adjust_batch_effects.R)
         flat_vals = raw_df.values.flatten()
@@ -72,13 +80,10 @@ def preprocess_pdbp_view(raw_df: pd.DataFrame, view_type: str, model_features: l
             
         norm_df = norm_df.sub(norm_df.mean(axis=1, skipna=True), axis=0)
     elif "Proteomics" in view_type:
-        if raw_df.max().max() > 50:
-            norm_df = np.log2(raw_df + 1)
-        else:
-            norm_df = raw_df.copy()
-        sample_medians = norm_df.median(axis=0, skipna=True)
-        global_median = sample_medians.median(skipna=True)
-        norm_df = norm_df.sub(sample_medians - global_median, axis=1)
+        qc_df = filter_proteomics(raw_df, max_sample_zero_frac=max_sample_zero_frac,
+                                  max_protein_zero_frac=None, view_name=f"PDBP {view_type}")
+        norm_df = normalize_proteomics(qc_df, log2_transform=qc_df.max().max() > 50,
+                                       zeros_as_missing=zeros_as_missing)
         norm_df = norm_df.sub(norm_df.mean(axis=1, skipna=True), axis=0)
     else:
         norm_df = raw_df.copy()
@@ -117,6 +122,8 @@ def main():
     parser.add_argument("--cohort", default="PDBP", help="Cohort name.")
     parser.add_argument("--model_path", required=True, help="Path to trained MOFA model HDF5.")
     parser.add_argument("--metadata_path", default=None, help="Path to master metadata CSV (optional).")
+    parser.add_argument("--keep_zeros", action="store_true", help="Keep proteomics zeros as values instead of treating them as non-detects (missing).")
+    parser.add_argument("--max_sample_zero_frac", type=float, default=0.50, help="Drop proteomics samples with more than this fraction of zeros (default: 0.50, same as PPMI).")
     args = parser.parse_args()
 
     os.makedirs(args.output_dir, exist_ok=True)
@@ -154,7 +161,9 @@ def main():
             print(f"Error fetching features for {view}: {e}")
             continue
 
-        aligned_df = preprocess_pdbp_view(raw_df, view, model_features)
+        aligned_df = preprocess_pdbp_view(raw_df, view, model_features,
+                                          zeros_as_missing=not args.keep_zeros,
+                                          max_sample_zero_frac=args.max_sample_zero_frac)
 
         # Save aligned wide matrix
         output_file = os.path.join(args.output_dir, f"{args.cohort.lower()}_{view.lower()}_aligned.csv")

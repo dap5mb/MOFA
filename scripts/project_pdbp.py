@@ -9,9 +9,12 @@ The projection mirrors what mofapy2 does to the training data:
   1. Center every feature within each group (sex)            -> center_groups=True
   2. Scale each view to unit variance                         -> scale_views=True
   3. Per sample, use only the features that were observed (no zero-filling) and weight
-     each feature by its noise precision (tau), estimated from the PPMI training residuals:
-         z = (W_o^T T_o W_o + I)^-1 W_o^T T_o y_o
-     This is the posterior mean of Z under MOFA's N(0, I) factor prior.
+     each feature by its noise precision tau (T), with the sample's group factor prior
+     precision alpha (A):
+         z = (W_o^T T_o W_o + A)^-1 W_o^T T_o y_o
+     This is the posterior mean of Z given the trained W. tau and alpha are read from the
+     model's saved Tau and AlphaZ expectations (train_mofa.py saves both). For older models
+     without them, tau is estimated from the PPMI training residuals and A = I.
 
 Variance explained uses the same definition as mofapy2 (BayesNet.calculate_variance_explained),
 per view and per group, on the centered and scaled data:
@@ -80,6 +83,49 @@ def load_model_groups(model_path: str) -> list:
         return list(f['expectations']['Z'].keys()) if 'Z' in f['expectations'] else []
 
 
+def load_noise_precision(model_path: str, model_weights: dict) -> dict:
+    """
+    Per-feature noise precision for each view and group, as {view: {group: pd.Series}}.
+    Uses the model's saved Tau expectation when present (stored per sample x feature,
+    NaN where data were missing; constant across samples for Gaussian views), otherwise
+    falls back to estimating it from the training residuals.
+    """
+    tau = {}
+    with h5py.File(model_path, 'r') as f:
+        if 'Tau' in f['expectations']:
+            for view, df_w in model_weights.items():
+                if view not in f['expectations']['Tau']:
+                    continue
+                tau[view] = {}
+                for group, ds in f['expectations']['Tau'][view].items():
+                    t = ds[:]
+                    if t.shape[-1] != len(df_w) and t.shape[0] == len(df_w):
+                        t = t.T
+                    tau[view][group] = pd.Series(np.nanmean(np.atleast_2d(t), axis=0), index=df_w.index)
+    if tau:
+        print("Noise precision: using saved Tau from the model.")
+        return tau
+    tau = estimate_noise_precision(model_path, model_weights)
+    if tau:
+        print("Noise precision: model has no saved Tau; estimated from training residuals.")
+    return tau
+
+
+def load_factor_prior_precision(model_path: str, n_factors: int) -> dict:
+    """
+    Per-group prior precision of each factor (AlphaZ) as {group: array of length K}, in the
+    same factor order as W. Returns an empty dict when the model has no saved AlphaZ.
+    """
+    with h5py.File(model_path, 'r') as f:
+        if 'AlphaZ' not in f['expectations']:
+            return {}
+        alpha = {group: np.ravel(ds[:]) for group, ds in f['expectations']['AlphaZ'].items()}
+    for group, a in alpha.items():
+        if len(a) != n_factors:
+            raise ValueError(f"AlphaZ for group {group} has {len(a)} factors, W has {n_factors}")
+    return alpha
+
+
 def estimate_noise_precision(model_path: str, model_weights: dict) -> dict:
     """
     Estimates per-feature noise precision tau = 1 / mean(residual^2) for each view and group
@@ -122,21 +168,23 @@ def center_scale_like_mofa(df_x: pd.DataFrame, sample_groups: pd.Series) -> pd.D
     return out
 
 
-def project_samples(Y: np.ndarray, W: np.ndarray, tau: np.ndarray) -> np.ndarray:
+def project_samples(Y: np.ndarray, W: np.ndarray, tau: np.ndarray, alpha: np.ndarray = None) -> np.ndarray:
     """
     Posterior mean of Z for each sample given fixed W, using only observed features.
-    Y: Samples x Features (NaN = missing), W: Features x Factors, tau: Samples x Features.
+    Y: Samples x Features (NaN = missing), W: Features x Factors, tau: Samples x Features,
+    alpha: Samples x Factors prior precision of Z (None = 1 for every factor).
     """
     n_samples, n_factors = Y.shape[0], W.shape[1]
+    if alpha is None:
+        alpha = np.ones((n_samples, n_factors))
     Z = np.full((n_samples, n_factors), np.nan)
-    identity = np.eye(n_factors)
     for i in range(n_samples):
         obs = ~np.isnan(Y[i])
         if not obs.any():
             continue
         W_o = W[obs]
         t_o = tau[i, obs]
-        A = W_o.T @ (t_o[:, None] * W_o) + identity
+        A = W_o.T @ (t_o[:, None] * W_o) + np.diag(alpha[i])
         Z[i] = np.linalg.solve(A, W_o.T @ (t_o * Y[i, obs]))
     return Z
 
@@ -188,9 +236,15 @@ def project_pdbp(model_path: str, input_dir: str, output_dir: str, cohort: str, 
     model_weights = load_model_weights(model_path)
     model_groups = load_model_groups(model_path)
     print(f"Model groups: {model_groups}")
-    tau = estimate_noise_precision(model_path, model_weights)
+    tau = load_noise_precision(model_path, model_weights)
     if not tau:
-        print("Warning: no training data in model file; using equal noise precision for all features.")
+        print("Warning: no Tau or training data in model file; using equal noise precision for all features.")
+    n_factors = next(iter(model_weights.values())).shape[1]
+    alpha_z = load_factor_prior_precision(model_path, n_factors)
+    if alpha_z:
+        print("Factor prior: using saved AlphaZ per group from the model.")
+    else:
+        print("Factor prior: model has no saved AlphaZ; using N(0, 1) for every factor.")
 
     # 2. Assign samples to model groups
     if metadata_path:
@@ -257,7 +311,12 @@ def project_pdbp(model_path: str, input_dir: str, output_dir: str, cohort: str, 
     tau_full = np.hstack(tau_blocks)
     factor_names = list(next(iter(model_weights.values())).columns)
 
-    Z_proj = project_samples(Y_full, W_full, tau_full)
+    alpha_full = None
+    if alpha_z:
+        fallback = np.mean(list(alpha_z.values()), axis=0)
+        alpha_full = np.vstack([alpha_z.get(g, fallback) for g in sample_group.values])
+
+    Z_proj = project_samples(Y_full, W_full, tau_full, alpha_full)
     df_z = pd.DataFrame(Z_proj, index=all_samples, columns=factor_names)
     df_z = df_z.dropna(how="all")
     df_z["group"] = sample_group.reindex(df_z.index)

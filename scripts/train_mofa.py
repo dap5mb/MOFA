@@ -6,7 +6,11 @@ import matplotlib.pyplot as plt
 from matplotlib.ticker import MaxNLocator
 import os
 
-def train_mofa_with_seeds(mofa_input_file, output_dir, n_seeds=5, n_factors=10):
+# Expectations saved to each HDF5. mofapy2's default is W, Z and Sigma only; Tau (per-feature noise
+# precision) and AlphaZ (per-group factor activity) are needed for an exact projection of PDBP.
+SAVED_EXPECTATIONS = ["W", "Z", "Sigma", "Tau", "AlphaZ"]
+
+def train_mofa_with_seeds(mofa_input_file, output_dir, n_seeds=5, n_factors=10, n_iter=1000):
     """
     Trains MOFA with multiple random initializations to check stability.
     Saves ELBO diagnostic plots for each seed.
@@ -29,7 +33,7 @@ def train_mofa_with_seeds(mofa_input_file, output_dir, n_seeds=5, n_factors=10):
                               ard_factors=True, 
                               ard_weights=True)
         ent.set_train_options(
-            iter=20, 
+            iter=n_iter, 
             seed=seed,
             convergence_mode="slow"
         )
@@ -40,7 +44,7 @@ def train_mofa_with_seeds(mofa_input_file, output_dir, n_seeds=5, n_factors=10):
         
         # Save Model
         model_path = os.path.join(output_dir, f"model_seed_{seed}.hdf5")
-        ent.save(model_path)
+        ent.save(model_path, expectations=SAVED_EXPECTATIONS)
         
         # Capture and Plot ELBO
         elbo = ent.model.getTrainingStats()['elbo']
@@ -57,6 +61,10 @@ def train_mofa_with_seeds(mofa_input_file, output_dir, n_seeds=5, n_factors=10):
         plt.savefig(os.path.join(output_dir, f"elbo_plot_seed_{seed}.png"))
         plt.close()
         
-        print(f"Final ELBO for seed {seed}: {elbo[-1]}")
+        # mofapy2 stores the ELBO before training plus one entry per iteration, and truncates
+        # the array on convergence, so a full-length array means training hit the cap
+        n_run = len(elbo) - 1
+        status = "stopped at the iteration cap; check convergence" if n_run >= n_iter else "converged"
+        print(f"Final ELBO for seed {seed}: {clean_elbo[-1]} after {n_run} iterations ({status})")
         
     return results
