@@ -13,17 +13,17 @@ import argparse
 import h5py
 import pandas as pd
 import numpy as np
+import re
+
 
 def align_features_to_model(df: pd.DataFrame, model_features: list, view_type: str) -> pd.DataFrame:
     """
     Subsets and reindexes a dataframe (features x samples) to match the exact feature set
-    from the trained MOFA model weights by stripping view suffixes and handling duplicates.
+    from the trained MOFA model weights by stripping all occurrences of view suffixes.
     """
-    # 1. Strip the view_type suffix from model feature names
-    clean_model_features = [
-        f[:-len(view_type)] if f.endswith(view_type) else f 
-        for f in model_features
-    ]
+    # 1. Dynamically strip all repeating occurrences of view_type suffixes (e.g. O00391CSF_ProteomicsCSF_Proteomics -> O00391)
+    suffix_pattern = r'(_?' + re.escape(view_type) + r')+$'
+    clean_model_features = [re.sub(suffix_pattern, '', f, flags=re.IGNORECASE) for f in model_features]
     
     # 2. Handle Ensembl version stripping and duplicate resolution for RNA-seq
     if view_type == "RNA_seq":
@@ -34,10 +34,10 @@ def align_features_to_model(df: pd.DataFrame, model_features: list, view_type: s
     elif df.index.has_duplicates:
         df = df.groupby(df.index).mean()
 
-    # 3. Reindex raw matrix using clean feature names
+    # 3. Reindex raw matrix using cleaned feature names
     aligned = df.reindex(index=clean_model_features)
     
-    # 4. Restore original model feature names (with view suffix) for downstream compatibility
+    # 4. Restore original model feature names (with view suffixes) for mofapy2 model compatibility
     aligned.index = model_features
     return aligned
 
@@ -110,7 +110,9 @@ def create_long_format(aligned_views: dict, metadata_df: pd.DataFrame, output_di
 
 def main():
     parser = argparse.ArgumentParser(description="Preprocess PDBP validation data aligned to trained MOFA model.")
-    parser.add_argument("--input_dir", required=True, help="Directory containing raw PDBP files.")
+    parser.add_argument("--rna_seq", default=None, help="Path to RNA-seq CSV file.")
+    parser.add_argument("--csf_proteomics", default=None, help="Path to CSF Proteomics CSV file.")
+    parser.add_argument("--plasma_proteomics", default=None, help="Path to Plasma Proteomics CSV file.")
     parser.add_argument("--output_dir", required=True, help="Directory to save preprocessed matrices.")
     parser.add_argument("--cohort", default="PDBP", help="Cohort name.")
     parser.add_argument("--model_path", required=True, help="Path to trained MOFA model HDF5.")
@@ -126,20 +128,21 @@ def main():
         print(f"Loading metadata from {args.metadata_path}...")
         metadata_df = pd.read_csv(args.metadata_path, index_col=0)
 
-    views = ["RNA_seq", "CSF_Proteomics", "Plasma_Proteomics"]
+    view_paths = {
+        "RNA_seq": args.rna_seq,
+        "CSF_Proteomics": args.csf_proteomics,
+        "Plasma_Proteomics": args.plasma_proteomics
+    }
+
     aligned_views = {}
 
-    for view in views:
-        possible_files = [
-            os.path.join(args.input_dir, f"{view.lower()}.csv"),
-            os.path.join(args.input_dir, f"{view}.csv"),
-            os.path.join(args.input_dir, f"{args.cohort.lower()}_{view.lower()}.csv")
-        ]
-        
-        input_file = next((f for f in possible_files if os.path.exists(f)), None)
-
+    for view, input_file in view_paths.items():
         if not input_file:
-            print(f"Skipping {view}: No input file found in {args.input_dir}")
+            print(f"Skipping {view}: No input file path provided.")
+            continue
+
+        if not os.path.exists(input_file):
+            print(f"Skipping {view}: File not found at '{input_file}'")
             continue
 
         print(f"Processing {view} from {input_file}...")

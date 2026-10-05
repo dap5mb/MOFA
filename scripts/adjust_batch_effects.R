@@ -68,7 +68,13 @@ cat(sprintf("[SUCCESS] Saved adjusted matrix to %s\n", opt$output))
 # ------------------------------------------------------------------------------
 if (!is.null(opt$plot_prefix)) {
   get_pca_df <- function(mat, label) {
-    pca <- prcomp(t(mat), scale. = TRUE)
+    # Remove genes/rows with zero variance
+    var_per_gene <- apply(mat, 1, var, na.rm = TRUE)
+    mat_filtered <- mat[var_per_gene > 0 & !is.na(var_per_gene), , drop = FALSE]
+
+    # Perform PCA on filtered matrix
+    pca <- prcomp(t(mat_filtered), scale. = TRUE)
+    
     data.frame(
       PC1 = pca$x[, 1], PC2 = pca$x[, 2],
       Plate = metadata$plate, Diagnosis = metadata$diagnosis,
