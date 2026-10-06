@@ -79,7 +79,8 @@ def main():
     parser.add_argument("--seed", type=int, default=0, help="Seed for drawing subsets (default: 0).")
     parser.add_argument("--top_pct", type=float, default=0.05, help="Top fraction of features by |weight| for overlap (default: 0.05).")
     parser.add_argument("--match_threshold", type=float, default=0.8, help="|r| at or above which a factor counts as reproduced (default: 0.8).")
-    parser.add_argument("--active_r2", type=float, default=1.0, help="Max per-view R2 (%%) for a reference factor to count as active (default: 1.0).")
+    parser.add_argument("--min_frac", type=float, default=0.9, help="Fraction of subsets a factor must be reproduced in to count as stable (default: 0.9).")
+    parser.add_argument("--active_r2", type=float, default=1.0, help="Max per-view R2 (%%) at or above which a factor is flagged active; reported only, not part of the stability rule (default: 1.0).")
     args = parser.parse_args()
 
     os.makedirs(args.output, exist_ok=True)
@@ -122,17 +123,25 @@ def main():
         "ref_max_R2": get_max_r2_per_factor(args.reference_model).reindex(factors),
         "z_abs_r_median": z.median(axis=1),
         "z_abs_r_min": z.min(axis=1),
+        "worst_subset": z.idxmin(axis=1),
         "frac_subsets_reproduced": (z >= args.match_threshold).mean(axis=1),
         "w_abs_r_median": w["w_abs_r"],
         f"top{int(args.top_pct * 100)}pct_jaccard_median": w["top_jaccard"],
     })
-    summary["stable"] = (summary["frac_subsets_reproduced"] >= 0.9) & (summary["ref_max_R2"] >= args.active_r2)
+    # Stability is reproducibility alone: factors with small R2 (e.g. < 1% of 5,000 genes) can carry
+    # the strongest clinical signal, so R2 is reported as a separate flag rather than a requirement
+    summary["active"] = summary["ref_max_R2"] >= args.active_r2
+    summary["stable"] = summary["frac_subsets_reproduced"] >= args.min_frac
     summary.to_csv(os.path.join(args.output, "subset_stability_summary.csv"))
 
     print(f"\n=== Subsample stability ({args.n_subsets} subsets of {args.fraction:.0%} participants) ===")
     print(summary.round(2).to_string())
-    print(f"\nA factor is marked stable if it is active (max per-view R2 >= {args.active_r2}%) and matched with "
-          f"|r| >= {args.match_threshold} in at least 90% of subsets.")
+    print(f"\nA factor is marked stable if it is matched with |r| >= {args.match_threshold} in at least "
+          f"{args.min_frac:.0%} of subsets. 'active' flags max per-view R2 >= {args.active_r2}% (informational).")
+    for factor, row in summary[summary["z_abs_r_min"] < args.match_threshold].iterrows():
+        sub = long[(long["subset"] == row["worst_subset"]) & (long["factor"] == factor)].iloc[0]
+        print(f"  {factor}: weakest in subset {int(row['worst_subset'])} (|r| = {row['z_abs_r_min']:.2f}, "
+              f"best match there: {sub['matched_factor']})")
     print(f"Saved results to: {args.output}")
 
 

@@ -5,7 +5,7 @@ import pandas as pd
 def run_preflight_check(rna_df, csf_df, plasma_df, metadata_df):
     """
     Verifies that participant IDs in metadata are present and aligned across all omic matrices.
-    Returns a filtered metadata dataframe and cleaned views.
+    Returns a filtered metadata dataframe and cleaned views. Pass None for a view that is not used.
     """
     print("--- Running Pre-flight Integrity Check ---")
     
@@ -21,12 +21,10 @@ def run_preflight_check(rna_df, csf_df, plasma_df, metadata_df):
 
     # 2. Align IDs across all sources
     meta_ids = set(meta.index)
-    rna_ids = set(rna_df.columns)
-    csf_ids = set(csf_df.columns)
-    pla_ids = set(plasma_df.columns)
+    view_ids = [set(df.columns) for df in (rna_df, csf_df, plasma_df) if df is not None]
     
     # Ensure every participant in metadata exists in at least one view
-    all_view_ids = rna_ids | csf_ids | pla_ids
+    all_view_ids = set().union(*view_ids)
     common_ids = meta_ids.intersection(all_view_ids)
     
     print(f"Metadata IDs: {len(meta_ids)}, IDs in views: {len(all_view_ids)}")
@@ -43,6 +41,8 @@ def validate_and_intersect_views(
 ):
     """
     Task 1.2.4: Final Matrix Validation & Sample Intersection
+    Pass None for csf_df or plasma_df to build the MOFA input without that view
+    (e.g. plasma_df=None for the main model without plasma proteomics).
     """
     os.makedirs(output_dir, exist_ok=True)
     
@@ -55,30 +55,31 @@ def validate_and_intersect_views(
     metadata_df = run_preflight_check(rna_df, csf_df, plasma_df, metadata_df)
     
     views = {
-        "RNA_seq": rna_df,
-        "CSF_Proteomics": csf_df,
-        "Plasma_Proteomics": plasma_df
+        name: df for name, df in (
+            ("RNA_seq", rna_df),
+            ("CSF_Proteomics", csf_df),
+            ("Plasma_Proteomics", plasma_df),
+        ) if df is not None
     }
+    print(f"Views included: {list(views)}")
 
     # --------------------------------------------------------------------------
     # 1. Inspect Sample Overlap Across Views
     # --------------------------------------------------------------------------
-    rna_samples = set(rna_df.columns)
-    csf_samples = set(csf_df.columns)
-    plasma_samples = set(plasma_df.columns)
+    view_samples = {name: set(df.columns) for name, df in views.items()}
     meta_samples = set(metadata_df.index)
     
-    # Find complete case intersection (present in ALL 3 views + metadata)
-    complete_cases = rna_samples.intersection(csf_samples).intersection(plasma_samples).intersection(meta_samples)
+    # Find complete case intersection (present in ALL included views + metadata)
+    complete_cases = set.intersection(*view_samples.values()).intersection(meta_samples)
     
     # Find union of all samples present in metadata and at least ONE omic view
-    all_omic_samples = (rna_samples | csf_samples | plasma_samples).intersection(meta_samples)
+    all_omic_samples = set().union(*view_samples.values()).intersection(meta_samples)
     
     print(f"Total Unique Participants in Metadata with >= 1 view: {len(all_omic_samples)}")
-    print(f"Complete Case Participants (Present in all 3 views): {len(complete_cases)}")
-    print(f"  - RNA-seq samples aligned: {len(rna_samples.intersection(meta_samples))}")
-    print(f"  - CSF Proteomics samples aligned: {len(csf_samples.intersection(meta_samples))}")
-    print(f"  - Plasma Proteomics samples aligned: {len(plasma_samples.intersection(meta_samples))}\n")
+    print(f"Complete Case Participants (Present in all {len(views)} views): {len(complete_cases)}")
+    for name, samples in view_samples.items():
+        print(f"  - {name} samples aligned: {len(samples.intersection(meta_samples))}")
+    print()
     
     # --------------------------------------------------------------------------
     # 2. Re-align and Format Matrices
