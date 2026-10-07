@@ -14,7 +14,7 @@ Analyses (per factor):
   within_sex_dx        factor ~ pd + age, fitted separately in each sex  (pd effect per sex)
   interaction_<score>  factor ~ score * male + age                       (PD cases only)
   within_sex_<score>   factor ~ score + age, fitted separately in each sex (PD cases only)
-  main_dx              logit(pd) ~ factor + age + male                   (odds ratio per SD)
+  main_dx              logit(pd) ~ factor + age + male                   (log-odds per SD; OR = exp(estimate))
   main_<score>         score ~ factor + age + male                       (PD cases only)
 
 Severity models use PD cases only so that disease severity isn't confounded with diagnosis.
