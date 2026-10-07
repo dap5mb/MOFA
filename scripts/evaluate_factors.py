@@ -20,6 +20,30 @@ try:
 except ImportError:
     HAS_PLOT = False
 
+def dedupe_metadata(meta_df: pd.DataFrame, id_col: str = "participant_id") -> pd.DataFrame:
+    """
+    Keeps one row per participant (the first). Clinical joins can repeat a participant, for example
+    several baseline exam records, which inflates n and significance downstream. Columns whose values
+    differ between a participant's rows are reported so the first-row choice can be reviewed.
+    """
+    dup_mask = meta_df[id_col].duplicated(keep=False)
+    if not dup_mask.any():
+        return meta_df
+    dups = meta_df[dup_mask]
+    n_people = dups[id_col].nunique()
+    print(f"Metadata: {len(dups)} rows for {n_people} participants with more than one row; keeping the first row per participant.")
+    conflicts = {}
+    for col in meta_df.columns:
+        if col == id_col:
+            continue
+        n_conflict = (dups.groupby(id_col)[col].nunique(dropna=True) > 1).sum()
+        if n_conflict:
+            conflicts[col] = int(n_conflict)
+    if conflicts:
+        print("  Columns whose values differ between a participant's rows (participants affected): " +
+              ", ".join(f"{c} ({n})" for c, n in sorted(conflicts.items(), key=lambda kv: -kv[1])))
+    return meta_df.drop_duplicates(subset=[id_col], keep="first")
+
 def load_and_merge_factors_metadata(z_path: str, metadata_path: str) -> pd.DataFrame:
     """Loads latent factor Z CSV and merges with sample clinical metadata with ID namespace diagnostics."""
     z_df = pd.read_csv(z_path)
@@ -41,7 +65,9 @@ def load_and_merge_factors_metadata(z_path: str, metadata_path: str) -> pd.DataF
         z_df = z_df.rename(columns={id_col: "participant_id"})
     if meta_id_col != "participant_id":
         meta_df = meta_df.rename(columns={meta_id_col: "participant_id"})
-        
+    meta_df = dedupe_metadata(meta_df)
+    z_df = dedupe_metadata(z_df)
+
     z_ids = set(z_df["participant_id"].astype(str))
     meta_ids = set(meta_df["participant_id"].astype(str))
     overlap = z_ids.intersection(meta_ids)
