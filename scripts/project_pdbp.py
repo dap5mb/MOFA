@@ -246,11 +246,11 @@ def project_pdbp(model_path: str, input_dir: str, output_dir: str, cohort: str, 
     else:
         print("Factor prior: model has no saved AlphaZ; using N(0, 1) for every factor.")
 
-    # 2. Assign samples to model groups
-    if metadata_path:
-        sample_groups = load_sample_groups(metadata_path, model_groups)
-    elif len(model_groups) <= 1:
+    # 2. Assign samples to model groups (a single-group model puts every sample in its one group)
+    if len(model_groups) <= 1:
         sample_groups = None
+    elif metadata_path:
+        sample_groups = load_sample_groups(metadata_path, model_groups)
     else:
         raise ValueError(f"Model has groups {model_groups}; pass --metadata so samples can be centered within each group.")
 
