@@ -7,8 +7,17 @@ def preprocess_rnaseq(counts_file=str,
                            output_file=str, 
                            visit_filter=0.0, 
                            cohort_name=str, 
-                           min_count=10, 
-                           min_prop=0.20):
+                           min_count=10,
+                           min_prop=0.20,
+                           n_top_genes=5000):
+    """
+    Size-factor normalization (DESeq2 median-of-ratios, estimated on genes passing the low-count
+    filter) and log1p, then the top `n_top_genes` most variable genes, centered per gene.
+
+    n_top_genes=None is for a validation cohort (PDBP): the size factors are applied to all
+    genes and no genes are selected, because its genes must come from the PPMI-trained model
+    (preprocess_pdbp.py aligns them).
+    """
     print("Loading data...")
     
     # 1. Load data
@@ -74,17 +83,25 @@ def preprocess_rnaseq(counts_file=str,
     size_factors = dds.obs['size_factors']
     
     # Normalize counts by sequencing depth / size factors, then apply log1p
-    normed_counts = counts_filtered.div(size_factors, axis=0)
+    if n_top_genes is None:
+        # Validation cohort: apply the size factors to every gene so all model genes are kept
+        normed_counts = counts.round().div(size_factors, axis=0)
+    else:
+        normed_counts = counts_filtered.div(size_factors, axis=0)
     expr_matrix_vst = np.log1p(normed_counts).T  # Transpose back to Genes x Samples
-    
+
     # 7. Select Top Highly Variable Genes (HVGs) for MOFA
-    print(f"Selecting top 5000 highly variable genes for MOFA...")
-    
-    # Calculate Variance or Median Absolute Deviation (MAD) across samples
-    gene_variances = expr_matrix_vst.var(axis=1) # or scipy.stats.median_abs_deviation
-    top_genes = gene_variances.nlargest(5000).index
-    
-    expr_matrix_mofa = expr_matrix_vst.loc[top_genes]
+    if n_top_genes is None:
+        print(f"Keeping all {expr_matrix_vst.shape[0]} genes (no variable-gene selection).")
+        expr_matrix_mofa = expr_matrix_vst
+    else:
+        print(f"Selecting top {n_top_genes} highly variable genes for MOFA...")
+
+        # Calculate Variance or Median Absolute Deviation (MAD) across samples
+        gene_variances = expr_matrix_vst.var(axis=1) # or scipy.stats.median_abs_deviation
+        top_genes = gene_variances.nlargest(n_top_genes).index
+
+        expr_matrix_mofa = expr_matrix_vst.loc[top_genes]
     
     # 8. Feature-wise Standardization (Crucial for MOFA)
     # MOFA performs best when features in each view are zero-centered
