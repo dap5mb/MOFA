@@ -1,0 +1,19 @@
+# OS / editor / Python clutter
+.DS_Store
+.Rhistory
+.RData
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.pytest_cache/
+
+# Controlled-access data and derived outputs (AMP-PD data use agreement): keep off GitHub
+data/raw/
+results/
+figures/
+
+# Personal and administrative documents
+admin/
+
+# Legacy material kept locally only
+archive/

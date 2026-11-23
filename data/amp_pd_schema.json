@@ -1,0 +1,4626 @@
+{
+  "amp-pd-research:2020_v2release_1218.Biospecimen_analyses_CSF_abeta_tau_ptau": [
+    {
+      "column": "participant_id",
+      "type": "STRING",
+      "assessment": "Biospecimen_analyses_CSF_abeta_tau_ptau",
+      "required": "REQUIRED",
+      "definition": "Study Subject ID"
+    },
+    {
+      "column": "GUID",
+      "type": "STRING",
+      "assessment": "Biospecimen_analyses_CSF_abeta_tau_ptau",
+      "required": "NULLABLE",
+      "definition": "Global Unique ID (USUBJID)"
+    },
+    {
+      "column": "visit_name",
+      "type": "STRING",
+      "assessment": "Biospecimen_analyses_CSF_abeta_tau_ptau",
+      "required": "REQUIRED",
+      "definition": "Visit name: M - in months, SC - screening visit, LOG - records without visit; #2 or #3 define repated records at the same visit or repeated visit"
+    },
+    {
+      "column": "visit_month",
+      "type": "FLOAT",
+      "assessment": "Biospecimen_analyses_CSF_abeta_tau_ptau",
+      "required": "NULLABLE",
+      "definition": "Numeric visit in months; for visits prior baseline -1, -2 is an order of screening visits"
+    },
+    {
+      "column": "sample_type",
+      "type": "STRING",
+      "assessment": "Biospecimen_analyses_CSF_abeta_tau_ptau",
+      "required": "REQUIRED",
+      "definition": "Type of biospecimen used for analysis, e.g. CSF, Plasma, Serum, Blood, RNA"
+    },
+    {
+      "column": "test_name",
+      "type": "STRING",
+      "assessment": "Biospecimen_analyses_CSF_abeta_tau_ptau",
+      "required": "REQUIRED",
+      "definition": "Name of the biospecimen test"
+    },
+    {
+      "column": "test_value",
+      "type": "FLOAT",
+      "assessment": "Biospecimen_analyses_CSF_abeta_tau_ptau",
+      "required": "NULLABLE",
+      "definition": "Biospecimen test result (numeric)"
+    },
+    {
+      "column": "test_units",
+      "type": "STRING",
+      "assessment": "Biospecimen_analyses_CSF_abeta_tau_ptau",
+      "required": "REQUIRED",
+      "definition": "Biospecimen test units of measure"
+    }
+  ],
+  "amp-pd-research:2020_v2release_1218.Biospecimen_analyses_CSF_beta_glucocerebrosidase": [
+    {
+      "column": "participant_id",
+      "type": "STRING",
+      "assessment": "Biospecimen_analyses_CSF_beta_glucocerebrosidase",
+      "required": "REQUIRED",
+      "definition": "Study Subject ID"
+    },
+    {
+      "column": "GUID",
+      "type": "STRING",
+      "assessment": "Biospecimen_analyses_CSF_beta_glucocerebrosidase",
+      "required": "NULLABLE",
+      "definition": "Global Unique ID (USUBJID)"
+    },
+    {
+      "column": "visit_name",
+      "type": "STRING",
+      "assessment": "Biospecimen_analyses_CSF_beta_glucocerebrosidase",
+      "required": "REQUIRED",
+      "definition": "Visit name: M - in months, SC - screening visit, LOG - records without visit; #2 or #3 define repated records at the same visit or repeated visit"
+    },
+    {
+      "column": "visit_month",
+      "type": "FLOAT",
+      "assessment": "Biospecimen_analyses_CSF_beta_glucocerebrosidase",
+      "required": "NULLABLE",
+      "definition": "Numeric visit in months; for visits prior baseline -1, -2 is an order of screening visits"
+    },
+    {
+      "column": "sample_type",
+      "type": "STRING",
+      "assessment": "Biospecimen_analyses_CSF_beta_glucocerebrosidase",
+      "required": "REQUIRED",
+      "definition": "Type of biospecimen used for analysis e.g. CSF, Plasma, Serum, Blood, RNA"
+    },
+    {
+      "column": "test_name",
+      "type": "STRING",
+      "assessment": "Biospecimen_analyses_CSF_beta_glucocerebrosidase",
+      "required": "REQUIRED",
+      "definition": "Name of the biospecimen test"
+    },
+    {
+      "column": "test_value",
+      "type": "FLOAT",
+      "assessment": "Biospecimen_analyses_CSF_beta_glucocerebrosidase",
+      "required": "NULLABLE",
+      "definition": "Biospecimen test result (numeric)"
+    },
+    {
+      "column": "test_units",
+      "type": "STRING",
+      "assessment": "Biospecimen_analyses_CSF_beta_glucocerebrosidase",
+      "required": "REQUIRED",
+      "definition": "Biospecimen test units of measure"
+    }
+  ],
+  "amp-pd-research:2020_v2release_1218.Biospecimen_analyses_SomaLogic_plasma": [
+    {
+      "column": "participant_id",
+      "type": "STRING",
+      "assessment": "Biospecimen_analyses_SomaLogic_plasma",
+      "required": "REQUIRED",
+      "definition": "Study Subject ID"
+    },
+    {
+      "column": "GUID",
+      "type": "STRING",
+      "assessment": "Biospecimen_analyses_SomaLogic_plasma",
+      "required": "NULLABLE",
+      "definition": "Global Unique ID (USUBJID)"
+    },
+    {
+      "column": "visit_name",
+      "type": "STRING",
+      "assessment": "Biospecimen_analyses_SomaLogic_plasma",
+      "required": "REQUIRED",
+      "definition": "Visit name: M - in months, SC - screening visit, LOG - records without visit; #2 or #3 define repated records at the same visit or repeated visit"
+    },
+    {
+      "column": "visit_month",
+      "type": "FLOAT",
+      "assessment": "Biospecimen_analyses_SomaLogic_plasma",
+      "required": "NULLABLE",
+      "definition": "Numeric visit in months; for visits prior baseline -1, -2 is an order of screening visits"
+    },
+    {
+      "column": "sample_type",
+      "type": "STRING",
+      "assessment": "Biospecimen_analyses_SomaLogic_plasma",
+      "required": "REQUIRED",
+      "definition": "Type of biospecimen used for analysis e.g. CSF, Plasma, Serum, Blood, RNA"
+    },
+    {
+      "column": "test_name",
+      "type": "STRING",
+      "assessment": "Biospecimen_analyses_SomaLogic_plasma",
+      "required": "REQUIRED",
+      "definition": "Name of the biospecimen test"
+    },
+    {
+      "column": "test_value",
+      "type": "FLOAT",
+      "assessment": "Biospecimen_analyses_SomaLogic_plasma",
+      "required": "NULLABLE",
+      "definition": "Biospecimen test result (numeric)"
+    },
+    {
+      "column": "test_units",
+      "type": "STRING",
+      "assessment": "Biospecimen_analyses_SomaLogic_plasma",
+      "required": "REQUIRED",
+      "definition": "Biospecimen test units of measure"
+    }
+  ],
+  "amp-pd-research:2020_v2release_1218.Biospecimen_analyses_other": [
+    {
+      "column": "participant_id",
+      "type": "STRING",
+      "assessment": "Biospecimen_analyses_other",
+      "required": "REQUIRED",
+      "definition": "Study Subject ID"
+    },
+    {
+      "column": "GUID",
+      "type": "STRING",
+      "assessment": "Biospecimen_analyses_other",
+      "required": "NULLABLE",
+      "definition": "Global Unique ID (USUBJID)"
+    },
+    {
+      "column": "visit_name",
+      "type": "STRING",
+      "assessment": "Biospecimen_analyses_other",
+      "required": "REQUIRED",
+      "definition": "Visit name: M - in months, SC - screening visit, LOG - records without visit; #2 or #3 define repated records at the same visit or repeated visit"
+    },
+    {
+      "column": "visit_month",
+      "type": "FLOAT",
+      "assessment": "Biospecimen_analyses_other",
+      "required": "NULLABLE",
+      "definition": "Numeric visit in months; for visits prior baseline -1, -2 is an order of screening visits"
+    },
+    {
+      "column": "sample_type",
+      "type": "STRING",
+      "assessment": "Biospecimen_analyses_other",
+      "required": "REQUIRED",
+      "definition": "Type of biospecimen used for analysis e.g. CSF, Plasma, Serum, Blood, RNA"
+    },
+    {
+      "column": "test_name",
+      "type": "STRING",
+      "assessment": "Biospecimen_analyses_other",
+      "required": "REQUIRED",
+      "definition": "Name of the biospecimen test"
+    },
+    {
+      "column": "test_value",
+      "type": "FLOAT",
+      "assessment": "Biospecimen_analyses_other",
+      "required": "NULLABLE",
+      "definition": "Biospecimen test result (numeric)"
+    },
+    {
+      "column": "test_units",
+      "type": "STRING",
+      "assessment": "Biospecimen_analyses_other",
+      "required": "REQUIRED",
+      "definition": "Biospecimen test units of measure"
+    }
+  ],
+  "amp-pd-research:2020_v2release_1218.Caffeine_history": [
+    {
+      "column": "participant_id",
+      "type": "STRING",
+      "assessment": "Caffeine_history",
+      "required": "REQUIRED",
+      "definition": "Study Subject ID"
+    },
+    {
+      "column": "GUID",
+      "type": "STRING",
+      "assessment": "Caffeine_history",
+      "required": "NULLABLE",
+      "definition": "Global Unique ID (USUBJID)"
+    },
+    {
+      "column": "visit_name",
+      "type": "STRING",
+      "assessment": "Caffeine_history",
+      "required": "REQUIRED",
+      "definition": "Visit name: M - in months, SC - screening visit, LOG - records without visit; #2 or #3 define repated records at the same visit or repeated visit"
+    },
+    {
+      "column": "visit_month",
+      "type": "FLOAT",
+      "assessment": "Caffeine_history",
+      "required": "NULLABLE",
+      "definition": "Numeric visit in months; for visits prior baseline -1, -2 is an order of screening visits"
+    },
+    {
+      "column": "caff_drinks_ever_used_regularly",
+      "type": "STRING",
+      "assessment": "Caffeine_history",
+      "required": "NULLABLE",
+      "definition": "Indicator of whether subject has evere used caffeinated drinks"
+    },
+    {
+      "column": "caff_drinks_current_use",
+      "type": "STRING",
+      "assessment": "Caffeine_history",
+      "required": "NULLABLE",
+      "definition": "Current regular caffeinated drinks use indicator"
+    }
+  ],
+  "amp-pd-research:2020_v2release_1218.DTI": [
+    {
+      "column": "participant_id",
+      "type": "STRING",
+      "assessment": "DTI",
+      "required": "REQUIRED",
+      "definition": "Study Subject ID"
+    },
+    {
+      "column": "GUID",
+      "type": "STRING",
+      "assessment": "DTI",
+      "required": "NULLABLE",
+      "definition": "Global Unique ID (USUBJID)"
+    },
+    {
+      "column": "visit_name",
+      "type": "STRING",
+      "assessment": "DTI",
+      "required": "REQUIRED",
+      "definition": "Visit name: M - in months, SC - screening visit, LOG - records without visit; #2 or #3 define repated records at the same visit or repeated visit"
+    },
+    {
+      "column": "visit_month",
+      "type": "FLOAT",
+      "assessment": "DTI",
+      "required": "NULLABLE",
+      "definition": "Numeric visit in months; for visits prior baseline -1, -2 is an order of screening visits"
+    },
+    {
+      "column": "dti_brain_tissue",
+      "type": "STRING",
+      "assessment": "DTI",
+      "required": "REQUIRED",
+      "definition": "DTI Measure"
+    },
+    {
+      "column": "dti_measure",
+      "type": "STRING",
+      "assessment": "DTI",
+      "required": "NULLABLE",
+      "definition": "Brain tissue being measured"
+    },
+    {
+      "column": "roi1_left_rostral",
+      "type": "FLOAT",
+      "assessment": "DTI",
+      "required": "NULLABLE",
+      "definition": "Left Rostral"
+    },
+    {
+      "column": "roi2_left_middle",
+      "type": "FLOAT",
+      "assessment": "DTI",
+      "required": "NULLABLE",
+      "definition": "Left Middle"
+    },
+    {
+      "column": "roi3_left_caudal",
+      "type": "FLOAT",
+      "assessment": "DTI",
+      "required": "NULLABLE",
+      "definition": "Left Caudal"
+    },
+    {
+      "column": "roi4_right_rostral",
+      "type": "FLOAT",
+      "assessment": "DTI",
+      "required": "NULLABLE",
+      "definition": "Right Rostral"
+    },
+    {
+      "column": "roi5_right_middle",
+      "type": "FLOAT",
+      "assessment": "DTI",
+      "required": "NULLABLE",
+      "definition": "Right Middle"
+    },
+    {
+      "column": "roi6_right_caudal",
+      "type": "FLOAT",
+      "assessment": "DTI",
+      "required": "NULLABLE",
+      "definition": "Right Caudal"
+    },
+    {
+      "column": "ref1_left_reference",
+      "type": "FLOAT",
+      "assessment": "DTI",
+      "required": "NULLABLE",
+      "definition": "Left Reference"
+    },
+    {
+      "column": "ref2_right_reference",
+      "type": "FLOAT",
+      "assessment": "DTI",
+      "required": "NULLABLE",
+      "definition": "Right Reference"
+    }
+  ],
+  "amp-pd-research:2020_v2release_1218.DaTSCAN_SBR": [
+    {
+      "column": "participant_id",
+      "type": "STRING",
+      "assessment": "DaTSCAN_SBR",
+      "required": "REQUIRED",
+      "definition": "Study Subject ID"
+    },
+    {
+      "column": "GUID",
+      "type": "STRING",
+      "assessment": "DaTSCAN_SBR",
+      "required": "NULLABLE",
+      "definition": "Global Unique ID (USUBJID)"
+    },
+    {
+      "column": "visit_name",
+      "type": "STRING",
+      "assessment": "DaTSCAN_SBR",
+      "required": "REQUIRED",
+      "definition": "Visit name: M - in months, SC - screening visit, LOG - records without visit; #2 or #3 define repated records at the same visit or repeated visit"
+    },
+    {
+      "column": "visit_month",
+      "type": "FLOAT",
+      "assessment": "DaTSCAN_SBR",
+      "required": "NULLABLE",
+      "definition": "Numeric visit in months; for visits prior baseline -1, -2 is an order of screening visits"
+    },
+    {
+      "column": "sbr_caudate_r",
+      "type": "FLOAT",
+      "assessment": "DaTSCAN_SBR",
+      "required": "NULLABLE",
+      "definition": "Brain region used for ROI sampling for SBR quantitative analysis - right caudate SBR"
+    },
+    {
+      "column": "sbr_caudate_l",
+      "type": "FLOAT",
+      "assessment": "DaTSCAN_SBR",
+      "required": "NULLABLE",
+      "definition": "Brain region used for ROI sampling for SBR quantitative analysis - left caudate SBR"
+    },
+    {
+      "column": "sbr_putamen_r",
+      "type": "FLOAT",
+      "assessment": "DaTSCAN_SBR",
+      "required": "NULLABLE",
+      "definition": "Brain region used for ROI sampling for SBR quantitative analysis - right putamen SBR"
+    },
+    {
+      "column": "sbr_putamen_l",
+      "type": "FLOAT",
+      "assessment": "DaTSCAN_SBR",
+      "required": "NULLABLE",
+      "definition": "Brain region used for ROI sampling for SBR quantitative analysis - left putamen SBR"
+    }
+  ],
+  "amp-pd-research:2020_v2release_1218.DaTSCAN_visual_interpretation": [
+    {
+      "column": "participant_id",
+      "type": "STRING",
+      "assessment": "DaTSCAN_visual_interpretation",
+      "required": "REQUIRED",
+      "definition": "Study Subject ID"
+    },
+    {
+      "column": "GUID",
+      "type": "STRING",
+      "assessment": "DaTSCAN_visual_interpretation",
+      "required": "NULLABLE",
+      "definition": "Global Unique ID (USUBJID)"
+    },
+    {
+      "column": "visit_name",
+      "type": "STRING",
+      "assessment": "DaTSCAN_visual_interpretation",
+      "required": "REQUIRED",
+      "definition": "Visit name: M - in months, SC - screening visit, LOG - records without visit; #2 or #3 define repated records at the same visit or repeated visit"
+    },
+    {
+      "column": "visit_month",
+      "type": "FLOAT",
+      "assessment": "DaTSCAN_visual_interpretation",
+      "required": "NULLABLE",
+      "definition": "Numeric visit in months; for visits prior baseline -1, -2 is an order of screening visits"
+    },
+    {
+      "column": "scan_date",
+      "type": "STRING",
+      "assessment": "DaTSCAN_visual_interpretation",
+      "required": "NULLABLE",
+      "definition": "Scan date of DaTSCAN"
+    },
+    {
+      "column": "datscan_visual_interpretation",
+      "type": "STRING",
+      "assessment": "DaTSCAN_visual_interpretation",
+      "required": "NULLABLE",
+      "definition": "DaTSCAN SPECT Visual Interpretation Assessment Report"
+    }
+  ],
+  "amp-pd-research:2020_v2release_1218.Demographics": [
+    {
+      "column": "participant_id",
+      "type": "STRING",
+      "assessment": "Demographics",
+      "required": "REQUIRED",
+      "definition": "Study Subject ID"
+    },
+    {
+      "column": "GUID",
+      "type": "STRING",
+      "assessment": "Demographics",
+      "required": "NULLABLE",
+      "definition": "Global Unique ID (USUBJID)"
+    },
+    {
+      "column": "visit_name",
+      "type": "STRING",
+      "assessment": "Demographics",
+      "required": "REQUIRED",
+      "definition": "Visit name: M - in months, SC - screening visit, LOG - records without visit; #2 or #3 define repated records at the same visit or repeated visit"
+    },
+    {
+      "column": "visit_month",
+      "type": "FLOAT",
+      "assessment": "Demographics",
+      "required": "NULLABLE",
+      "definition": "Numeric visit in months; for visits prior baseline -1, -2 is an order of screening visits"
+    },
+    {
+      "column": "age_at_baseline",
+      "type": "INTEGER",
+      "assessment": "Demographics",
+      "required": "NULLABLE",
+      "definition": "Age At Baseline"
+    },
+    {
+      "column": "sex",
+      "type": "STRING",
+      "assessment": "Demographics",
+      "required": "NULLABLE",
+      "definition": "Sex"
+    },
+    {
+      "column": "ethnicity",
+      "type": "STRING",
+      "assessment": "Demographics",
+      "required": "NULLABLE",
+      "definition": "Ethnicity"
+    },
+    {
+      "column": "race",
+      "type": "STRING",
+      "assessment": "Demographics",
+      "required": "NULLABLE",
+      "definition": "Race"
+    },
+    {
+      "column": "education_level_years",
+      "type": "STRING",
+      "assessment": "Demographics",
+      "required": "NULLABLE",
+      "definition": "Education Level Years"
+    }
+  ],
+  "amp-pd-research:2020_v2release_1218.Enrollment": [
+    {
+      "column": "participant_id",
+      "type": "STRING",
+      "assessment": "Enrollment",
+      "required": "REQUIRED",
+      "definition": "Study Subject ID"
+    },
+    {
+      "column": "GUID",
+      "type": "STRING",
+      "assessment": "Enrollment",
+      "required": "NULLABLE",
+      "definition": "Global Unique ID (USUBJID)"
+    },
+    {
+      "column": "visit_name",
+      "type": "STRING",
+      "assessment": "Enrollment",
+      "required": "REQUIRED",
+      "definition": "Visit name: M - in months, SC - screening visit, LOG - records without visit; #2 or #3 define repated records at the same visit or repeated visit"
+    },
+    {
+      "column": "visit_month",
+      "type": "FLOAT",
+      "assessment": "Enrollment",
+      "required": "NULLABLE",
+      "definition": "Numeric visit in months; for visits prior baseline -1, -2 is an order of screening visits"
+    },
+    {
+      "column": "enrollment_months_after_baseline",
+      "type": "FLOAT",
+      "assessment": "Enrollment",
+      "required": "NULLABLE",
+      "definition": "Enrollment Date months after baseline visit"
+    },
+    {
+      "column": "informed_consent_months_after_baseline",
+      "type": "FLOAT",
+      "assessment": "Enrollment",
+      "required": "NULLABLE",
+      "definition": "Informed Consent Date months after baseline visit"
+    },
+    {
+      "column": "prodromal_category",
+      "type": "STRING",
+      "assessment": "Enrollment",
+      "required": "NULLABLE",
+      "definition": "At-risk for PD individuals having the same diagnosis as healthy controls with enrollment criterion hyposmia or REM Sleep Behavior Disorder. The rest are Unknown/Not collected as enrollment criterion"
+    },
+    {
+      "column": "study_arm",
+      "type": "STRING",
+      "assessment": "Enrollment",
+      "required": "NULLABLE",
+      "definition": "Cohort (PD, healthy control, subjects with Scans Without Evidence of Dopaminergic Deficit [SWEDD], Prodromal, Genetic Cohort PD, or Genetic Cohort Unaffected) determined by the inclusion/exclusion criteria established in the study protocol. A given participant's cohort does not change over time, even if the participant develops or is later found to have characteristics of another cohort ."
+    }
+  ],
+  "amp-pd-research:2020_v2release_1218.Epworth_Sleepiness_Scale": [
+    {
+      "column": "participant_id",
+      "type": "STRING",
+      "assessment": "Epworth_Sleepiness_Scale",
+      "required": "REQUIRED",
+      "definition": "Study Subject ID"
+    },
+    {
+      "column": "GUID",
+      "type": "STRING",
+      "assessment": "Epworth_Sleepiness_Scale",
+      "required": "NULLABLE",
+      "definition": "Global Unique ID (USUBJID)"
+    },
+    {
+      "column": "visit_name",
+      "type": "STRING",
+      "assessment": "Epworth_Sleepiness_Scale",
+      "required": "REQUIRED",
+      "definition": "Visit name: M - in months, SC - screening visit, LOG - records without visit; #2 or #3 define repated records at the same visit or repeated visit"
+    },
+    {
+      "column": "visit_month",
+      "type": "FLOAT",
+      "assessment": "Epworth_Sleepiness_Scale",
+      "required": "NULLABLE",
+      "definition": "Numeric visit in months; for visits prior baseline -1, -2 is an order of screening visits"
+    },
+    {
+      "column": "ess_info_source",
+      "type": "STRING",
+      "assessment": "Epworth_Sleepiness_Scale",
+      "required": "NULLABLE",
+      "definition": "ESS - Primary Source Of Information"
+    },
+    {
+      "column": "code_ess0101_sitting_and_reading",
+      "type": "INTEGER",
+      "assessment": "Epworth_Sleepiness_Scale",
+      "required": "NULLABLE",
+      "definition": "ESS - Sitting And Reading (ESS0101)"
+    },
+    {
+      "column": "code_ess0102_watching_tv",
+      "type": "INTEGER",
+      "assessment": "Epworth_Sleepiness_Scale",
+      "required": "NULLABLE",
+      "definition": "ESS - Watching TV (ESS0102)"
+    },
+    {
+      "column": "code_ess0103_sitting_inactive_in_public_place",
+      "type": "INTEGER",
+      "assessment": "Epworth_Sleepiness_Scale",
+      "required": "NULLABLE",
+      "definition": "ESS - Sitting, Inactive In A Public Place (ESS0103)"
+    },
+    {
+      "column": "code_ess0104_passenger_in_car_for_hour",
+      "type": "INTEGER",
+      "assessment": "Epworth_Sleepiness_Scale",
+      "required": "NULLABLE",
+      "definition": "ESS - As A Passenger In A Car For An Hour Without A Break (ESS0104)"
+    },
+    {
+      "column": "code_ess0105_lying_down_to_rest_in_afternoon",
+      "type": "INTEGER",
+      "assessment": "Epworth_Sleepiness_Scale",
+      "required": "NULLABLE",
+      "definition": "ESS - Lying Down To Rest In The Afternoon When Circumstances Permit (ESS0105)"
+    },
+    {
+      "column": "code_ess0106_sitting_and_talking_to_someone",
+      "type": "INTEGER",
+      "assessment": "Epworth_Sleepiness_Scale",
+      "required": "NULLABLE",
+      "definition": "ESS - Sitting And Talking To Someone (ESS0106)"
+    },
+    {
+      "column": "code_ess0107_sitting_after_lunch",
+      "type": "INTEGER",
+      "assessment": "Epworth_Sleepiness_Scale",
+      "required": "NULLABLE",
+      "definition": "ESS - Sitting Quietly After A Lunch Without Alcohol (ESS0107)"
+    },
+    {
+      "column": "code_ess0108_car_stopped_in_traffic",
+      "type": "INTEGER",
+      "assessment": "Epworth_Sleepiness_Scale",
+      "required": "NULLABLE",
+      "definition": "ESS - In A Car, While Stopped For A Few Minutes In The Traffic (ESS0108)"
+    },
+    {
+      "column": "ess0101_sitting_and_reading",
+      "type": "STRING",
+      "assessment": "Epworth_Sleepiness_Scale",
+      "required": "NULLABLE",
+      "definition": "ESS - Sitting And Reading (ESS0101)"
+    },
+    {
+      "column": "ess0102_watching_tv",
+      "type": "STRING",
+      "assessment": "Epworth_Sleepiness_Scale",
+      "required": "NULLABLE",
+      "definition": "ESS - Watching TV (ESS0102)"
+    },
+    {
+      "column": "ess0103_sitting_inactive_in_public_place",
+      "type": "STRING",
+      "assessment": "Epworth_Sleepiness_Scale",
+      "required": "NULLABLE",
+      "definition": "ESS - Sitting, Inactive In A Public Place (ESS0103)"
+    },
+    {
+      "column": "ess0104_passenger_in_car_for_hour",
+      "type": "STRING",
+      "assessment": "Epworth_Sleepiness_Scale",
+      "required": "NULLABLE",
+      "definition": "ESS - As A Passenger In A Car For An Hour Without A Break (ESS0104)"
+    },
+    {
+      "column": "ess0105_lying_down_to_rest_in_afternoon",
+      "type": "STRING",
+      "assessment": "Epworth_Sleepiness_Scale",
+      "required": "NULLABLE",
+      "definition": "ESS - Lying Down To Rest In The Afternoon When Circumstances Permit (ESS0105)"
+    },
+    {
+      "column": "ess0106_sitting_and_talking_to_someone",
+      "type": "STRING",
+      "assessment": "Epworth_Sleepiness_Scale",
+      "required": "NULLABLE",
+      "definition": "ESS - Sitting And Talking To Someone (ESS0106)"
+    },
+    {
+      "column": "ess0107_sitting_after_lunch",
+      "type": "STRING",
+      "assessment": "Epworth_Sleepiness_Scale",
+      "required": "NULLABLE",
+      "definition": "ESS - Sitting Quietly After A Lunch Without Alcohol (ESS0107)"
+    },
+    {
+      "column": "ess0108_car_stopped_in_traffic",
+      "type": "STRING",
+      "assessment": "Epworth_Sleepiness_Scale",
+      "required": "NULLABLE",
+      "definition": "ESS - In A Car, While Stopped For A Few Minutes In The Traffic (ESS0108)"
+    },
+    {
+      "column": "ess_summary_score",
+      "type": "INTEGER",
+      "assessment": "Epworth_Sleepiness_Scale",
+      "required": "NULLABLE",
+      "definition": "Epworth Sleepiness Scale (ESS) - Total Score"
+    }
+  ],
+  "amp-pd-research:2020_v2release_1218.Family_History_PD": [
+    {
+      "column": "participant_id",
+      "type": "STRING",
+      "assessment": "Family_History_PD",
+      "required": "REQUIRED",
+      "definition": "Study Subject ID"
+    },
+    {
+      "column": "GUID",
+      "type": "STRING",
+      "assessment": "Family_History_PD",
+      "required": "NULLABLE",
+      "definition": "Global Unique ID (USUBJID)"
+    },
+    {
+      "column": "visit_name",
+      "type": "STRING",
+      "assessment": "Family_History_PD",
+      "required": "REQUIRED",
+      "definition": "Visit name: M - in months, SC - screening visit, LOG - records without visit; #2 or #3 define repated records at the same visit or repeated visit"
+    },
+    {
+      "column": "visit_month",
+      "type": "FLOAT",
+      "assessment": "Family_History_PD",
+      "required": "NULLABLE",
+      "definition": "Numeric visit in months; for visits prior baseline -1, -2 is an order of screening visits"
+    },
+    {
+      "column": "biological_mother_with_pd",
+      "type": "STRING",
+      "assessment": "Family_History_PD",
+      "required": "NULLABLE",
+      "definition": "Mother Has Or Had Parkinson's Disease"
+    },
+    {
+      "column": "biological_father_with_pd",
+      "type": "STRING",
+      "assessment": "Family_History_PD",
+      "required": "NULLABLE",
+      "definition": "Father Has Or Had Parkinson's Disease"
+    },
+    {
+      "column": "other_relative_with_pd",
+      "type": "STRING",
+      "assessment": "Family_History_PD",
+      "required": "NULLABLE",
+      "definition": "Other Relative Has Or Had Parkinson's Disease"
+    }
+  ],
+  "amp-pd-research:2020_v2release_1218.LBD_Cohort_Clinical_Data": [
+    {
+      "column": "participant_id",
+      "type": "STRING",
+      "assessment": "LBD_Cohort_Clinical_Data",
+      "required": "REQUIRED",
+      "definition": "Study Subject ID"
+    },
+    {
+      "column": "GUID",
+      "type": "STRING",
+      "assessment": "LBD_Cohort_Clinical_Data",
+      "required": "NULLABLE",
+      "definition": "Global Unique ID (USUBJID)"
+    },
+    {
+      "column": "visit_name",
+      "type": "STRING",
+      "assessment": "LBD_Cohort_Clinical_Data",
+      "required": "REQUIRED",
+      "definition": "Visit name: M - in months, SC - screening visit, LOG - records without visit; #2 or #3 define repated records at the same visit or repeated visit"
+    },
+    {
+      "column": "visit_month",
+      "type": "FLOAT",
+      "assessment": "LBD_Cohort_Clinical_Data",
+      "required": "NULLABLE",
+      "definition": "Numeric visit in months; for visits prior baseline -1, -2 is an order of screening visits"
+    },
+    {
+      "column": "pres_symptom",
+      "type": "STRING",
+      "assessment": "LBD_Cohort_Clinical_Data",
+      "required": "NULLABLE",
+      "definition": "Presenting symptom"
+    },
+    {
+      "column": "fluc_cogn",
+      "type": "STRING",
+      "assessment": "LBD_Cohort_Clinical_Data",
+      "required": "NULLABLE",
+      "definition": "Fluctuating cognition"
+    },
+    {
+      "column": "vis_halluc",
+      "type": "STRING",
+      "assessment": "LBD_Cohort_Clinical_Data",
+      "required": "NULLABLE",
+      "definition": "Recurrent visual hallucinations"
+    },
+    {
+      "column": "rbd",
+      "type": "STRING",
+      "assessment": "LBD_Cohort_Clinical_Data",
+      "required": "NULLABLE",
+      "definition": "REM-sleep behavior disorder (per history or polysomnogram)"
+    },
+    {
+      "column": "parkinsonism",
+      "type": "STRING",
+      "assessment": "LBD_Cohort_Clinical_Data",
+      "required": "NULLABLE",
+      "definition": "Parkinsonism on clinical examination"
+    },
+    {
+      "column": "neurolep_sens",
+      "type": "STRING",
+      "assessment": "LBD_Cohort_Clinical_Data",
+      "required": "NULLABLE",
+      "definition": "Neuroleptic sensitivity"
+    },
+    {
+      "column": "psychosis",
+      "type": "STRING",
+      "assessment": "LBD_Cohort_Clinical_Data",
+      "required": "NULLABLE",
+      "definition": "Psychotic thought disorder"
+    },
+    {
+      "column": "mood_dis",
+      "type": "STRING",
+      "assessment": "LBD_Cohort_Clinical_Data",
+      "required": "NULLABLE",
+      "definition": "Mood disorder (depression and/or anxiety)"
+    },
+    {
+      "column": "auton_dys",
+      "type": "STRING",
+      "assessment": "LBD_Cohort_Clinical_Data",
+      "required": "NULLABLE",
+      "definition": "Severe dysautonomia (e.g. constipation requiring medications, urinary incontinence, orthostatic hypotension, anhidrosis)"
+    },
+    {
+      "column": "dat",
+      "type": "STRING",
+      "assessment": "LBD_Cohort_Clinical_Data",
+      "required": "NULLABLE",
+      "definition": "Dopamine transporter scan result"
+    },
+    {
+      "column": "spect_pet_perf",
+      "type": "STRING",
+      "assessment": "LBD_Cohort_Clinical_Data",
+      "required": "NULLABLE",
+      "definition": "SPECT or PET perfusion scan showing occipital hypometabolism"
+    },
+    {
+      "column": "exec_dys",
+      "type": "STRING",
+      "assessment": "LBD_Cohort_Clinical_Data",
+      "required": "NULLABLE",
+      "definition": "Executive dysfunction, such as bradyphrenia, set shifting impairment, impaired attention/planning"
+    },
+    {
+      "column": "memory_loss",
+      "type": "STRING",
+      "assessment": "LBD_Cohort_Clinical_Data",
+      "required": "NULLABLE",
+      "definition": "Memory loss"
+    },
+    {
+      "column": "mmse",
+      "type": "STRING",
+      "assessment": "LBD_Cohort_Clinical_Data",
+      "required": "NULLABLE",
+      "definition": "Last MMSE"
+    },
+    {
+      "column": "anosmia",
+      "type": "STRING",
+      "assessment": "LBD_Cohort_Clinical_Data",
+      "required": "NULLABLE",
+      "definition": "Anosmia (per history or smell test)"
+    },
+    {
+      "column": "smell_detail",
+      "type": "STRING",
+      "assessment": "LBD_Cohort_Clinical_Data",
+      "required": "NULLABLE",
+      "definition": "UPSIT 40 smell test score"
+    },
+    {
+      "column": "genetic",
+      "type": "STRING",
+      "assessment": "LBD_Cohort_Clinical_Data",
+      "required": "NULLABLE",
+      "definition": "Other genetic data available on patient"
+    }
+  ],
+  "amp-pd-research:2020_v2release_1218.LBD_Cohort_Path_Data": [
+    {
+      "column": "participant_id",
+      "type": "STRING",
+      "assessment": "LBD_Cohort_Path_Data",
+      "required": "REQUIRED",
+      "definition": "Study Subject ID"
+    },
+    {
+      "column": "GUID",
+      "type": "STRING",
+      "assessment": "LBD_Cohort_Path_Data",
+      "required": "NULLABLE",
+      "definition": "Global Unique ID (USUBJID)"
+    },
+    {
+      "column": "visit_name",
+      "type": "STRING",
+      "assessment": "LBD_Cohort_Path_Data",
+      "required": "REQUIRED",
+      "definition": "Visit name: M - in months, SC - screening visit, LOG - records without visit; #2 or #3 define repated records at the same visit or repeated visit"
+    },
+    {
+      "column": "visit_month",
+      "type": "FLOAT",
+      "assessment": "LBD_Cohort_Path_Data",
+      "required": "NULLABLE",
+      "definition": "Numeric visit in months; for visits prior baseline -1, -2 is an order of screening visits"
+    },
+    {
+      "column": "path_cerad",
+      "type": "STRING",
+      "assessment": "LBD_Cohort_Path_Data",
+      "required": "NULLABLE",
+      "definition": "CERAD score "
+    },
+    {
+      "column": "path_braak_nft",
+      "type": "STRING",
+      "assessment": "LBD_Cohort_Path_Data",
+      "required": "NULLABLE",
+      "definition": "BRAAK stage for neurofibrillary tangle pathology"
+    },
+    {
+      "column": "path_braak_lb",
+      "type": "STRING",
+      "assessment": "LBD_Cohort_Path_Data",
+      "required": "NULLABLE",
+      "definition": "BRAAK stage for Lewy body pathology"
+    },
+    {
+      "column": "path_dlb_prob",
+      "type": "STRING",
+      "assessment": "LBD_Cohort_Path_Data",
+      "required": "NULLABLE",
+      "definition": "Likelihood of DLB based on McKeith criteria"
+    }
+  ],
+  "amp-pd-research:2020_v2release_1218.MDS_UPDRS_Part_I": [
+    {
+      "column": "participant_id",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_I",
+      "required": "REQUIRED",
+      "definition": "Study Subject ID"
+    },
+    {
+      "column": "GUID",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_I",
+      "required": "NULLABLE",
+      "definition": "Global Unique ID (USUBJID)"
+    },
+    {
+      "column": "visit_name",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_I",
+      "required": "REQUIRED",
+      "definition": "Visit name: M - in months, SC - screening visit, LOG - records without visit; #2 or #3 define repated records at the same visit or repeated visit"
+    },
+    {
+      "column": "visit_month",
+      "type": "FLOAT",
+      "assessment": "MDS_UPDRS_Part_I",
+      "required": "NULLABLE",
+      "definition": "Numeric visit in months; for visits prior baseline -1, -2 is an order of screening visits"
+    },
+    {
+      "column": "mds_updrs_part_i_primary_info_source",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_I",
+      "required": "NULLABLE",
+      "definition": "MDS-UPDRS Part I Questions 1-6 Primary Source Of Information"
+    },
+    {
+      "column": "code_upd2101_cognitive_impairment",
+      "type": "INTEGER",
+      "assessment": "MDS_UPDRS_Part_I",
+      "required": "NULLABLE",
+      "definition": "1.01 MDS-UPDRS - Cognitive Impairment (UPD2101)"
+    },
+    {
+      "column": "code_upd2102_hallucinations_and_psychosis",
+      "type": "INTEGER",
+      "assessment": "MDS_UPDRS_Part_I",
+      "required": "NULLABLE",
+      "definition": "1.02 MDS-UPDRS - Hallucinations and Psychosis (UPD2102)"
+    },
+    {
+      "column": "code_upd2103_depressed_mood",
+      "type": "INTEGER",
+      "assessment": "MDS_UPDRS_Part_I",
+      "required": "NULLABLE",
+      "definition": "1.03 MDS-UPDRS - Depressed Mood (UPD2103)"
+    },
+    {
+      "column": "code_upd2104_anxious_mood",
+      "type": "INTEGER",
+      "assessment": "MDS_UPDRS_Part_I",
+      "required": "NULLABLE",
+      "definition": "1.04 MDS-UPDRS - Anxious Mood (UPD2104)"
+    },
+    {
+      "column": "code_upd2105_apathy",
+      "type": "INTEGER",
+      "assessment": "MDS_UPDRS_Part_I",
+      "required": "NULLABLE",
+      "definition": "1.05 MDS-UPDRS - Apathy (UPD2105)"
+    },
+    {
+      "column": "code_upd2106_dopamine_dysregulation_syndrome_features",
+      "type": "INTEGER",
+      "assessment": "MDS_UPDRS_Part_I",
+      "required": "NULLABLE",
+      "definition": "1.06 MDS-UPDRS - Features of Dopamine Dysregulation Syndrome (UPD2106)"
+    },
+    {
+      "column": "upd2101_cognitive_impairment",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_I",
+      "required": "NULLABLE",
+      "definition": "1.01 MDS-UPDRS - Cognitive Impairment (UPD2101)"
+    },
+    {
+      "column": "upd2102_hallucinations_and_psychosis",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_I",
+      "required": "NULLABLE",
+      "definition": "1.02 MDS-UPDRS - Hallucinations and Psychosis (UPD2102)"
+    },
+    {
+      "column": "upd2103_depressed_mood",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_I",
+      "required": "NULLABLE",
+      "definition": "1.03 MDS-UPDRS - Depressed Mood (UPD2103)"
+    },
+    {
+      "column": "upd2104_anxious_mood",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_I",
+      "required": "NULLABLE",
+      "definition": "1.04 MDS-UPDRS - Anxious Mood (UPD2104)"
+    },
+    {
+      "column": "upd2105_apathy",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_I",
+      "required": "NULLABLE",
+      "definition": "1.05 MDS-UPDRS - Apathy (UPD2105)"
+    },
+    {
+      "column": "upd2106_dopamine_dysregulation_syndrome_features",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_I",
+      "required": "NULLABLE",
+      "definition": "1.06 MDS-UPDRS - Features of Dopamine Dysregulation Syndrome (UPD2106)"
+    },
+    {
+      "column": "mds_updrs_part_i_sub_score",
+      "type": "INTEGER",
+      "assessment": "MDS_UPDRS_Part_I",
+      "required": "NULLABLE",
+      "definition": "MDS-UPDRS Part I Questions 1-6 Summary Sub-Score"
+    },
+    {
+      "column": "mds_updrs_part_i_pat_quest_primary_info_source",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_I",
+      "required": "NULLABLE",
+      "definition": "MDS-UPDRS Part I Patient Questionnaire Primary Source Of Information"
+    },
+    {
+      "column": "code_upd2107_pat_quest_sleep_problems",
+      "type": "INTEGER",
+      "assessment": "MDS_UPDRS_Part_I",
+      "required": "NULLABLE",
+      "definition": "1.07 MDS-UPDRS - Sleep Problems (UPD2107)"
+    },
+    {
+      "column": "code_upd2108_pat_quest_daytime_sleepiness",
+      "type": "INTEGER",
+      "assessment": "MDS_UPDRS_Part_I",
+      "required": "NULLABLE",
+      "definition": "1.08 MDS-UPDRS - Daytime Sleepiness (UPD2108)"
+    },
+    {
+      "column": "code_upd2109_pat_quest_pain_and_other_sensations",
+      "type": "INTEGER",
+      "assessment": "MDS_UPDRS_Part_I",
+      "required": "NULLABLE",
+      "definition": "1.09 MDS-UPDRS - Pain And Other Sensations (UPD2109)"
+    },
+    {
+      "column": "code_upd2110_pat_quest_urinary_problems",
+      "type": "INTEGER",
+      "assessment": "MDS_UPDRS_Part_I",
+      "required": "NULLABLE",
+      "definition": "1.10 MDS-UPDRS - Urinary Problems (UPD2110)"
+    },
+    {
+      "column": "code_upd2111_pat_quest_constipation_problems",
+      "type": "INTEGER",
+      "assessment": "MDS_UPDRS_Part_I",
+      "required": "NULLABLE",
+      "definition": "1.11 MDS-UPDRS - Constipation Problems (UPD2111)"
+    },
+    {
+      "column": "code_upd2112_pat_quest_lightheadedness_on_standing",
+      "type": "INTEGER",
+      "assessment": "MDS_UPDRS_Part_I",
+      "required": "NULLABLE",
+      "definition": "1.12 MDS-UPDRS - Lightheadedness on Standing (UPD2112)"
+    },
+    {
+      "column": "code_upd2113_pat_quest_fatigue",
+      "type": "INTEGER",
+      "assessment": "MDS_UPDRS_Part_I",
+      "required": "NULLABLE",
+      "definition": "1.13 MDS-UPDRS - Fatigue (UPD2113)"
+    },
+    {
+      "column": "upd2107_pat_quest_sleep_problems",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_I",
+      "required": "NULLABLE",
+      "definition": "1.07 MDS-UPDRS - Sleep Problems (UPD2107)"
+    },
+    {
+      "column": "upd2108_pat_quest_daytime_sleepiness",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_I",
+      "required": "NULLABLE",
+      "definition": "1.08 MDS-UPDRS - Daytime Sleepiness (UPD2108)"
+    },
+    {
+      "column": "upd2109_pat_quest_pain_and_other_sensations",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_I",
+      "required": "NULLABLE",
+      "definition": "1.09 MDS-UPDRS - Pain And Other Sensations (UPD2109)"
+    },
+    {
+      "column": "upd2110_pat_quest_urinary_problems",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_I",
+      "required": "NULLABLE",
+      "definition": "1.10 MDS-UPDRS - Urinary Problems (UPD2110)"
+    },
+    {
+      "column": "upd2111_pat_quest_constipation_problems",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_I",
+      "required": "NULLABLE",
+      "definition": "1.11 MDS-UPDRS - Constipation Problems (UPD2111)"
+    },
+    {
+      "column": "upd2112_pat_quest_lightheadedness_on_standing",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_I",
+      "required": "NULLABLE",
+      "definition": "1.12 MDS-UPDRS - Lightheadedness on Standing (UPD2112)"
+    },
+    {
+      "column": "upd2113_pat_quest_fatigue",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_I",
+      "required": "NULLABLE",
+      "definition": "1.13 MDS-UPDRS - Fatigue (UPD2113)"
+    },
+    {
+      "column": "mds_updrs_part_i_pat_quest_sub_score",
+      "type": "INTEGER",
+      "assessment": "MDS_UPDRS_Part_I",
+      "required": "NULLABLE",
+      "definition": "MDS-UPDRS Part I Patient Questionnaire Questions 7-13 Summary  Sub-Score"
+    },
+    {
+      "column": "mds_updrs_part_i_summary_score",
+      "type": "INTEGER",
+      "assessment": "MDS_UPDRS_Part_I",
+      "required": "NULLABLE",
+      "definition": "MDS-UPDRS Part I Summary Score"
+    }
+  ],
+  "amp-pd-research:2020_v2release_1218.MDS_UPDRS_Part_II": [
+    {
+      "column": "participant_id",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_II",
+      "required": "REQUIRED",
+      "definition": "Study Subject ID"
+    },
+    {
+      "column": "GUID",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_II",
+      "required": "NULLABLE",
+      "definition": "Global Unique ID (USUBJID)"
+    },
+    {
+      "column": "visit_name",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_II",
+      "required": "REQUIRED",
+      "definition": "Visit name: M - in months, SC - screening visit, LOG - records without visit; #2 or #3 define repated records at the same visit or repeated visit"
+    },
+    {
+      "column": "visit_month",
+      "type": "FLOAT",
+      "assessment": "MDS_UPDRS_Part_II",
+      "required": "NULLABLE",
+      "definition": "Numeric visit in months; for visits prior baseline -1, -2 is an order of screening visits"
+    },
+    {
+      "column": "mds_updrs_part_ii_primary_info_source",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_II",
+      "required": "NULLABLE",
+      "definition": "MDS-UPDRS Part II Primary Source Of Information"
+    },
+    {
+      "column": "code_upd2201_speech",
+      "type": "INTEGER",
+      "assessment": "MDS_UPDRS_Part_II",
+      "required": "NULLABLE",
+      "definition": "2.01 MDS-UPDRS - Speech (UPD2201)"
+    },
+    {
+      "column": "code_upd2202_saliva_and_drooling",
+      "type": "INTEGER",
+      "assessment": "MDS_UPDRS_Part_II",
+      "required": "NULLABLE",
+      "definition": "2.02 MDS-UPDRS - Saliva And Drooling (UPD2202)"
+    },
+    {
+      "column": "code_upd2203_chewing_and_swallowing",
+      "type": "INTEGER",
+      "assessment": "MDS_UPDRS_Part_II",
+      "required": "NULLABLE",
+      "definition": "2.03 MDS-UPDRS - Chewing And Swallowing (UPD2203)"
+    },
+    {
+      "column": "code_upd2204_eating_tasks",
+      "type": "INTEGER",
+      "assessment": "MDS_UPDRS_Part_II",
+      "required": "NULLABLE",
+      "definition": "2.04 MDS-UPDRS - Eating Tasks (UPD2204)"
+    },
+    {
+      "column": "code_upd2205_dressing",
+      "type": "INTEGER",
+      "assessment": "MDS_UPDRS_Part_II",
+      "required": "NULLABLE",
+      "definition": "2.05 MDS-UPDRS - Dressing (UPD2205)"
+    },
+    {
+      "column": "code_upd2206_hygiene",
+      "type": "INTEGER",
+      "assessment": "MDS_UPDRS_Part_II",
+      "required": "NULLABLE",
+      "definition": "2.06 MDS-UPDRS - Hygiene (UPD2206)"
+    },
+    {
+      "column": "code_upd2207_handwriting",
+      "type": "INTEGER",
+      "assessment": "MDS_UPDRS_Part_II",
+      "required": "NULLABLE",
+      "definition": "2.07 MDS-UPDRS - Handwriting (UPD2207)"
+    },
+    {
+      "column": "code_upd2208_doing_hobbies_and_other_activities",
+      "type": "INTEGER",
+      "assessment": "MDS_UPDRS_Part_II",
+      "required": "NULLABLE",
+      "definition": "2.08 MDS-UPDRS - Doing Hobbies And Other Activities (UPD2208)"
+    },
+    {
+      "column": "code_upd2209_turning_in_bed",
+      "type": "INTEGER",
+      "assessment": "MDS_UPDRS_Part_II",
+      "required": "NULLABLE",
+      "definition": "2.09 MDS-UPDRS - Turning In Bed (UPD2209)"
+    },
+    {
+      "column": "code_upd2210_tremor",
+      "type": "INTEGER",
+      "assessment": "MDS_UPDRS_Part_II",
+      "required": "NULLABLE",
+      "definition": "2.10 MDS-UPDRS - Tremor (UPD2210)"
+    },
+    {
+      "column": "code_upd2211_get_out_of_bed_car_or_deep_chair",
+      "type": "INTEGER",
+      "assessment": "MDS_UPDRS_Part_II",
+      "required": "NULLABLE",
+      "definition": "2.11 MDS-UPDRS - Get Out Of Bed, Car, Or Deep Chair (UPD2211)"
+    },
+    {
+      "column": "code_upd2212_walking_and_balance",
+      "type": "INTEGER",
+      "assessment": "MDS_UPDRS_Part_II",
+      "required": "NULLABLE",
+      "definition": "2.12 MDS-UPDRS - Walking And Balance (UPD2212)"
+    },
+    {
+      "column": "code_upd2213_freezing",
+      "type": "INTEGER",
+      "assessment": "MDS_UPDRS_Part_II",
+      "required": "NULLABLE",
+      "definition": "2.13 MDS-UPDRS - Freezing (UPD2213)"
+    },
+    {
+      "column": "upd2201_speech",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_II",
+      "required": "NULLABLE",
+      "definition": "2.01 MDS-UPDRS - Speech (UPD2201)"
+    },
+    {
+      "column": "upd2202_saliva_and_drooling",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_II",
+      "required": "NULLABLE",
+      "definition": "2.02 MDS-UPDRS - Saliva And Drooling (UPD2202)"
+    },
+    {
+      "column": "upd2203_chewing_and_swallowing",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_II",
+      "required": "NULLABLE",
+      "definition": "2.03 MDS-UPDRS - Chewing And Swallowing (UPD2203)"
+    },
+    {
+      "column": "upd2204_eating_tasks",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_II",
+      "required": "NULLABLE",
+      "definition": "2.04 MDS-UPDRS - Eating Tasks (UPD2204)"
+    },
+    {
+      "column": "upd2205_dressing",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_II",
+      "required": "NULLABLE",
+      "definition": "2.05 MDS-UPDRS - Dressing (UPD2205)"
+    },
+    {
+      "column": "upd2206_hygiene",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_II",
+      "required": "NULLABLE",
+      "definition": "2.06 MDS-UPDRS - Hygiene (UPD2206)"
+    },
+    {
+      "column": "upd2207_handwriting",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_II",
+      "required": "NULLABLE",
+      "definition": "2.07 MDS-UPDRS - Handwriting (UPD2207)"
+    },
+    {
+      "column": "upd2208_doing_hobbies_and_other_activities",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_II",
+      "required": "NULLABLE",
+      "definition": "2.08 MDS-UPDRS - Doing Hobbies And Other Activities (UPD2208)"
+    },
+    {
+      "column": "upd2209_turning_in_bed",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_II",
+      "required": "NULLABLE",
+      "definition": "2.09 MDS-UPDRS - Turning In Bed (UPD2209)"
+    },
+    {
+      "column": "upd2210_tremor",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_II",
+      "required": "NULLABLE",
+      "definition": "2.10 MDS-UPDRS - Tremor (UPD2210)"
+    },
+    {
+      "column": "upd2211_get_out_of_bed_car_or_deep_chair",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_II",
+      "required": "NULLABLE",
+      "definition": "2.11 MDS-UPDRS - Get Out Of Bed, Car, Or Deep Chair (UPD2211)"
+    },
+    {
+      "column": "upd2212_walking_and_balance",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_II",
+      "required": "NULLABLE",
+      "definition": "2.12 MDS-UPDRS - Walking And Balance (UPD2212)"
+    },
+    {
+      "column": "upd2213_freezing",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_II",
+      "required": "NULLABLE",
+      "definition": "2.13 MDS-UPDRS - Freezing (UPD2213)"
+    },
+    {
+      "column": "mds_updrs_part_ii_summary_score",
+      "type": "INTEGER",
+      "assessment": "MDS_UPDRS_Part_II",
+      "required": "NULLABLE",
+      "definition": "MDS-UPDRS Part II Summary Score"
+    }
+  ],
+  "amp-pd-research:2020_v2release_1218.MDS_UPDRS_Part_III": [
+    {
+      "column": "participant_id",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "REQUIRED",
+      "definition": "Study Subject ID"
+    },
+    {
+      "column": "GUID",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "Global Unique ID (USUBJID)"
+    },
+    {
+      "column": "visit_name",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "REQUIRED",
+      "definition": "Visit name: M - in months, SC - screening visit, LOG - records without visit; #2 or #3 define repated records at the same visit or repeated visit"
+    },
+    {
+      "column": "visit_month",
+      "type": "FLOAT",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "Numeric visit in months; for visits prior baseline -1, -2 is an order of screening visits"
+    },
+    {
+      "column": "code_upd2301_speech_problems",
+      "type": "INTEGER",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "3.01 MDS-UPDRS - Speech Problems (UPD2301)"
+    },
+    {
+      "column": "code_upd2302_facial_expression",
+      "type": "INTEGER",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "3.02 MDS-UPDRS - Facial Expression (UPD2302)"
+    },
+    {
+      "column": "code_upd2303a_rigidity_neck",
+      "type": "INTEGER",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "3.03a MDS-UPDRS - Rigidity Neck (UPD2303A)"
+    },
+    {
+      "column": "code_upd2303b_rigidity_rt_upper_extremity",
+      "type": "INTEGER",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "3.03b MDS-UPDRS - Rigidity Right Upper Extremity (UPD2303B)"
+    },
+    {
+      "column": "code_upd2303c_rigidity_left_upper_extremity",
+      "type": "INTEGER",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "3.03c MDS-UPDRS - Rigidity Left Upper Extremity (UPD2303C)"
+    },
+    {
+      "column": "code_upd2303d_rigidity_rt_lower_extremity",
+      "type": "INTEGER",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "3.03e MDS-UPDRS - Rigidity Left Lower Extremity"
+    },
+    {
+      "column": "code_upd2303e_rigidity_left_lower_extremity",
+      "type": "INTEGER",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "3.03e MDS-UPDRS - Rigidity Left Lower Extremity (UPD2303E)"
+    },
+    {
+      "column": "code_upd2304a_right_finger_tapping",
+      "type": "INTEGER",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "3.04a MDS-UPDRS - Right Finger Tapping (UPD2304A)"
+    },
+    {
+      "column": "code_upd2304b_left_finger_tapping",
+      "type": "INTEGER",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "3.04b MDS-UPDRS - Left Finger Tapping (UPD2304B)"
+    },
+    {
+      "column": "code_upd2305a_right_hand_movements",
+      "type": "INTEGER",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "3.05a MDS-UPDRS - Right Hand Movements (UPD2305A)"
+    },
+    {
+      "column": "code_upd2305b_left_hand_movements",
+      "type": "INTEGER",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "3.05b MDS-UPDRS - Left Hand Movements (UPD2305B)"
+    },
+    {
+      "column": "code_upd2306a_pron_sup_movement_right_hand",
+      "type": "INTEGER",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "3.06a MDS-UPDRS - Pronanation-Supination Movement Of Right Hand (UPD2306A)"
+    },
+    {
+      "column": "code_upd2306b_pron_sup_movement_left_hand",
+      "type": "INTEGER",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "3.06b MDS-UPDRS - Pronanation-Supination Movement Of Left Hand (UPD2306B)"
+    },
+    {
+      "column": "code_upd2307a_right_toe_tapping",
+      "type": "INTEGER",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "3.07a MDS-UPDRS - Right Toe Tapping (UPD2307A)"
+    },
+    {
+      "column": "code_upd2307b_left_toe_tapping",
+      "type": "INTEGER",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "3.07b MDS-UPDRS - Left Toe Tapping (UPD2307B)"
+    },
+    {
+      "column": "code_upd2308a_right_leg_agility",
+      "type": "INTEGER",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "3.08a MDS-UPDRS - Right Leg Agility (UPD2308A)"
+    },
+    {
+      "column": "code_upd2308b_left_leg_agility",
+      "type": "INTEGER",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "3.08b MDS-UPDRS - Left Leg Agility (UPD2308B)"
+    },
+    {
+      "column": "code_upd2309_arising_from_chair",
+      "type": "INTEGER",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "3.09 MDS-UPDRS - Arising from Chair (UPD2309)"
+    },
+    {
+      "column": "code_upd2310_gait",
+      "type": "INTEGER",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "3.10 MDS-UPDRS - Gait (UPD2310)"
+    },
+    {
+      "column": "code_upd2311_freezing_of_gait",
+      "type": "INTEGER",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "3.11 MDS-UPDRS - Freezing Of Gait (UPD2311)"
+    },
+    {
+      "column": "code_upd2312_postural_stability",
+      "type": "INTEGER",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "3.12 MDS-UPDRS - Postural Stability (UPD2312)"
+    },
+    {
+      "column": "code_upd2313_posture",
+      "type": "INTEGER",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "3.13 MDS-UPDRS - Posture (UPD2313)"
+    },
+    {
+      "column": "code_upd2314_body_bradykinesia",
+      "type": "INTEGER",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "3.14 MDS-UPDRS - Body Bradykinesia (UPD2314)"
+    },
+    {
+      "column": "code_upd2315a_postural_tremor_of_right_hand",
+      "type": "INTEGER",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "3.15a MDS-UPDRS - Postural Tremor Of Right Hand (UPD2315A)"
+    },
+    {
+      "column": "code_upd2315b_postural_tremor_of_left_hand",
+      "type": "INTEGER",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "3.15b MDS-UPDRS - Postural Tremor Of Left Hand (UPD2315B)"
+    },
+    {
+      "column": "code_upd2316a_kinetic_tremor_of_right_hand",
+      "type": "INTEGER",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "3.16a MDS-UPDRS - Kinetic Tremor Of Right Hand (UPD2316A)"
+    },
+    {
+      "column": "code_upd2316b_kinetic_tremor_of_left_hand",
+      "type": "INTEGER",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "3.16b MDS-UPDRS - Kinetic Tremor Of Left Hand (UPD2316B)"
+    },
+    {
+      "column": "code_upd2317a_rest_tremor_amplitude_right_upper_extremity",
+      "type": "INTEGER",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "3.17a MDS-UPDRS - Rest Tremor Amplitude Right Upper Extremity (UPD2317A)"
+    },
+    {
+      "column": "code_upd2317b_rest_tremor_amplitude_left_upper_extremity",
+      "type": "INTEGER",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "3.17b MDS-UPDRS - Rest Tremor Amplitude Left Upper Extremity (UPD2317B)"
+    },
+    {
+      "column": "code_upd2317c_rest_tremor_amplitude_right_lower_extremity",
+      "type": "INTEGER",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "3.17c MDS-UPDRS - Rest Tremor Amplitude Right Lower Extremity (UPD2317C)"
+    },
+    {
+      "column": "code_upd2317d_rest_tremor_amplitude_left_lower_extremity",
+      "type": "INTEGER",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "3.17d MDS-UPDRS - Rest Tremor Amplitude Left Lower Extremity (UPD2317D)"
+    },
+    {
+      "column": "code_upd2317e_rest_tremor_amplitude_lip_or_jaw",
+      "type": "INTEGER",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "3.17e MDS-UPDRS - Rest Tremor Amplitude Lip Or Jaw (UPD2317E)"
+    },
+    {
+      "column": "code_upd2318_consistency_of_rest_tremor",
+      "type": "INTEGER",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "3.18 MDS-UPDRS - Consistency Of Rest Tremor (UPD2318)"
+    },
+    {
+      "column": "upd2301_speech_problems",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "3.01 MDS-UPDRS - Speech Problems (UPD2301)"
+    },
+    {
+      "column": "upd2302_facial_expression",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "3.02 MDS-UPDRS - Facial Expression (UPD2302)"
+    },
+    {
+      "column": "upd2303a_rigidity_neck",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "3.03a MDS-UPDRS - Rigidity Neck (UPD2303A)"
+    },
+    {
+      "column": "upd2303b_rigidity_rt_upper_extremity",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "3.03b MDS-UPDRS - Rigidity Right Upper Extremity (UPD2303B)"
+    },
+    {
+      "column": "upd2303c_rigidity_left_upper_extremity",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "3.03c MDS-UPDRS - Rigidity Left Upper Extremity (UPD2303C)"
+    },
+    {
+      "column": "upd2303d_rigidity_rt_lower_extremity",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "3.03e MDS-UPDRS - Rigidity Left Lower Extremity"
+    },
+    {
+      "column": "upd2303e_rigidity_left_lower_extremity",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "3.03e MDS-UPDRS - Rigidity Left Lower Extremity (UPD2303E)"
+    },
+    {
+      "column": "upd2304a_right_finger_tapping",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "3.04a MDS-UPDRS - Right Finger Tapping (UPD2304A)"
+    },
+    {
+      "column": "upd2304b_left_finger_tapping",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "3.04b MDS-UPDRS - Left Finger Tapping (UPD2304B)"
+    },
+    {
+      "column": "upd2305a_right_hand_movements",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "3.05a MDS-UPDRS - Right Hand Movements (UPD2305A)"
+    },
+    {
+      "column": "upd2305b_left_hand_movements",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "3.05b MDS-UPDRS - Left Hand Movements (UPD2305B)"
+    },
+    {
+      "column": "upd2306a_pron_sup_movement_right_hand",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "3.06a MDS-UPDRS - Pronanation-Supination Movement Of Right Hand (UPD2306A)"
+    },
+    {
+      "column": "upd2306b_pron_sup_movement_left_hand",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "3.06b MDS-UPDRS - Pronanation-Supination Movement Of Left Hand (UPD2306B)"
+    },
+    {
+      "column": "upd2307a_right_toe_tapping",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "3.07a MDS-UPDRS - Right Toe Tapping (UPD2307A)"
+    },
+    {
+      "column": "upd2307b_left_toe_tapping",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "3.07b MDS-UPDRS - Left Toe Tapping (UPD2307B)"
+    },
+    {
+      "column": "upd2308a_right_leg_agility",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "3.08a MDS-UPDRS - Right Leg Agility (UPD2308A)"
+    },
+    {
+      "column": "upd2308b_left_leg_agility",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "3.08b MDS-UPDRS - Left Leg Agility (UPD2308B)"
+    },
+    {
+      "column": "upd2309_arising_from_chair",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "3.09 MDS-UPDRS - Arising from Chair (UPD2309)"
+    },
+    {
+      "column": "upd2310_gait",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "3.10 MDS-UPDRS - Gait (UPD2310)"
+    },
+    {
+      "column": "upd2311_freezing_of_gait",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "3.11 MDS-UPDRS - Freezing Of Gait (UPD2311)"
+    },
+    {
+      "column": "upd2312_postural_stability",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "3.12 MDS-UPDRS - Postural Stability (UPD2312)"
+    },
+    {
+      "column": "upd2313_posture",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "3.13 MDS-UPDRS - Posture (UPD2313)"
+    },
+    {
+      "column": "upd2314_body_bradykinesia",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "3.14 MDS-UPDRS - Body Bradykinesia (UPD2314)"
+    },
+    {
+      "column": "upd2315a_postural_tremor_of_right_hand",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "3.15a MDS-UPDRS - Postural Tremor Of Right Hand (UPD2315A)"
+    },
+    {
+      "column": "upd2315b_postural_tremor_of_left_hand",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "3.15b MDS-UPDRS - Postural Tremor Of Left Hand (UPD2315B)"
+    },
+    {
+      "column": "upd2316a_kinetic_tremor_of_right_hand",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "3.16a MDS-UPDRS - Kinetic Tremor Of Right Hand (UPD2316A)"
+    },
+    {
+      "column": "upd2316b_kinetic_tremor_of_left_hand",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "3.16b MDS-UPDRS - Kinetic Tremor Of Left Hand (UPD2316B)"
+    },
+    {
+      "column": "upd2317a_rest_tremor_amplitude_right_upper_extremity",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "3.17a MDS-UPDRS - Rest Tremor Amplitude Right Upper Extremity (UPD2317A)"
+    },
+    {
+      "column": "upd2317b_rest_tremor_amplitude_left_upper_extremity",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "3.17b MDS-UPDRS - Rest Tremor Amplitude Left Upper Extremity (UPD2317B)"
+    },
+    {
+      "column": "upd2317c_rest_tremor_amplitude_right_lower_extremity",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "3.17c MDS-UPDRS - Rest Tremor Amplitude Right Lower Extremity (UPD2317C)"
+    },
+    {
+      "column": "upd2317d_rest_tremor_amplitude_left_lower_extremity",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "3.17d MDS-UPDRS - Rest Tremor Amplitude Left Lower Extremity (UPD2317D)"
+    },
+    {
+      "column": "upd2317e_rest_tremor_amplitude_lip_or_jaw",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "3.17e MDS-UPDRS - Rest Tremor Amplitude Lip Or Jaw (UPD2317E)"
+    },
+    {
+      "column": "upd2318_consistency_of_rest_tremor",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "3.18 MDS-UPDRS - Consistency Of Rest Tremor (UPD2318)"
+    },
+    {
+      "column": "upd2da_dyskinesias_during_exam",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "3.19 MDS-UPDRS - Dyskinesias During Exam (UPD2DA)"
+    },
+    {
+      "column": "upd2db_movements_interfere_with_ratings",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "3.20 MDS-UPDRS - Movements Interfere with Ratings (UPD2DB)"
+    },
+    {
+      "column": "code_upd2hy_hoehn_and_yahr_stage",
+      "type": "FLOAT",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "3.21 MDS-UPDRS - Hoehn And Yahr Stage (UPD2HY)"
+    },
+    {
+      "column": "upd2hy_hoehn_and_yahr_stage",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "3.21 MDS-UPDRS - Hoehn And Yahr Stage (UPD2HY)"
+    },
+    {
+      "column": "upd23a_medication_for_pd",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "3a MDS-UPDRS - Medication For Parkinson's Disease (UPD23A)"
+    },
+    {
+      "column": "upd23b_clinical_state_on_medication",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "3b MDS-UPDRS - Clinical State On Medication (UPD23B)"
+    },
+    {
+      "column": "mds_updrs_part_iii_summary_score",
+      "type": "INTEGER",
+      "assessment": "MDS_UPDRS_Part_III",
+      "required": "NULLABLE",
+      "definition": "MDS-UPDRS Part III Summary Score"
+    }
+  ],
+  "amp-pd-research:2020_v2release_1218.MDS_UPDRS_Part_IV": [
+    {
+      "column": "participant_id",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_IV",
+      "required": "REQUIRED",
+      "definition": "Study Subject ID"
+    },
+    {
+      "column": "GUID",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_IV",
+      "required": "NULLABLE",
+      "definition": "Global Unique ID (USUBJID)"
+    },
+    {
+      "column": "visit_name",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_IV",
+      "required": "REQUIRED",
+      "definition": "Visit name: M - in months, SC - screening visit, LOG - records without visit; #2 or #3 define repated records at the same visit or repeated visit"
+    },
+    {
+      "column": "visit_month",
+      "type": "FLOAT",
+      "assessment": "MDS_UPDRS_Part_IV",
+      "required": "NULLABLE",
+      "definition": "Numeric visit in months; for visits prior baseline -1, -2 is an order of screening visits"
+    },
+    {
+      "column": "code_upd2401_time_spent_with_dyskinesias",
+      "type": "INTEGER",
+      "assessment": "MDS_UPDRS_Part_IV",
+      "required": "NULLABLE",
+      "definition": "4.01 MDS-UPDRS - Time Spent With Dyskinesias (UPD2401)"
+    },
+    {
+      "column": "code_upd2402_functional_impact_of_dyskinesias",
+      "type": "INTEGER",
+      "assessment": "MDS_UPDRS_Part_IV",
+      "required": "NULLABLE",
+      "definition": "4.02 MDS-UPDRS - Functional Impact Of Dyskinesias (UPD2402)"
+    },
+    {
+      "column": "code_upd2403_time_spent_in_the_off_state",
+      "type": "INTEGER",
+      "assessment": "MDS_UPDRS_Part_IV",
+      "required": "NULLABLE",
+      "definition": "4.03 MDS-UPDRS - Time Spent In The Off State (UPD2403)"
+    },
+    {
+      "column": "code_upd2404_functional_impact_of_fluctuations",
+      "type": "INTEGER",
+      "assessment": "MDS_UPDRS_Part_IV",
+      "required": "NULLABLE",
+      "definition": "4.04 MDS-UPDRS - Functional Impact Of Fluctuations (UPD2404)"
+    },
+    {
+      "column": "code_upd2405_complexity_of_motor_fluctuations",
+      "type": "INTEGER",
+      "assessment": "MDS_UPDRS_Part_IV",
+      "required": "NULLABLE",
+      "definition": "4.05 MDS-UPDRS - Complexity Of Motor Fluctuations (UPD2405)"
+    },
+    {
+      "column": "code_upd2406_painful_off_state_dystonia",
+      "type": "INTEGER",
+      "assessment": "MDS_UPDRS_Part_IV",
+      "required": "NULLABLE",
+      "definition": "4.06 MDS-UPDRS - Painful Off-State Dystonia (UPD2406)"
+    },
+    {
+      "column": "upd2401_time_spent_with_dyskinesias",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_IV",
+      "required": "NULLABLE",
+      "definition": "4.01 MDS-UPDRS - Time Spent With Dyskinesias (UPD2401)"
+    },
+    {
+      "column": "upd2402_functional_impact_of_dyskinesias",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_IV",
+      "required": "NULLABLE",
+      "definition": "4.02 MDS-UPDRS - Functional Impact Of Dyskinesias (UPD2402)"
+    },
+    {
+      "column": "upd2403_time_spent_in_the_off_state",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_IV",
+      "required": "NULLABLE",
+      "definition": "4.03 MDS-UPDRS - Time Spent In The Off State (UPD2403)"
+    },
+    {
+      "column": "upd2404_functional_impact_of_fluctuations",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_IV",
+      "required": "NULLABLE",
+      "definition": "4.04 MDS-UPDRS - Functional Impact Of Fluctuations (UPD2404)"
+    },
+    {
+      "column": "upd2405_complexity_of_motor_fluctuations",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_IV",
+      "required": "NULLABLE",
+      "definition": "4.05 MDS-UPDRS - Complexity Of Motor Fluctuations (UPD2405)"
+    },
+    {
+      "column": "upd2406_painful_off_state_dystonia",
+      "type": "STRING",
+      "assessment": "MDS_UPDRS_Part_IV",
+      "required": "NULLABLE",
+      "definition": "4.06 MDS-UPDRS - Painful Off-State Dystonia (UPD2406)"
+    },
+    {
+      "column": "mds_updrs_part_iv_summary_score",
+      "type": "INTEGER",
+      "assessment": "MDS_UPDRS_Part_IV",
+      "required": "NULLABLE",
+      "definition": "MDS-UPDRS Part IV Summary Score"
+    }
+  ],
+  "amp-pd-research:2020_v2release_1218.MMSE": [
+    {
+      "column": "participant_id",
+      "type": "STRING",
+      "assessment": "MMSE",
+      "required": "REQUIRED",
+      "definition": "Study Subject ID"
+    },
+    {
+      "column": "GUID",
+      "type": "STRING",
+      "assessment": "MMSE",
+      "required": "NULLABLE",
+      "definition": "Global Unique ID (USUBJID)"
+    },
+    {
+      "column": "visit_name",
+      "type": "STRING",
+      "assessment": "MMSE",
+      "required": "REQUIRED",
+      "definition": "Visit name: M - in months, SC - screening visit, LOG - records without visit; #2 or #3 define repated records at the same visit or repeated visit"
+    },
+    {
+      "column": "visit_month",
+      "type": "FLOAT",
+      "assessment": "MMSE",
+      "required": "NULLABLE",
+      "definition": "Numeric visit in months; for visits prior baseline -1, -2 is an order of screening visits"
+    },
+    {
+      "column": "code_mms101a_year",
+      "type": "INTEGER",
+      "assessment": "MMSE",
+      "required": "NULLABLE",
+      "definition": "MMSE - What Is The Year (MMS101A)"
+    },
+    {
+      "column": "code_mms101b_season",
+      "type": "INTEGER",
+      "assessment": "MMSE",
+      "required": "NULLABLE",
+      "definition": "MMSE - What Is The Season (MMS101B)"
+    },
+    {
+      "column": "code_mms101c_month",
+      "type": "INTEGER",
+      "assessment": "MMSE",
+      "required": "NULLABLE",
+      "definition": "MMSE - What Is The Month Of Year (MMS101C)"
+    },
+    {
+      "column": "code_mms101d_day",
+      "type": "INTEGER",
+      "assessment": "MMSE",
+      "required": "NULLABLE",
+      "definition": "MMSE - What Is the Day of Week (MMS101D)"
+    },
+    {
+      "column": "code_mms101e_date",
+      "type": "INTEGER",
+      "assessment": "MMSE",
+      "required": "NULLABLE",
+      "definition": "MMSE - What Is The Date (MMS101E)"
+    },
+    {
+      "column": "code_mms102a_state",
+      "type": "INTEGER",
+      "assessment": "MMSE",
+      "required": "NULLABLE",
+      "definition": "MMSE - What Is The State (MMS102A)"
+    },
+    {
+      "column": "code_mms102b_county",
+      "type": "INTEGER",
+      "assessment": "MMSE",
+      "required": "NULLABLE",
+      "definition": "MMSE - What Is The County (MMS102B)"
+    },
+    {
+      "column": "code_mms102c_city",
+      "type": "INTEGER",
+      "assessment": "MMSE",
+      "required": "NULLABLE",
+      "definition": "MMSE - What Is The City Or Town (MMS102C)"
+    },
+    {
+      "column": "code_mms102d_address",
+      "type": "INTEGER",
+      "assessment": "MMSE",
+      "required": "NULLABLE",
+      "definition": "MMSE - What Is The Building (MMS102D)"
+    },
+    {
+      "column": "code_mms102e_floor",
+      "type": "INTEGER",
+      "assessment": "MMSE",
+      "required": "NULLABLE",
+      "definition": "MMSE - What Is The Floor (MMS102E)"
+    },
+    {
+      "column": "mms103_repeat_objects_score",
+      "type": "INTEGER",
+      "assessment": "MMSE",
+      "required": "NULLABLE",
+      "definition": "MMSE - Repeat Three Unrelated Objects Score: MMSE - Repeat Word 1 (MMS103A), MMSE - Repeat Word 2 (103B), MMSE - Repeat Word 3 (103C) (1 point for each correct answer)"
+    },
+    {
+      "column": "mms104_attention_calculat_score",
+      "type": "INTEGER",
+      "assessment": "MMSE",
+      "required": "NULLABLE",
+      "definition": "MMSE - Attention and Calculation Subtotal (MMS104)"
+    },
+    {
+      "column": "mms105_recall_score",
+      "type": "INTEGER",
+      "assessment": "MMSE",
+      "required": "NULLABLE",
+      "definition": "MMSE - Recall Score - Repeat Three Unrelated Objects Again: MMSE - Recall Word 1 (MMS105A), MMSE - Recall Word 2 (MMS105B), MMSE - Recall Word 3 (MMS105C)"
+    },
+    {
+      "column": "mms106_naming_object_score",
+      "type": "INTEGER",
+      "assessment": "MMSE",
+      "required": "NULLABLE",
+      "definition": "MMSE - Naming Object 1 (MMS106A), MMSE - Naming Object 2 (MMS106B)"
+    },
+    {
+      "column": "mms107_repeat_phrase_score",
+      "type": "INTEGER",
+      "assessment": "MMSE",
+      "required": "NULLABLE",
+      "definition": "MMSE - Repeat What I Say (MMS107)"
+    },
+    {
+      "column": "mms108b_fold_in_half_score",
+      "type": "INTEGER",
+      "assessment": "MMSE",
+      "required": "NULLABLE",
+      "definition": "MMSE - Fold In Half (MMS108B)"
+    },
+    {
+      "column": "mms109_close_eyes_score",
+      "type": "INTEGER",
+      "assessment": "MMSE",
+      "required": "NULLABLE",
+      "definition": "MMSE - Read This And Do What It Says (MMS109)"
+    },
+    {
+      "column": "mms110_sentence_score",
+      "type": "INTEGER",
+      "assessment": "MMSE",
+      "required": "NULLABLE",
+      "definition": "MMSE - Write A Sentence (MMS110)"
+    },
+    {
+      "column": "mms111_copy_design_score",
+      "type": "INTEGER",
+      "assessment": "MMSE",
+      "required": "NULLABLE",
+      "definition": "MMSE - Copy This Design (MMS111)"
+    },
+    {
+      "column": "mms101a_year",
+      "type": "STRING",
+      "assessment": "MMSE",
+      "required": "NULLABLE",
+      "definition": "MMSE - What Is The Year (MMS101A)"
+    },
+    {
+      "column": "mms101b_season",
+      "type": "STRING",
+      "assessment": "MMSE",
+      "required": "NULLABLE",
+      "definition": "MMSE - What Is The Season (MMS101B)"
+    },
+    {
+      "column": "mms101c_month",
+      "type": "STRING",
+      "assessment": "MMSE",
+      "required": "NULLABLE",
+      "definition": "MMSE - What Is The Month Of Year (MMS101C)"
+    },
+    {
+      "column": "mms101d_day",
+      "type": "STRING",
+      "assessment": "MMSE",
+      "required": "NULLABLE",
+      "definition": "MMSE - What Is the Day of Week (MMS101D)"
+    },
+    {
+      "column": "mms101e_date",
+      "type": "STRING",
+      "assessment": "MMSE",
+      "required": "NULLABLE",
+      "definition": "MMSE - What Is The Date (MMS101E)"
+    },
+    {
+      "column": "mms102a_state",
+      "type": "STRING",
+      "assessment": "MMSE",
+      "required": "NULLABLE",
+      "definition": "MMSE - What Is The State (MMS102A)"
+    },
+    {
+      "column": "mms102b_county",
+      "type": "STRING",
+      "assessment": "MMSE",
+      "required": "NULLABLE",
+      "definition": "MMSE - What Is The County (MMS102B)"
+    },
+    {
+      "column": "mms102c_city",
+      "type": "STRING",
+      "assessment": "MMSE",
+      "required": "NULLABLE",
+      "definition": "MMSE - What Is The City Or Town (MMS102C)"
+    },
+    {
+      "column": "mms102d_address",
+      "type": "STRING",
+      "assessment": "MMSE",
+      "required": "NULLABLE",
+      "definition": "MMSE - What Is The Building (MMS102D)"
+    },
+    {
+      "column": "mms102e_floor",
+      "type": "STRING",
+      "assessment": "MMSE",
+      "required": "NULLABLE",
+      "definition": "MMSE - What Is The Floor (MMS102E)"
+    },
+    {
+      "column": "mms112_total_score",
+      "type": "INTEGER",
+      "assessment": "MMSE",
+      "required": "NULLABLE",
+      "definition": "MMSE - Total Score (MMS112)"
+    }
+  ],
+  "amp-pd-research:2020_v2release_1218.MOCA": [
+    {
+      "column": "participant_id",
+      "type": "STRING",
+      "assessment": "MOCA",
+      "required": "REQUIRED",
+      "definition": "Study Subject ID"
+    },
+    {
+      "column": "GUID",
+      "type": "STRING",
+      "assessment": "MOCA",
+      "required": "NULLABLE",
+      "definition": "Global Unique ID (USUBJID)"
+    },
+    {
+      "column": "visit_name",
+      "type": "STRING",
+      "assessment": "MOCA",
+      "required": "REQUIRED",
+      "definition": "Visit name: M - in months, SC - screening visit, LOG - records without visit; #2 or #3 define repated records at the same visit or repeated visit"
+    },
+    {
+      "column": "visit_month",
+      "type": "FLOAT",
+      "assessment": "MOCA",
+      "required": "NULLABLE",
+      "definition": "Numeric visit in months; for visits prior baseline -1, -2 is an order of screening visits"
+    },
+    {
+      "column": "moca01_alternating_trail_making",
+      "type": "INTEGER",
+      "assessment": "MOCA",
+      "required": "NULLABLE",
+      "definition": "MOCA: 01. Alternating Trail Making"
+    },
+    {
+      "column": "moca02_visuoconstr_skills_cube",
+      "type": "INTEGER",
+      "assessment": "MOCA",
+      "required": "NULLABLE",
+      "definition": "MOCA: 02. Visuoconstructional Skills - Copy Cube"
+    },
+    {
+      "column": "moca03_visuoconstr_skills_clock_cont",
+      "type": "INTEGER",
+      "assessment": "MOCA",
+      "required": "NULLABLE",
+      "definition": "MOCA: 03. Visuoconstructional Skills - Draw Clock Contour"
+    },
+    {
+      "column": "moca04_visuoconstr_skills_clock_num",
+      "type": "INTEGER",
+      "assessment": "MOCA",
+      "required": "NULLABLE",
+      "definition": "MOCA: 04. Visuoconstructional Skills - Draw Clock Numbers"
+    },
+    {
+      "column": "moca05_visuoconstr_skills_clock_hands",
+      "type": "INTEGER",
+      "assessment": "MOCA",
+      "required": "NULLABLE",
+      "definition": "MOCA: 05. Visuoconstructional Skills - Draw Clock Hands"
+    },
+    {
+      "column": "moca_visuospatial_executive_subscore",
+      "type": "INTEGER",
+      "assessment": "MOCA",
+      "required": "NULLABLE",
+      "definition": "MOCA: Visuospatial And Executive Subscore"
+    },
+    {
+      "column": "moca06_naming_lion",
+      "type": "INTEGER",
+      "assessment": "MOCA",
+      "required": "NULLABLE",
+      "definition": "MOCA: 06. Naming - Lion"
+    },
+    {
+      "column": "moca07_naming_rhino",
+      "type": "INTEGER",
+      "assessment": "MOCA",
+      "required": "NULLABLE",
+      "definition": "MOCA: 07. Naming - Rhino"
+    },
+    {
+      "column": "moca08_naming_camel",
+      "type": "INTEGER",
+      "assessment": "MOCA",
+      "required": "NULLABLE",
+      "definition": "MOCA: 08. Naming - Camel"
+    },
+    {
+      "column": "moca_naming_subscore",
+      "type": "INTEGER",
+      "assessment": "MOCA",
+      "required": "NULLABLE",
+      "definition": "MOCA: Naming Subscore"
+    },
+    {
+      "column": "moca09_attention_forward_digit_span",
+      "type": "INTEGER",
+      "assessment": "MOCA",
+      "required": "NULLABLE",
+      "definition": "MOCA: 09. Attention - Forward Digit Span"
+    },
+    {
+      "column": "moca10_attention_backward_digit_span",
+      "type": "INTEGER",
+      "assessment": "MOCA",
+      "required": "NULLABLE",
+      "definition": "MOCA: 10. Attention - Backward Digit Span"
+    },
+    {
+      "column": "moca_attention_digits_subscore",
+      "type": "INTEGER",
+      "assessment": "MOCA",
+      "required": "NULLABLE",
+      "definition": "MOCA: Attention Forward-Backward Repeat Lists Of Digits Subscore"
+    },
+    {
+      "column": "moca11_attention_vigilance",
+      "type": "INTEGER",
+      "assessment": "MOCA",
+      "required": "NULLABLE",
+      "definition": "MOCA: 11. Attention - Vigilance"
+    },
+    {
+      "column": "moca12_attention_serial_7s",
+      "type": "INTEGER",
+      "assessment": "MOCA",
+      "required": "NULLABLE",
+      "definition": "MOCA: 12. Attention - Serial 7s"
+    },
+    {
+      "column": "moca13_sentence_repetition",
+      "type": "INTEGER",
+      "assessment": "MOCA",
+      "required": "NULLABLE",
+      "definition": "MOCA: 13. Sentence Repetition"
+    },
+    {
+      "column": "moca14_verbal_fluency_number_of_words",
+      "type": "INTEGER",
+      "assessment": "MOCA",
+      "required": "NULLABLE",
+      "definition": "MOCA: 14. Verbal Fluency - Number Of Words"
+    },
+    {
+      "column": "moca15_verbal_fluency",
+      "type": "INTEGER",
+      "assessment": "MOCA",
+      "required": "NULLABLE",
+      "definition": "MOCA: 15. Verbal Fluency"
+    },
+    {
+      "column": "moca_language_subscore",
+      "type": "INTEGER",
+      "assessment": "MOCA",
+      "required": "NULLABLE",
+      "definition": "MOCA: Language Subscore"
+    },
+    {
+      "column": "moca16_abstraction",
+      "type": "INTEGER",
+      "assessment": "MOCA",
+      "required": "NULLABLE",
+      "definition": "MOCA: 16. Abstraction"
+    },
+    {
+      "column": "moca_abstraction_subscore",
+      "type": "INTEGER",
+      "assessment": "MOCA",
+      "required": "NULLABLE",
+      "definition": "MOCA: Abstraction subscore is the same as abstraction test - serial  language abstraction points earned"
+    },
+    {
+      "column": "moca17_delayed_recall_face",
+      "type": "INTEGER",
+      "assessment": "MOCA",
+      "required": "NULLABLE",
+      "definition": "MOCA: 17. Delayed Recall - Face"
+    },
+    {
+      "column": "moca18_delayed_recall_velvet",
+      "type": "INTEGER",
+      "assessment": "MOCA",
+      "required": "NULLABLE",
+      "definition": "MOCA: 18. Delayed Recall - Velvet"
+    },
+    {
+      "column": "moca19_delayed_recall_church",
+      "type": "INTEGER",
+      "assessment": "MOCA",
+      "required": "NULLABLE",
+      "definition": "MOCA: 19. Delayed Recall - Church"
+    },
+    {
+      "column": "moca20_delayed_recall_daisy",
+      "type": "INTEGER",
+      "assessment": "MOCA",
+      "required": "NULLABLE",
+      "definition": "MOCA: 20. Delayed Recall - Daisy"
+    },
+    {
+      "column": "moca21_delayed_recall_red",
+      "type": "INTEGER",
+      "assessment": "MOCA",
+      "required": "NULLABLE",
+      "definition": "MOCA: 21. Delayed Recall - Red"
+    },
+    {
+      "column": "moca_delayed_recall_subscore",
+      "type": "INTEGER",
+      "assessment": "MOCA",
+      "required": "NULLABLE",
+      "definition": "MOCA: Delayed Recall Subscore Uncued"
+    },
+    {
+      "column": "moca_delayed_recall_subscore_optnl_cat_cue",
+      "type": "INTEGER",
+      "assessment": "MOCA",
+      "required": "NULLABLE",
+      "definition": "MOCA: Delayed Recall Subscore Optional Category Cue"
+    },
+    {
+      "column": "moca_delayed_recall_subscore_optnl_mult_choice",
+      "type": "INTEGER",
+      "assessment": "MOCA",
+      "required": "NULLABLE",
+      "definition": "MOCA: Delayed Recall Subscore Optional Multiple Choice Cue"
+    },
+    {
+      "column": "moca22_orientation_date_score",
+      "type": "INTEGER",
+      "assessment": "MOCA",
+      "required": "NULLABLE",
+      "definition": "MOCA: 22. Orientation - Date Score"
+    },
+    {
+      "column": "moca23_orientation_month_score",
+      "type": "INTEGER",
+      "assessment": "MOCA",
+      "required": "NULLABLE",
+      "definition": "MOCA: 23. Orientation - Month Score"
+    },
+    {
+      "column": "moca24_orientation_year_score",
+      "type": "INTEGER",
+      "assessment": "MOCA",
+      "required": "NULLABLE",
+      "definition": "MOCA: 24. Orientation - Year  Score"
+    },
+    {
+      "column": "moca25_orientation_day_score",
+      "type": "INTEGER",
+      "assessment": "MOCA",
+      "required": "NULLABLE",
+      "definition": "MOCA: 25. Orientation - Day Score"
+    },
+    {
+      "column": "moca26_orientation_place_score",
+      "type": "INTEGER",
+      "assessment": "MOCA",
+      "required": "NULLABLE",
+      "definition": "MOCA: 26. Orientation - Place Score"
+    },
+    {
+      "column": "moca27_orientation_city_score",
+      "type": "INTEGER",
+      "assessment": "MOCA",
+      "required": "NULLABLE",
+      "definition": "MOCA: 27. Orientation - City Score"
+    },
+    {
+      "column": "moca_orientation_subscore",
+      "type": "INTEGER",
+      "assessment": "MOCA",
+      "required": "NULLABLE",
+      "definition": "MOCA: Orientation Subscore"
+    },
+    {
+      "column": "code_education_12years_complete",
+      "type": "INTEGER",
+      "assessment": "MOCA",
+      "required": "NULLABLE",
+      "definition": "Indicator Of Whether Subject Has Completed 12 Years Of Education"
+    },
+    {
+      "column": "education_12years_complete",
+      "type": "STRING",
+      "assessment": "MOCA",
+      "required": "NULLABLE",
+      "definition": "Indicator Of Whether Subject Has Completed 12 Years Of Education"
+    },
+    {
+      "column": "moca_total_score",
+      "type": "INTEGER",
+      "assessment": "MOCA",
+      "required": "NULLABLE",
+      "definition": "MOCA Total Score"
+    }
+  ],
+  "amp-pd-research:2020_v2release_1218.MRI": [
+    {
+      "column": "participant_id",
+      "type": "STRING",
+      "assessment": "MRI",
+      "required": "REQUIRED",
+      "definition": "Study Subject ID"
+    },
+    {
+      "column": "GUID",
+      "type": "STRING",
+      "assessment": "MRI",
+      "required": "NULLABLE",
+      "definition": "Global Unique ID (USUBJID)"
+    },
+    {
+      "column": "visit_name",
+      "type": "STRING",
+      "assessment": "MRI",
+      "required": "REQUIRED",
+      "definition": "Visit name: M - in months, SC - screening visit, LOG - records without visit; #2 or #3 define repated records at the same visit or repeated visit"
+    },
+    {
+      "column": "visit_month",
+      "type": "FLOAT",
+      "assessment": "MRI",
+      "required": "NULLABLE",
+      "definition": "Numeric visit in months; for visits prior baseline -1, -2 is an order of screening visits"
+    },
+    {
+      "column": "mri_results",
+      "type": "STRING",
+      "assessment": "MRI",
+      "required": "NULLABLE",
+      "definition": "MRI results"
+    }
+  ],
+  "amp-pd-research:2020_v2release_1218.Modified_Schwab___England_ADL": [
+    {
+      "column": "participant_id",
+      "type": "STRING",
+      "assessment": "Modified_Schwab___England_ADL",
+      "required": "REQUIRED",
+      "definition": "Study Subject ID"
+    },
+    {
+      "column": "GUID",
+      "type": "STRING",
+      "assessment": "Modified_Schwab___England_ADL",
+      "required": "NULLABLE",
+      "definition": "Global Unique ID (USUBJID)"
+    },
+    {
+      "column": "visit_name",
+      "type": "STRING",
+      "assessment": "Modified_Schwab___England_ADL",
+      "required": "REQUIRED",
+      "definition": "Visit name: M - in months, SC - screening visit, LOG - records without visit; #2 or #3 define repated records at the same visit or repeated visit"
+    },
+    {
+      "column": "visit_month",
+      "type": "FLOAT",
+      "assessment": "Modified_Schwab___England_ADL",
+      "required": "NULLABLE",
+      "definition": "Numeric visit in months; for visits prior baseline -1, -2 is an order of screening visits"
+    },
+    {
+      "column": "mod_schwab_england_pct_adl_score",
+      "type": "INTEGER",
+      "assessment": "Modified_Schwab___England_ADL",
+      "required": "NULLABLE",
+      "definition": "Modified Schwab And England Percent ADL Score"
+    },
+    {
+      "column": "mod_schwab_england_on_off_med",
+      "type": "STRING",
+      "assessment": "Modified_Schwab___England_ADL",
+      "required": "NULLABLE",
+      "definition": "Clinical State On Medication"
+    }
+  ],
+  "amp-pd-research:2020_v2release_1218.PDQ_39": [
+    {
+      "column": "participant_id",
+      "type": "STRING",
+      "assessment": "PDQ_39",
+      "required": "REQUIRED",
+      "definition": "Study Subject ID"
+    },
+    {
+      "column": "GUID",
+      "type": "STRING",
+      "assessment": "PDQ_39",
+      "required": "NULLABLE",
+      "definition": "Global Unique ID (USUBJID)"
+    },
+    {
+      "column": "visit_name",
+      "type": "STRING",
+      "assessment": "PDQ_39",
+      "required": "REQUIRED",
+      "definition": "Visit name: M - in months, SC - screening visit, LOG - records without visit; #2 or #3 define repated records at the same visit or repeated visit"
+    },
+    {
+      "column": "visit_month",
+      "type": "FLOAT",
+      "assessment": "PDQ_39",
+      "required": "NULLABLE",
+      "definition": "Numeric visit in months; for visits prior baseline -1, -2 is an order of screening visits"
+    },
+    {
+      "column": "pdq39_01_doing_leisure_activity",
+      "type": "STRING",
+      "assessment": "PDQ_39",
+      "required": "NULLABLE",
+      "definition": "PDQ-39-Q1: Had difficulty doing the leisure activities you would like to do?"
+    },
+    {
+      "column": "pdq39_02_looking_after_home",
+      "type": "STRING",
+      "assessment": "PDQ_39",
+      "required": "NULLABLE",
+      "definition": "PDQ-39-Q2: Had difficulty looking after your home, for example, housework, cooking or yardwork?"
+    },
+    {
+      "column": "pdq39_03_carrying_shopping_bags",
+      "type": "STRING",
+      "assessment": "PDQ_39",
+      "required": "NULLABLE",
+      "definition": "PDQ-39-Q3: Had difficulty carrying grocery bags?"
+    },
+    {
+      "column": "pdq39_04_walking_half_mile",
+      "type": "STRING",
+      "assessment": "PDQ_39",
+      "required": "NULLABLE",
+      "definition": "PDQ-39-Q4: Had problems walking half a mile?"
+    },
+    {
+      "column": "pdq39_05_walking_100_yards",
+      "type": "STRING",
+      "assessment": "PDQ_39",
+      "required": "NULLABLE",
+      "definition": "PDQ-39-Q5: Had problems walking 100 yards (approximately 1 block)?"
+    },
+    {
+      "column": "pdq39_06_getting_around_house",
+      "type": "STRING",
+      "assessment": "PDQ_39",
+      "required": "NULLABLE",
+      "definition": "PDQ-39-Q6: Had problems getting around the house as easily as you would like?"
+    },
+    {
+      "column": "pdq39_07_getting_around_in_public",
+      "type": "STRING",
+      "assessment": "PDQ_39",
+      "required": "NULLABLE",
+      "definition": "PDQ-39-Q7: Had difficulty getting around in public places?"
+    },
+    {
+      "column": "pdq39_08_need_someone_to_accompany",
+      "type": "STRING",
+      "assessment": "PDQ_39",
+      "required": "NULLABLE",
+      "definition": "PDQ-39-Q8: Needed someone else to accompany you when you went out?"
+    },
+    {
+      "column": "pdq39_09_worried_about_falling",
+      "type": "STRING",
+      "assessment": "PDQ_39",
+      "required": "NULLABLE",
+      "definition": "PDQ-39-Q9: Felt frightened or worried about falling in public?"
+    },
+    {
+      "column": "pdq39_10_confined_to_house",
+      "type": "STRING",
+      "assessment": "PDQ_39",
+      "required": "NULLABLE",
+      "definition": "PDQ-39-Q10: Been confined to the house more than you would like?"
+    },
+    {
+      "column": "pdq39_11_showering",
+      "type": "STRING",
+      "assessment": "PDQ_39",
+      "required": "NULLABLE",
+      "definition": "PDQ-39-Q11: Had difficulty showering and bathing?"
+    },
+    {
+      "column": "pdq39_12_dressing",
+      "type": "STRING",
+      "assessment": "PDQ_39",
+      "required": "NULLABLE",
+      "definition": "PDQ-39-Q12: Had difficulty dressing?"
+    },
+    {
+      "column": "pdq39_13_buttons_and_shoelaces",
+      "type": "STRING",
+      "assessment": "PDQ_39",
+      "required": "NULLABLE",
+      "definition": "PDQ-39-Q13: Had difficulty with buttons or shoelaces?"
+    },
+    {
+      "column": "pdq39_14_writing",
+      "type": "STRING",
+      "assessment": "PDQ_39",
+      "required": "NULLABLE",
+      "definition": "PDQ-39-Q14: Had problems writing clearly?"
+    },
+    {
+      "column": "pdq39_15_cutting_food",
+      "type": "STRING",
+      "assessment": "PDQ_39",
+      "required": "NULLABLE",
+      "definition": "PDQ-39-Q15: Had difficulty cutting up your food?"
+    },
+    {
+      "column": "pdq39_16_spill_drink",
+      "type": "STRING",
+      "assessment": "PDQ_39",
+      "required": "NULLABLE",
+      "definition": "PDQ-39-Q16: Had difficulty holding a drink without spilling it?"
+    },
+    {
+      "column": "pdq39_17_depressed",
+      "type": "STRING",
+      "assessment": "PDQ_39",
+      "required": "NULLABLE",
+      "definition": "PDQ-39-Q17: Felt depressed?"
+    },
+    {
+      "column": "pdq39_18_lonely",
+      "type": "STRING",
+      "assessment": "PDQ_39",
+      "required": "NULLABLE",
+      "definition": "PDQ-39-Q18: Felt isolated and lonely?"
+    },
+    {
+      "column": "pdq39_19_weepy",
+      "type": "STRING",
+      "assessment": "PDQ_39",
+      "required": "NULLABLE",
+      "definition": "PDQ-39-Q19: Felt weepy or tearful?"
+    },
+    {
+      "column": "pdq39_20_angry",
+      "type": "STRING",
+      "assessment": "PDQ_39",
+      "required": "NULLABLE",
+      "definition": "PDQ-39-Q20: Felt angry or bitter?"
+    },
+    {
+      "column": "pdq39_21_anxious",
+      "type": "STRING",
+      "assessment": "PDQ_39",
+      "required": "NULLABLE",
+      "definition": "PDQ-39-Q21: Felt anxious?"
+    },
+    {
+      "column": "pdq39_22_worried_about_future",
+      "type": "STRING",
+      "assessment": "PDQ_39",
+      "required": "NULLABLE",
+      "definition": "PDQ-39-Q22: Felt worried about your future?"
+    },
+    {
+      "column": "pdq39_23_hide_pd_from_people",
+      "type": "STRING",
+      "assessment": "PDQ_39",
+      "required": "NULLABLE",
+      "definition": "PDQ-39-Q23: Felt you had to hide your Parkinson's from people?"
+    },
+    {
+      "column": "pdq39_24_avoid_eat_drink_in_public",
+      "type": "STRING",
+      "assessment": "PDQ_39",
+      "required": "NULLABLE",
+      "definition": "PDQ-39-Q24: Avoided situations which involve eating or drinking in public?"
+    },
+    {
+      "column": "pdq39_25_embarassed_in_public",
+      "type": "STRING",
+      "assessment": "PDQ_39",
+      "required": "NULLABLE",
+      "definition": "PDQ-39-Q25: Felt embarrassed in public?"
+    },
+    {
+      "column": "pdq39_26_worried_about_reactions",
+      "type": "STRING",
+      "assessment": "PDQ_39",
+      "required": "NULLABLE",
+      "definition": "PDQ-39-Q26: Felt worried about other people's reaction to you?"
+    },
+    {
+      "column": "pdq39_27_close_personal_relations",
+      "type": "STRING",
+      "assessment": "PDQ_39",
+      "required": "NULLABLE",
+      "definition": "PDQ-39-Q27: Had problems with your close personal relationships?"
+    },
+    {
+      "column": "pdq39_28_support_from_spouse",
+      "type": "STRING",
+      "assessment": "PDQ_39",
+      "required": "NULLABLE",
+      "definition": "PDQ-39-Q28: Lacked the support you needed from your spouse or partner?"
+    },
+    {
+      "column": "pdq39_29_support_from_family",
+      "type": "STRING",
+      "assessment": "PDQ_39",
+      "required": "NULLABLE",
+      "definition": "PDQ-39-Q29: Lacked the support you needed from your family or close friends?"
+    },
+    {
+      "column": "pdq39_30_sleep_in_day",
+      "type": "STRING",
+      "assessment": "PDQ_39",
+      "required": "NULLABLE",
+      "definition": "PDQ-39-Q30: Unexpectedly fallen asleep during the day?"
+    },
+    {
+      "column": "pdq39_31_problem_with_concentration",
+      "type": "STRING",
+      "assessment": "PDQ_39",
+      "required": "NULLABLE",
+      "definition": "PDQ-39-Q31: Had problems with your concentration, for example when reading or watching TV?"
+    },
+    {
+      "column": "pdq39_32_memory_is_failing",
+      "type": "STRING",
+      "assessment": "PDQ_39",
+      "required": "NULLABLE",
+      "definition": "PDQ-39-Q32: Felt your memory was failing?"
+    },
+    {
+      "column": "pdq39_33_hallucinations",
+      "type": "STRING",
+      "assessment": "PDQ_39",
+      "required": "NULLABLE",
+      "definition": "PDQ-39-Q33: Had distressing dreams or hallucinations?"
+    },
+    {
+      "column": "pdq39_34_speaking",
+      "type": "STRING",
+      "assessment": "PDQ_39",
+      "required": "NULLABLE",
+      "definition": "PDQ-39-Q34: Had difficulty speaking?"
+    },
+    {
+      "column": "pdq39_35_unable_to_communicate",
+      "type": "STRING",
+      "assessment": "PDQ_39",
+      "required": "NULLABLE",
+      "definition": "PDQ-39-Q35: Felt unable to communicate effectively?"
+    },
+    {
+      "column": "pdq39_36_felt_ignored",
+      "type": "STRING",
+      "assessment": "PDQ_39",
+      "required": "NULLABLE",
+      "definition": "PDQ-39-Q36: Felt ignored by people?"
+    },
+    {
+      "column": "pdq39_37_muscle_cramps",
+      "type": "STRING",
+      "assessment": "PDQ_39",
+      "required": "NULLABLE",
+      "definition": "PDQ-39-Q37: Had painful muscle cramps or spasms?"
+    },
+    {
+      "column": "pdq39_38_joint_pains",
+      "type": "STRING",
+      "assessment": "PDQ_39",
+      "required": "NULLABLE",
+      "definition": "PDQ-39-Q38: Had aches and pains in your joints or body?"
+    },
+    {
+      "column": "pdq39_39_hot_or_cold",
+      "type": "STRING",
+      "assessment": "PDQ_39",
+      "required": "NULLABLE",
+      "definition": "PDQ-39-Q39: Felt uncomfortably hot or cold?"
+    },
+    {
+      "column": "pdq39_mobility_score",
+      "type": "FLOAT",
+      "assessment": "PDQ_39",
+      "required": "NULLABLE",
+      "definition": "PDQ-39-Total Score-Mobility"
+    },
+    {
+      "column": "pdq39_adl_score",
+      "type": "FLOAT",
+      "assessment": "PDQ_39",
+      "required": "NULLABLE",
+      "definition": "PDQ-39-Total Score-Activities Of Daily Living (ADL)"
+    },
+    {
+      "column": "pdq39_emotional_score",
+      "type": "FLOAT",
+      "assessment": "PDQ_39",
+      "required": "NULLABLE",
+      "definition": "PDQ-39-Total Score-Emotional Well Being"
+    },
+    {
+      "column": "pdq39_stigma_score",
+      "type": "FLOAT",
+      "assessment": "PDQ_39",
+      "required": "NULLABLE",
+      "definition": "PDQ-39-Total Score-Stigma"
+    },
+    {
+      "column": "pdq39_social_score",
+      "type": "FLOAT",
+      "assessment": "PDQ_39",
+      "required": "NULLABLE",
+      "definition": "PDQ-39-Total Score-Social Support"
+    },
+    {
+      "column": "pdq39_cognition_score",
+      "type": "FLOAT",
+      "assessment": "PDQ_39",
+      "required": "NULLABLE",
+      "definition": "PDQ-39-Total Score-Cognitive Impairment (Cognitions)"
+    },
+    {
+      "column": "pdq39_communication_score",
+      "type": "FLOAT",
+      "assessment": "PDQ_39",
+      "required": "NULLABLE",
+      "definition": "PDQ-39-Total Score-Communication"
+    },
+    {
+      "column": "pdq39_discomfort_score",
+      "type": "FLOAT",
+      "assessment": "PDQ_39",
+      "required": "NULLABLE",
+      "definition": "PDQ-39-Total Score-Bodily Discomfort"
+    }
+  ],
+  "amp-pd-research:2020_v2release_1218.PD_Medical_History": [
+    {
+      "column": "participant_id",
+      "type": "STRING",
+      "assessment": "PD_Medical_History",
+      "required": "REQUIRED",
+      "definition": "Study Subject ID"
+    },
+    {
+      "column": "GUID",
+      "type": "STRING",
+      "assessment": "PD_Medical_History",
+      "required": "NULLABLE",
+      "definition": "Global Unique ID (USUBJID)"
+    },
+    {
+      "column": "visit_name",
+      "type": "STRING",
+      "assessment": "PD_Medical_History",
+      "required": "REQUIRED",
+      "definition": "Visit name: M - in months, SC - screening visit, LOG - records without visit; #2 or #3 define repated records at the same visit or repeated visit"
+    },
+    {
+      "column": "visit_month",
+      "type": "FLOAT",
+      "assessment": "PD_Medical_History",
+      "required": "NULLABLE",
+      "definition": "Numeric visit in months; for visits prior baseline -1, -2 is an order of screening visits"
+    },
+    {
+      "column": "diagnosis",
+      "type": "STRING",
+      "assessment": "PD_Medical_History",
+      "required": "NULLABLE",
+      "definition": "The diagnosis is an opportunity for the site investigator to give their opinion on a participant's most likely clinical diagnosis, regardless of cohort. The diagnosis may change over time because the site investigator may update the diagnosis at every longitudinal visit based on their opinion. "
+    },
+    {
+      "column": "initial_diagnosis",
+      "type": "STRING",
+      "assessment": "PD_Medical_History",
+      "required": "NULLABLE",
+      "definition": "Initial Diagnosis"
+    },
+    {
+      "column": "most_recent_diagnosis",
+      "type": "STRING",
+      "assessment": "PD_Medical_History",
+      "required": "NULLABLE",
+      "definition": "Most recent diagnosis"
+    },
+    {
+      "column": "change_in_diagnosis",
+      "type": "STRING",
+      "assessment": "PD_Medical_History",
+      "required": "NULLABLE",
+      "definition": "Change In Diagnosis Indicator"
+    },
+    {
+      "column": "change_in_diagnosis_date",
+      "type": "STRING",
+      "assessment": "PD_Medical_History",
+      "required": "NULLABLE",
+      "definition": "Change In Diagnosis Date (yyyy-mm)"
+    },
+    {
+      "column": "surgery_for_parkinson_disease",
+      "type": "STRING",
+      "assessment": "PD_Medical_History",
+      "required": "NULLABLE",
+      "definition": "Type Of Surgery For Parkinson Disease"
+    },
+    {
+      "column": "date_of_pd_diagnosis",
+      "type": "STRING",
+      "assessment": "PD_Medical_History",
+      "required": "NULLABLE",
+      "definition": "Date Of Parkinson's Disease Diagnosis (yyyy-mm)"
+    },
+    {
+      "column": "age_at_diagnosis",
+      "type": "INTEGER",
+      "assessment": "PD_Medical_History",
+      "required": "NULLABLE",
+      "definition": "Age At Parkinson's Disease Diagnosis"
+    },
+    {
+      "column": "date_of_pd_medication_initiation",
+      "type": "STRING",
+      "assessment": "PD_Medical_History",
+      "required": "NULLABLE",
+      "definition": "Date Of PD Medication Initiation (yyyy-mm)"
+    },
+    {
+      "column": "pd_medication_start_date",
+      "type": "STRING",
+      "assessment": "PD_Medical_History",
+      "required": "NULLABLE",
+      "definition": "PD medication Start Date (yyyy-mm)"
+    },
+    {
+      "column": "use_of_pd_medication",
+      "type": "STRING",
+      "assessment": "PD_Medical_History",
+      "required": "NULLABLE",
+      "definition": "Is Subject On Medication For PD?"
+    },
+    {
+      "column": "date_of_pd_medication_recent_use",
+      "type": "STRING",
+      "assessment": "PD_Medical_History",
+      "required": "NULLABLE",
+      "definition": "Date Of Recent PD Medication Use (yyyy-mm)"
+    },
+    {
+      "column": "on_levodopa",
+      "type": "STRING",
+      "assessment": "PD_Medical_History",
+      "required": "NULLABLE",
+      "definition": "Is Subject Taking Levodopa?"
+    },
+    {
+      "column": "on_dopamine_agonist",
+      "type": "STRING",
+      "assessment": "PD_Medical_History",
+      "required": "NULLABLE",
+      "definition": "Is Subject Taking A Dopamine Agonist?"
+    },
+    {
+      "column": "on_other_pd_medications",
+      "type": "STRING",
+      "assessment": "PD_Medical_History",
+      "required": "NULLABLE",
+      "definition": "Is Subject Taking Some Other PD Medication(s)?"
+    },
+    {
+      "column": "diagnosis_type",
+      "type": "STRING",
+      "assessment": "PD_Medical_History",
+      "required": "NULLABLE",
+      "definition": "How was diagnosis made?"
+    }
+  ],
+  "amp-pd-research:2020_v2release_1218.REM_Sleep_Behavior_Disorder_Questionnaire_Mayo": [
+    {
+      "column": "participant_id",
+      "type": "STRING",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Mayo",
+      "required": "REQUIRED",
+      "definition": "Study Subject ID"
+    },
+    {
+      "column": "GUID",
+      "type": "STRING",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Mayo",
+      "required": "NULLABLE",
+      "definition": "Global Unique ID (USUBJID)"
+    },
+    {
+      "column": "visit_name",
+      "type": "STRING",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Mayo",
+      "required": "REQUIRED",
+      "definition": "Visit name: M - in months, SC - screening visit, LOG - records without visit; #2 or #3 define repated records at the same visit or repeated visit"
+    },
+    {
+      "column": "visit_month",
+      "type": "FLOAT",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Mayo",
+      "required": "NULLABLE",
+      "definition": "Numeric visit in months; for visits prior baseline -1, -2 is an order of screening visits"
+    },
+    {
+      "column": "msq_info_source",
+      "type": "STRING",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Mayo",
+      "required": "NULLABLE",
+      "definition": "MSQ Source Of Information"
+    },
+    {
+      "column": "msq_interviewee_live_with_subject",
+      "type": "STRING",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Mayo",
+      "required": "NULLABLE",
+      "definition": "MSQ Live With Subject"
+    },
+    {
+      "column": "msq_interviewee_sleep_same_room",
+      "type": "STRING",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Mayo",
+      "required": "NULLABLE",
+      "definition": "MSQ Sleep in the same room"
+    },
+    {
+      "column": "msq_distracting_sleep_behaviors",
+      "type": "STRING",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Mayo",
+      "required": "NULLABLE",
+      "definition": "MSQ Distracting sleep behaviors"
+    },
+    {
+      "column": "msq01_act_out_dreams",
+      "type": "STRING",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Mayo",
+      "required": "NULLABLE",
+      "definition": "MSQ Act Out Dreams Q1"
+    },
+    {
+      "column": "msq01a_act_out_years",
+      "type": "FLOAT",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Mayo",
+      "required": "NULLABLE",
+      "definition": "MSQ Act Out Years Q1a"
+    },
+    {
+      "column": "msq01a_act_out_months",
+      "type": "FLOAT",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Mayo",
+      "required": "NULLABLE",
+      "definition": "MSQ Act Out Months Q1a"
+    },
+    {
+      "column": "msq01b_patient_injured",
+      "type": "STRING",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Mayo",
+      "required": "NULLABLE",
+      "definition": "MSQ Patient injured Q1b"
+    },
+    {
+      "column": "msq01c_bedpartner_injured",
+      "type": "STRING",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Mayo",
+      "required": "NULLABLE",
+      "definition": "MSQ Bedpartner Injured Q1c"
+    },
+    {
+      "column": "msq01d_told_dreams",
+      "type": "STRING",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Mayo",
+      "required": "NULLABLE",
+      "definition": "MSQ Told Dreams Q1d"
+    },
+    {
+      "column": "msq01e_dream_details_match",
+      "type": "STRING",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Mayo",
+      "required": "NULLABLE",
+      "definition": "MSQ Dream Details Match Q1e"
+    },
+    {
+      "column": "msq02_legs_jerk",
+      "type": "STRING",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Mayo",
+      "required": "NULLABLE",
+      "definition": "MSQ Legs Jerk Q2"
+    },
+    {
+      "column": "msq03_restless_legs",
+      "type": "STRING",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Mayo",
+      "required": "NULLABLE",
+      "definition": "MSQ Restless Legs Q3"
+    },
+    {
+      "column": "msq03a_leg_sensations_decrease",
+      "type": "STRING",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Mayo",
+      "required": "NULLABLE",
+      "definition": "MSQ Leg Sensations Decrease Q3a"
+    },
+    {
+      "column": "msq03b_time_leg_sensations_worst",
+      "type": "STRING",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Mayo",
+      "required": "NULLABLE",
+      "definition": "MSQ Time Leg Sensations Worst Q3b"
+    },
+    {
+      "column": "msq04b_walked_asleep",
+      "type": "STRING",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Mayo",
+      "required": "NULLABLE",
+      "definition": "MSQ Walked Asleep Q4"
+    },
+    {
+      "column": "msq05_snorted_awake",
+      "type": "STRING",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Mayo",
+      "required": "NULLABLE",
+      "definition": "MSQ Snorted Awake Q5"
+    },
+    {
+      "column": "msq06_stop_breathing",
+      "type": "STRING",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Mayo",
+      "required": "NULLABLE",
+      "definition": "MSQ Stop Breathing Q6"
+    },
+    {
+      "column": "msq06a_treated_for_stop_breathing",
+      "type": "STRING",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Mayo",
+      "required": "NULLABLE",
+      "definition": "MSQ Treated For Stop Breathing Q6a"
+    },
+    {
+      "column": "msq07_leg_cramps",
+      "type": "STRING",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Mayo",
+      "required": "NULLABLE",
+      "definition": "MSQ Leg Cramps Q7"
+    },
+    {
+      "column": "msq08_rate_of_alertness",
+      "type": "INTEGER",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Mayo",
+      "required": "NULLABLE",
+      "definition": "MSQ Rate Of Alertness Q8"
+    }
+  ],
+  "amp-pd-research:2020_v2release_1218.REM_Sleep_Behavior_Disorder_Questionnaire_Stiasny_Kolster": [
+    {
+      "column": "participant_id",
+      "type": "STRING",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Stiasny_Kolster",
+      "required": "REQUIRED",
+      "definition": "Study Subject ID"
+    },
+    {
+      "column": "GUID",
+      "type": "STRING",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Stiasny_Kolster",
+      "required": "NULLABLE",
+      "definition": "Global Unique ID (USUBJID)"
+    },
+    {
+      "column": "visit_name",
+      "type": "STRING",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Stiasny_Kolster",
+      "required": "REQUIRED",
+      "definition": "Visit name: M - in months, SC - screening visit, LOG - records without visit; #2 or #3 define repated records at the same visit or repeated visit"
+    },
+    {
+      "column": "visit_month",
+      "type": "FLOAT",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Stiasny_Kolster",
+      "required": "NULLABLE",
+      "definition": "Numeric visit in months; for visits prior baseline -1, -2 is an order of screening visits"
+    },
+    {
+      "column": "code_rbd_info_source",
+      "type": "INTEGER",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Stiasny_Kolster",
+      "required": "NULLABLE",
+      "definition": "RBD Source Of Information"
+    },
+    {
+      "column": "code_rbd01_vivid_dreams",
+      "type": "INTEGER",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Stiasny_Kolster",
+      "required": "NULLABLE",
+      "definition": "RBD 01. Vivid Dreams"
+    },
+    {
+      "column": "code_rbd02_aggressive_or_action_packed_dreams",
+      "type": "INTEGER",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Stiasny_Kolster",
+      "required": "NULLABLE",
+      "definition": "RBD 02. Aggressive Or Action-Packed Dreams"
+    },
+    {
+      "column": "code_rbd03_nocturnal_behaviour",
+      "type": "INTEGER",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Stiasny_Kolster",
+      "required": "NULLABLE",
+      "definition": "RBD 03. Nocturnal Behaviour"
+    },
+    {
+      "column": "code_rbd04_move_arms_legs_during_sleep",
+      "type": "INTEGER",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Stiasny_Kolster",
+      "required": "NULLABLE",
+      "definition": "RBD 04. Move Arms and Legs During Sleep"
+    },
+    {
+      "column": "code_rbd05_hurt_bed_partner",
+      "type": "INTEGER",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Stiasny_Kolster",
+      "required": "NULLABLE",
+      "definition": "RBD 05. Hurt Bed Partner"
+    },
+    {
+      "column": "code_rbd06_1_speaking_in_sleep",
+      "type": "INTEGER",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Stiasny_Kolster",
+      "required": "NULLABLE",
+      "definition": "RBD 06.1 Speaking In Sleep"
+    },
+    {
+      "column": "code_rbd06_2_sudden_limb_movements",
+      "type": "INTEGER",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Stiasny_Kolster",
+      "required": "NULLABLE",
+      "definition": "RBD 06.2 Sudden Limb Movements"
+    },
+    {
+      "column": "code_rbd06_3_complex_movements",
+      "type": "INTEGER",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Stiasny_Kolster",
+      "required": "NULLABLE",
+      "definition": "RBD 06.3 Complex Movements"
+    },
+    {
+      "column": "code_rbd06_4_things_fell_down",
+      "type": "INTEGER",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Stiasny_Kolster",
+      "required": "NULLABLE",
+      "definition": "RBD 06.4 Things Fell Down"
+    },
+    {
+      "column": "code_rbd07_my_movements_awake_me",
+      "type": "INTEGER",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Stiasny_Kolster",
+      "required": "NULLABLE",
+      "definition": "RBD 07. My Movements Awake Me"
+    },
+    {
+      "column": "code_rbd08_remember_dreams",
+      "type": "INTEGER",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Stiasny_Kolster",
+      "required": "NULLABLE",
+      "definition": "RBD 08. Remember Dreams"
+    },
+    {
+      "column": "code_rbd09_sleep_is_disturbed",
+      "type": "INTEGER",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Stiasny_Kolster",
+      "required": "NULLABLE",
+      "definition": "RBD 09. Sleep Is Disturbed"
+    },
+    {
+      "column": "code_rbd10a_stroke",
+      "type": "INTEGER",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Stiasny_Kolster",
+      "required": "NULLABLE",
+      "definition": "RBD 10a Stroke"
+    },
+    {
+      "column": "code_rbd10b_head_trauma",
+      "type": "INTEGER",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Stiasny_Kolster",
+      "required": "NULLABLE",
+      "definition": "RBD 10b Head Trauma"
+    },
+    {
+      "column": "code_rbd10c_parkinsonism",
+      "type": "INTEGER",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Stiasny_Kolster",
+      "required": "NULLABLE",
+      "definition": "RBD 10c Parkinsonism"
+    },
+    {
+      "column": "code_rbd10d_rls",
+      "type": "INTEGER",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Stiasny_Kolster",
+      "required": "NULLABLE",
+      "definition": "RBD 10d RLS"
+    },
+    {
+      "column": "code_rbd10e_narcolepsy",
+      "type": "INTEGER",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Stiasny_Kolster",
+      "required": "NULLABLE",
+      "definition": "RBD 10e Narcolepsy"
+    },
+    {
+      "column": "code_rbd10f_depression",
+      "type": "INTEGER",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Stiasny_Kolster",
+      "required": "NULLABLE",
+      "definition": "RBD 10f Depression"
+    },
+    {
+      "column": "code_rbd10g_epilepsy",
+      "type": "INTEGER",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Stiasny_Kolster",
+      "required": "NULLABLE",
+      "definition": "RBD 10g Epilepsy"
+    },
+    {
+      "column": "code_rbd10h_brain_inflammatory_disease",
+      "type": "INTEGER",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Stiasny_Kolster",
+      "required": "NULLABLE",
+      "definition": "RBD 10h Inflammatory Disease Of The Brain"
+    },
+    {
+      "column": "code_rbd10i_other",
+      "type": "INTEGER",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Stiasny_Kolster",
+      "required": "NULLABLE",
+      "definition": "RBD 10i Other"
+    },
+    {
+      "column": "code_rbd10_nervous_system_disease",
+      "type": "INTEGER",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Stiasny_Kolster",
+      "required": "NULLABLE",
+      "definition": "RBD 10. Nervous system Disease"
+    },
+    {
+      "column": "rbd_info_source",
+      "type": "STRING",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Stiasny_Kolster",
+      "required": "NULLABLE",
+      "definition": "RBD Source Of Information"
+    },
+    {
+      "column": "rbd01_vivid_dreams",
+      "type": "STRING",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Stiasny_Kolster",
+      "required": "NULLABLE",
+      "definition": "RBD 01. Vivid Dreams"
+    },
+    {
+      "column": "rbd02_aggressive_or_action_packed_dreams",
+      "type": "STRING",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Stiasny_Kolster",
+      "required": "NULLABLE",
+      "definition": "RBD 02. Aggressive Or Action-Packed Dreams"
+    },
+    {
+      "column": "rbd03_nocturnal_behaviour",
+      "type": "STRING",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Stiasny_Kolster",
+      "required": "NULLABLE",
+      "definition": "RBD 03. Nocturnal Behaviour"
+    },
+    {
+      "column": "rbd04_move_arms_legs_during_sleep",
+      "type": "STRING",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Stiasny_Kolster",
+      "required": "NULLABLE",
+      "definition": "RBD 04. Move Arms and Legs During Sleep"
+    },
+    {
+      "column": "rbd05_hurt_bed_partner",
+      "type": "STRING",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Stiasny_Kolster",
+      "required": "NULLABLE",
+      "definition": "RBD 05. Hurt Bed Partner"
+    },
+    {
+      "column": "rbd06_1_speaking_in_sleep",
+      "type": "STRING",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Stiasny_Kolster",
+      "required": "NULLABLE",
+      "definition": "RBD 06.1 Speaking In Sleep"
+    },
+    {
+      "column": "rbd06_2_sudden_limb_movements",
+      "type": "STRING",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Stiasny_Kolster",
+      "required": "NULLABLE",
+      "definition": "RBD 06.2 Sudden Limb Movements"
+    },
+    {
+      "column": "rbd06_3_complex_movements",
+      "type": "STRING",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Stiasny_Kolster",
+      "required": "NULLABLE",
+      "definition": "RBD 06.3 Complex Movements"
+    },
+    {
+      "column": "rbd06_4_things_fell_down",
+      "type": "STRING",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Stiasny_Kolster",
+      "required": "NULLABLE",
+      "definition": "RBD 06.4 Things Fell Down"
+    },
+    {
+      "column": "rbd07_my_movements_awake_me",
+      "type": "STRING",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Stiasny_Kolster",
+      "required": "NULLABLE",
+      "definition": "RBD 07. My Movements Awake Me"
+    },
+    {
+      "column": "rbd08_remember_dreams",
+      "type": "STRING",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Stiasny_Kolster",
+      "required": "NULLABLE",
+      "definition": "RBD 08. Remember Dreams"
+    },
+    {
+      "column": "rbd09_sleep_is_disturbed",
+      "type": "STRING",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Stiasny_Kolster",
+      "required": "NULLABLE",
+      "definition": "RBD 09. Sleep Is Disturbed"
+    },
+    {
+      "column": "rbd10a_stroke",
+      "type": "STRING",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Stiasny_Kolster",
+      "required": "NULLABLE",
+      "definition": "RBD 10a Stroke"
+    },
+    {
+      "column": "rbd10b_head_trauma",
+      "type": "STRING",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Stiasny_Kolster",
+      "required": "NULLABLE",
+      "definition": "RBD 10b Head Trauma"
+    },
+    {
+      "column": "rbd10c_parkinsonism",
+      "type": "STRING",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Stiasny_Kolster",
+      "required": "NULLABLE",
+      "definition": "RBD 10c Parkinsonism"
+    },
+    {
+      "column": "rbd10d_rls",
+      "type": "STRING",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Stiasny_Kolster",
+      "required": "NULLABLE",
+      "definition": "RBD 10d RLS"
+    },
+    {
+      "column": "rbd10e_narcolepsy",
+      "type": "STRING",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Stiasny_Kolster",
+      "required": "NULLABLE",
+      "definition": "RBD 10e Narcolepsy"
+    },
+    {
+      "column": "rbd10f_depression",
+      "type": "STRING",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Stiasny_Kolster",
+      "required": "NULLABLE",
+      "definition": "RBD 10f Depression"
+    },
+    {
+      "column": "rbd10g_epilepsy",
+      "type": "STRING",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Stiasny_Kolster",
+      "required": "NULLABLE",
+      "definition": "RBD 10g Epilepsy"
+    },
+    {
+      "column": "rbd10h_brain_inflammatory_disease",
+      "type": "STRING",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Stiasny_Kolster",
+      "required": "NULLABLE",
+      "definition": "RBD 10h Inflammatory Disease Of The Brain"
+    },
+    {
+      "column": "rbd10i_other",
+      "type": "STRING",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Stiasny_Kolster",
+      "required": "NULLABLE",
+      "definition": "RBD 10i Other"
+    },
+    {
+      "column": "rbd10_nervous_system_disease",
+      "type": "STRING",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Stiasny_Kolster",
+      "required": "NULLABLE",
+      "definition": "RBD 10. Nervous system Disease"
+    },
+    {
+      "column": "rbd_summary_score",
+      "type": "INTEGER",
+      "assessment": "REM_Sleep_Behavior_Disorder_Questionnaire_Stiasny_Kolster",
+      "required": "NULLABLE",
+      "definition": "RBD Summary Score"
+    }
+  ],
+  "amp-pd-research:2020_v2release_1218.Smoking_and_alcohol_history": [
+    {
+      "column": "participant_id",
+      "type": "STRING",
+      "assessment": "Smoking_and_alcohol_history",
+      "required": "REQUIRED",
+      "definition": "Study Subject ID"
+    },
+    {
+      "column": "GUID",
+      "type": "STRING",
+      "assessment": "Smoking_and_alcohol_history",
+      "required": "NULLABLE",
+      "definition": "Global Unique ID (USUBJID)"
+    },
+    {
+      "column": "visit_name",
+      "type": "STRING",
+      "assessment": "Smoking_and_alcohol_history",
+      "required": "REQUIRED",
+      "definition": "Visit name: M - in months, SC - screening visit, LOG - records without visit; #2 or #3 define repated records at the same visit or repeated visit"
+    },
+    {
+      "column": "visit_month",
+      "type": "FLOAT",
+      "assessment": "Smoking_and_alcohol_history",
+      "required": "NULLABLE",
+      "definition": "Numeric visit in months; for visits prior baseline -1, -2 is an order of screening visits"
+    },
+    {
+      "column": "tobacco_ever_used",
+      "type": "STRING",
+      "assessment": "Smoking_and_alcohol_history",
+      "required": "NULLABLE",
+      "definition": "Indicator of whether subject has ever used tobacco"
+    },
+    {
+      "column": "tobacco_current_use",
+      "type": "STRING",
+      "assessment": "Smoking_and_alcohol_history",
+      "required": "NULLABLE",
+      "definition": "Indicator of whether in your lifetime subject have smoked 100 or more cigarettes (5 packs)"
+    },
+    {
+      "column": "smoked_100_more_cigarettes",
+      "type": "STRING",
+      "assessment": "Smoking_and_alcohol_history",
+      "required": "NULLABLE",
+      "definition": "Current tobacco use indicator"
+    },
+    {
+      "column": "alcohol_ever_used",
+      "type": "STRING",
+      "assessment": "Smoking_and_alcohol_history",
+      "required": "NULLABLE",
+      "definition": "Indicator of whether subject has ever used alcohol"
+    },
+    {
+      "column": "alcohol_current_use",
+      "type": "STRING",
+      "assessment": "Smoking_and_alcohol_history",
+      "required": "NULLABLE",
+      "definition": "Currentl alcohol use indicator"
+    },
+    {
+      "column": "tobacco_recent_use",
+      "type": "STRING",
+      "assessment": "Smoking_and_alcohol_history",
+      "required": "NULLABLE",
+      "definition": "Tobacco recent use indicator"
+    },
+    {
+      "column": "tobacco_prior_use",
+      "type": "STRING",
+      "assessment": "Smoking_and_alcohol_history",
+      "required": "NULLABLE",
+      "definition": "Indicator of the participant's/subject's past regular tobacco (e.g. cigarettes, cigars, chewing tobacco or pipe) use prior to the past 12 months"
+    },
+    {
+      "column": "tobacco_start_age",
+      "type": "INTEGER",
+      "assessment": "Smoking_and_alcohol_history",
+      "required": "NULLABLE",
+      "definition": "Age in years when participant/subject started using tobacco products (e.g. cigarettes, cigars, chewing tobacco or pipe)"
+    },
+    {
+      "column": "tobacco_stop_age",
+      "type": "INTEGER",
+      "assessment": "Smoking_and_alcohol_history",
+      "required": "NULLABLE",
+      "definition": "Age in years when participant/subject stopped using tobacco products (e.g. cigarettes, cigars, chewing tobacco or pipe)"
+    },
+    {
+      "column": "tobacco_product_type",
+      "type": "STRING",
+      "assessment": "Smoking_and_alcohol_history",
+      "required": "NULLABLE",
+      "definition": "Type of tobacco product that has been used"
+    },
+    {
+      "column": "cigarettes_per_day",
+      "type": "STRING",
+      "assessment": "Smoking_and_alcohol_history",
+      "required": "NULLABLE",
+      "definition": "Average number cigarettes smoked daily"
+    },
+    {
+      "column": "cigarettes_packs_per_day",
+      "type": "STRING",
+      "assessment": "Smoking_and_alcohol_history",
+      "required": "NULLABLE",
+      "definition": "Average number packs of cigarettes smoked daily"
+    },
+    {
+      "column": "alcohol_recent_use",
+      "type": "STRING",
+      "assessment": "Smoking_and_alcohol_history",
+      "required": "NULLABLE",
+      "definition": "Participant (subject) alcohol consumption past 12 months"
+    },
+    {
+      "column": "alcohol_prior_use",
+      "type": "STRING",
+      "assessment": "Smoking_and_alcohol_history",
+      "required": "NULLABLE",
+      "definition": "Indicator of the participant's/subject's alcohol consumption prior to the past 12 months"
+    },
+    {
+      "column": "alcohol_start_age",
+      "type": "INTEGER",
+      "assessment": "Smoking_and_alcohol_history",
+      "required": "NULLABLE",
+      "definition": "Age in years when participant/subject started ingesting alcoholic beverages, including social drinking"
+    },
+    {
+      "column": "alcohol_stop_age",
+      "type": "INTEGER",
+      "assessment": "Smoking_and_alcohol_history",
+      "required": "NULLABLE",
+      "definition": "Age in years when participant/subject stopped ingesting alcoholic beverages, including social drinking"
+    },
+    {
+      "column": "alcohol_use_frequency",
+      "type": "STRING",
+      "assessment": "Smoking_and_alcohol_history",
+      "required": "NULLABLE",
+      "definition": "The frequency of consumption of alcohol by the participant"
+    },
+    {
+      "column": "alcohol_drinks_daily_range",
+      "type": "STRING",
+      "assessment": "Smoking_and_alcohol_history",
+      "required": "NULLABLE",
+      "definition": "Alcohol drinking day average drinks consumed range"
+    },
+    {
+      "column": "alcohol_six_more_drinks_frequency",
+      "type": "STRING",
+      "assessment": "Smoking_and_alcohol_history",
+      "required": "NULLABLE",
+      "definition": "Alcohol consume six or more drinks frequency"
+    },
+    {
+      "column": "alcohol_related_hospitalization",
+      "type": "STRING",
+      "assessment": "Smoking_and_alcohol_history",
+      "required": "NULLABLE",
+      "definition": "Indicator of whether the participant/subject has been hospitalized for an alcohol-related problem (i.e., esophageal varices, delirium tremens (DTs), cirrhosis and others)"
+    },
+    {
+      "column": "cigarettes_per_day_current",
+      "type": "INTEGER",
+      "assessment": "Smoking_and_alcohol_history",
+      "required": "NULLABLE",
+      "definition": "Current smokers: average number cigarettes per day?"
+    },
+    {
+      "column": "cigarettes_per_day_past",
+      "type": "FLOAT",
+      "assessment": "Smoking_and_alcohol_history",
+      "required": "NULLABLE",
+      "definition": "Past smokers: average number of cigarettes smoked daily?"
+    },
+    {
+      "column": "smoke_exposure_home",
+      "type": "FLOAT",
+      "assessment": "Smoking_and_alcohol_history",
+      "required": "NULLABLE",
+      "definition": "How many hours a day are you exposed to the cigarette smoke of others (on average) at home?"
+    },
+    {
+      "column": "smoke_exposure_work",
+      "type": "INTEGER",
+      "assessment": "Smoking_and_alcohol_history",
+      "required": "NULLABLE",
+      "definition": "How many hours a day are you exposed to the cigarette smoke of others (on average) at work?"
+    },
+    {
+      "column": "smoke_exposure_other_areas",
+      "type": "FLOAT",
+      "assessment": "Smoking_and_alcohol_history",
+      "required": "NULLABLE",
+      "definition": "How many hours a day are you exposed to the cigarette smoke of others (on average) in other areas?"
+    },
+    {
+      "column": "alcohol_drinks_day",
+      "type": "FLOAT",
+      "assessment": "Smoking_and_alcohol_history",
+      "required": "NULLABLE",
+      "definition": "How many drinks do you have on an average day?"
+    },
+    {
+      "column": "alcohol_consumed_years",
+      "type": "FLOAT",
+      "assessment": "Smoking_and_alcohol_history",
+      "required": "NULLABLE",
+      "definition": "How many years consumed alcohol heavily in the past?"
+    },
+    {
+      "column": "alcohol_consumption_change",
+      "type": "STRING",
+      "assessment": "Smoking_and_alcohol_history",
+      "required": "NULLABLE",
+      "definition": "Has your alcohol consumption changed over the past 10 years?"
+    },
+    {
+      "column": "alcohol_inc_dec",
+      "type": "STRING",
+      "assessment": "Smoking_and_alcohol_history",
+      "required": "NULLABLE",
+      "definition": "Has there been a general increase or decrease in your consumption over a 10-year period."
+    }
+  ],
+  "amp-pd-research:2020_v2release_1218.UPDRS": [
+    {
+      "column": "participant_id",
+      "type": "STRING",
+      "assessment": "UPDRS",
+      "required": "REQUIRED",
+      "definition": "Study Subject ID"
+    },
+    {
+      "column": "GUID",
+      "type": "STRING",
+      "assessment": "UPDRS",
+      "required": "NULLABLE",
+      "definition": "Global Unique ID (USUBJID)"
+    },
+    {
+      "column": "visit_name",
+      "type": "STRING",
+      "assessment": "UPDRS",
+      "required": "REQUIRED",
+      "definition": "Visit name: M - in months, SC - screening visit, LOG - records without visit; #2 or #3 define repated records at the same visit or repeated visit"
+    },
+    {
+      "column": "visit_month",
+      "type": "FLOAT",
+      "assessment": "UPDRS",
+      "required": "NULLABLE",
+      "definition": "Numeric visit in months; for visits prior baseline -1, -2 is an order of screening visits"
+    },
+    {
+      "column": "upd101_intellect_impairment",
+      "type": "FLOAT",
+      "assessment": "UPDRS",
+      "required": "NULLABLE",
+      "definition": "UPDRS - Mentation, Behavior and Mood: Intellectual Impairment (UPD101)"
+    },
+    {
+      "column": "upd102_thought_disorder",
+      "type": "FLOAT",
+      "assessment": "UPDRS",
+      "required": "NULLABLE",
+      "definition": "UPDRS - Mentation, Behavior and Mood: Thought Disorder (UPD102)"
+    },
+    {
+      "column": "upd103_depression",
+      "type": "FLOAT",
+      "assessment": "UPDRS",
+      "required": "NULLABLE",
+      "definition": "UPDRS - Mentation, Behavior and Mood: Depression (UPD103)"
+    },
+    {
+      "column": "upd104_motivation",
+      "type": "FLOAT",
+      "assessment": "UPDRS",
+      "required": "NULLABLE",
+      "definition": "UPDRS - Mentation, Behavior and Mood: Motivation/Initiative (UPD104)"
+    },
+    {
+      "column": "updrs1_ment_behav_mood_score",
+      "type": "FLOAT",
+      "assessment": "UPDRS",
+      "required": "NULLABLE",
+      "definition": "UPDRS - Mentation, Behavior and Mood Sub-total (UPD145)"
+    },
+    {
+      "column": "upd105_speech",
+      "type": "FLOAT",
+      "assessment": "UPDRS",
+      "required": "NULLABLE",
+      "definition": "UPDRS - Activities of Daily Living: Speech (UPD105)"
+    },
+    {
+      "column": "upd106_salivation",
+      "type": "FLOAT",
+      "assessment": "UPDRS",
+      "required": "NULLABLE",
+      "definition": "UPDRS - Activities of Daily Living: Salivation (UPD106)"
+    },
+    {
+      "column": "upd107_swallowing",
+      "type": "FLOAT",
+      "assessment": "UPDRS",
+      "required": "NULLABLE",
+      "definition": "UPDRS - Activities of Daily Living: Swallowing (UPD107)"
+    },
+    {
+      "column": "upd108_handwriting",
+      "type": "FLOAT",
+      "assessment": "UPDRS",
+      "required": "NULLABLE",
+      "definition": "UPDRS - Activities of Daily Living: Handwriting (UPD108)"
+    },
+    {
+      "column": "upd109_cutting_food",
+      "type": "FLOAT",
+      "assessment": "UPDRS",
+      "required": "NULLABLE",
+      "definition": "UPDRS - Activities of Daily Living: Cutting Food and Handling Utensils (UPD109)"
+    },
+    {
+      "column": "upd110_dressing",
+      "type": "FLOAT",
+      "assessment": "UPDRS",
+      "required": "NULLABLE",
+      "definition": "UPDRS - Activities of Daily Living: Dressing (UPD110)"
+    },
+    {
+      "column": "upd111_hygiene",
+      "type": "FLOAT",
+      "assessment": "UPDRS",
+      "required": "NULLABLE",
+      "definition": "UPDRS - Activities of Daily Living: Hygiene (UPD111)"
+    },
+    {
+      "column": "upd112_turning_in_bed",
+      "type": "FLOAT",
+      "assessment": "UPDRS",
+      "required": "NULLABLE",
+      "definition": "UPDRS - Activities of Daily Living: Turning in Bed and Adjusting Bed Clothes (UPD112)"
+    },
+    {
+      "column": "upd113_falling",
+      "type": "FLOAT",
+      "assessment": "UPDRS",
+      "required": "NULLABLE",
+      "definition": "UPDRS - Activities of Daily Living: Falling (UPD113)"
+    },
+    {
+      "column": "upd114_freezing_walking",
+      "type": "FLOAT",
+      "assessment": "UPDRS",
+      "required": "NULLABLE",
+      "definition": "UPDRS - Activities of Daily Living: Freezing When Walking (UPD114)"
+    },
+    {
+      "column": "upd115_walking",
+      "type": "FLOAT",
+      "assessment": "UPDRS",
+      "required": "NULLABLE",
+      "definition": "UPDRS - Activities of Daily Living: Walking (UPD115)"
+    },
+    {
+      "column": "upd116_tremor",
+      "type": "FLOAT",
+      "assessment": "UPDRS",
+      "required": "NULLABLE",
+      "definition": "UPDRS - Activities of Daily Living: Tremor (UPD116)"
+    },
+    {
+      "column": "upd117_sensory_complaints",
+      "type": "FLOAT",
+      "assessment": "UPDRS",
+      "required": "NULLABLE",
+      "definition": "UPDRS - Activities of Daily Living: Sensory Complaints Related to Parkinsonism (UPD117)"
+    },
+    {
+      "column": "updrs2_adl_score",
+      "type": "FLOAT",
+      "assessment": "UPDRS",
+      "required": "NULLABLE",
+      "definition": "UPDRS - Activities of Daily Living Sub-total (UPD146)"
+    },
+    {
+      "column": "upd118_speech",
+      "type": "FLOAT",
+      "assessment": "UPDRS",
+      "required": "NULLABLE",
+      "definition": "UPDRS - Motor Examination: Speech (UPD118)"
+    },
+    {
+      "column": "upd119_facial_expression",
+      "type": "FLOAT",
+      "assessment": "UPDRS",
+      "required": "NULLABLE",
+      "definition": "UPDRS - Motor Examination: Facial Expression (UPD119)"
+    },
+    {
+      "column": "upd120a_tremor_face_lips_chin",
+      "type": "FLOAT",
+      "assessment": "UPDRS",
+      "required": "NULLABLE",
+      "definition": "UPDRS - Motor Examination: Tremor at Rest, Face, Lips, Chin (UPD120A)"
+    },
+    {
+      "column": "upd120b_tremor_rest_hand_rt",
+      "type": "FLOAT",
+      "assessment": "UPDRS",
+      "required": "NULLABLE",
+      "definition": "UPDRS - Motor Examination: Tremor at Rest, Hands, Right (UPD120B)"
+    },
+    {
+      "column": "upd120c_tremor_rest_hand_lt",
+      "type": "FLOAT",
+      "assessment": "UPDRS",
+      "required": "NULLABLE",
+      "definition": "UPDRS - Motor Examination: Tremor at Rest, Hands, Left (UPD120C)"
+    },
+    {
+      "column": "upd120d_tremor_rest_feet_rt",
+      "type": "FLOAT",
+      "assessment": "UPDRS",
+      "required": "NULLABLE",
+      "definition": "UPDRS - Motor Examination: Tremor at Rest, Feet, Right (UPD120D)"
+    },
+    {
+      "column": "upd120e_tremor_rest_feet_lt",
+      "type": "FLOAT",
+      "assessment": "UPDRS",
+      "required": "NULLABLE",
+      "definition": "UPDRS - Motor Examination: Tremor at Rest, Feet, Left (UPD120E)"
+    },
+    {
+      "column": "upd121a_action_tremor_hand_rt",
+      "type": "FLOAT",
+      "assessment": "UPDRS",
+      "required": "NULLABLE",
+      "definition": "UPDRS - Motor Examination: Action Tremor, Hand, Right (UPD121A)"
+    },
+    {
+      "column": "upd121b_action_tremor_hand_left",
+      "type": "FLOAT",
+      "assessment": "UPDRS",
+      "required": "NULLABLE",
+      "definition": "UPDRS - Motor Examination: Action Tremor, Hand, Left (UPD121B)"
+    },
+    {
+      "column": "upd122a_rigidity_neck",
+      "type": "FLOAT",
+      "assessment": "UPDRS",
+      "required": "NULLABLE",
+      "definition": "UPDRS - Motor Examination: Rigidity Neck (UPD122A)"
+    },
+    {
+      "column": "upd122b_rigidity_up_extrem_rt",
+      "type": "FLOAT",
+      "assessment": "UPDRS",
+      "required": "NULLABLE",
+      "definition": "UPDRS - Motor Examination: Rigidity Upper Extremity, Right (UPD122B)"
+    },
+    {
+      "column": "upd122c_rigidity_up_extrem_lt",
+      "type": "FLOAT",
+      "assessment": "UPDRS",
+      "required": "NULLABLE",
+      "definition": "UPDRS - Motor Examination: Rigidity Upper Extremity, Left (UPD122C)"
+    },
+    {
+      "column": "upd122d_rigidity_low_extrem_rt",
+      "type": "FLOAT",
+      "assessment": "UPDRS",
+      "required": "NULLABLE",
+      "definition": "UPDRS - Motor Examination: Rigidity Lower Extremity, Right (UPD122D)"
+    },
+    {
+      "column": "upd122e_rigidity_low_extrem_lt",
+      "type": "FLOAT",
+      "assessment": "UPDRS",
+      "required": "NULLABLE",
+      "definition": "UPDRS - Motor Examination: Rigidity Lower Extremity, Left (UPD122E)"
+    },
+    {
+      "column": "upd123a_finger_taps_right",
+      "type": "FLOAT",
+      "assessment": "UPDRS",
+      "required": "NULLABLE",
+      "definition": "UPDRS - Motor Examination: Finger Taps, Right (UPD123A)"
+    },
+    {
+      "column": "upd123b_finger_taps_left",
+      "type": "FLOAT",
+      "assessment": "UPDRS",
+      "required": "NULLABLE",
+      "definition": "UPDRS - Motor Examination: Finger Taps, Left (UPD123B)"
+    },
+    {
+      "column": "upd124a_hand_grips_right",
+      "type": "FLOAT",
+      "assessment": "UPDRS",
+      "required": "NULLABLE",
+      "definition": "UPDRS - Motor Examination: Hand Grips, Right (UPD124A)"
+    },
+    {
+      "column": "upd124b_hand_grips_left",
+      "type": "FLOAT",
+      "assessment": "UPDRS",
+      "required": "NULLABLE",
+      "definition": "UPDRS - Motor Examination: Hand Grips, Left (UPD124B)"
+    },
+    {
+      "column": "upd125a_hand_pronate_supinate_rt",
+      "type": "FLOAT",
+      "assessment": "UPDRS",
+      "required": "NULLABLE",
+      "definition": "UPDRS - Motor Examination: Hand Pronate/Supinate, Right (UPD125A)"
+    },
+    {
+      "column": "upd125b_hand_pronate_supinate_lt",
+      "type": "FLOAT",
+      "assessment": "UPDRS",
+      "required": "NULLABLE",
+      "definition": "UPDRS - Motor Examination: Hand Pronate/Supinate, Left (UPD125B)"
+    },
+    {
+      "column": "upd126a_leg_agility_rt",
+      "type": "FLOAT",
+      "assessment": "UPDRS",
+      "required": "NULLABLE",
+      "definition": "UPDRS - Motor Examination: Leg Agility, Right (UPD126A)"
+    },
+    {
+      "column": "upd126b_leg_agility_lt",
+      "type": "FLOAT",
+      "assessment": "UPDRS",
+      "required": "NULLABLE",
+      "definition": "UPDRS - Motor Examination: Leg Agility, Left (UPD126B)"
+    },
+    {
+      "column": "upd127_arising_from_chair",
+      "type": "FLOAT",
+      "assessment": "UPDRS",
+      "required": "NULLABLE",
+      "definition": "UPDRS - Motor Examination: Arising from Chair (UPD127)"
+    },
+    {
+      "column": "upd128_posture",
+      "type": "FLOAT",
+      "assessment": "UPDRS",
+      "required": "NULLABLE",
+      "definition": "UPDRS - Motor Examination: Posture (UPD128)"
+    },
+    {
+      "column": "upd129_gait",
+      "type": "FLOAT",
+      "assessment": "UPDRS",
+      "required": "NULLABLE",
+      "definition": "UPDRS - Motor Examination: Gait (UPD129)"
+    },
+    {
+      "column": "upd130_postural_stability",
+      "type": "FLOAT",
+      "assessment": "UPDRS",
+      "required": "NULLABLE",
+      "definition": "UPDRS - Motor Examination: Postural Stability (UPD130)"
+    },
+    {
+      "column": "upd131_body_bradykinesia",
+      "type": "FLOAT",
+      "assessment": "UPDRS",
+      "required": "NULLABLE",
+      "definition": "UPDRS - Motor Examination: Body Bradykinesia and Hypokinesia (UPD131)"
+    },
+    {
+      "column": "updrs3_motor_examination_score",
+      "type": "FLOAT",
+      "assessment": "UPDRS",
+      "required": "NULLABLE",
+      "definition": "UPDRS - Motor Examination Sub-total (UPD147)"
+    },
+    {
+      "column": "upd132_dyskinesias_duration",
+      "type": "FLOAT",
+      "assessment": "UPDRS",
+      "required": "NULLABLE",
+      "definition": "UPDRS - Complications of Therapy: Dyskinesias - Duration (UPD132)"
+    },
+    {
+      "column": "upd133_dyskinesias_disability",
+      "type": "FLOAT",
+      "assessment": "UPDRS",
+      "required": "NULLABLE",
+      "definition": "UPDRS - Complications of Therapy: Dyskinesias - Disability (UPD133)"
+    },
+    {
+      "column": "upd134_dyskinesias_painful",
+      "type": "FLOAT",
+      "assessment": "UPDRS",
+      "required": "NULLABLE",
+      "definition": "UPDRS - Complications of Therapy: Dyskinesias - Painful Dyskinesias (UPD134)"
+    },
+    {
+      "column": "upd135_dyskinesias_dystonia",
+      "type": "FLOAT",
+      "assessment": "UPDRS",
+      "required": "NULLABLE",
+      "definition": "UPDRS - Complications of Therapy: Dyskinesias - Presence of Early Morning Dystonia (UPD135)"
+    },
+    {
+      "column": "upd136_off_periods_predictable",
+      "type": "FLOAT",
+      "assessment": "UPDRS",
+      "required": "NULLABLE",
+      "definition": "UPDRS - Complications of Therapy: Clinical Fluctuations - Off Periods Predictable (UPD136)"
+    },
+    {
+      "column": "upd137_off_periods_unpredictable",
+      "type": "FLOAT",
+      "assessment": "UPDRS",
+      "required": "NULLABLE",
+      "definition": "UPDRS - Complications of Therapy: Clinical Fluctuations - Off Periods Unpredictable (UPD137)"
+    },
+    {
+      "column": "upd138_off_periods_sudden",
+      "type": "FLOAT",
+      "assessment": "UPDRS",
+      "required": "NULLABLE",
+      "definition": "UPDRS - Complications of Therapy: Clinical Fluctuations - Off Periods Sudden (UPD138)"
+    },
+    {
+      "column": "upd139_clin_fluctu_off_periods",
+      "type": "FLOAT",
+      "assessment": "UPDRS",
+      "required": "NULLABLE",
+      "definition": "UPDRS - Complications of Therapy: Clinical Fluctuations - Average Off Periods Per Day (UPD139)"
+    },
+    {
+      "column": "upd140_anorexia_nausea_vomit",
+      "type": "FLOAT",
+      "assessment": "UPDRS",
+      "required": "NULLABLE",
+      "definition": "UPDRS - Complications of Therapy: Other Complications - Anorexia, Nausea, or Vomiting (UPD140)"
+    },
+    {
+      "column": "upd141_sleep_disturbances",
+      "type": "FLOAT",
+      "assessment": "UPDRS",
+      "required": "NULLABLE",
+      "definition": "UPDRS - Complications of Therapy: Other Complications - Sleep Disturbances (UPD141)"
+    },
+    {
+      "column": "upd142_symptomatic_orthostasis",
+      "type": "FLOAT",
+      "assessment": "UPDRS",
+      "required": "NULLABLE",
+      "definition": "UPDRS - Complications of Therapy: Other Complications - Symptomatic Orthostasis (UPD142)"
+    },
+    {
+      "column": "updrs4_therapy_complications_score",
+      "type": "FLOAT",
+      "assessment": "UPDRS",
+      "required": "NULLABLE",
+      "definition": "UPDRS - Complications of Therapy: Sub-total"
+    },
+    {
+      "column": "upd143_mod_hoehn_and_yahr_stage",
+      "type": "FLOAT",
+      "assessment": "UPDRS",
+      "required": "NULLABLE",
+      "definition": "UPDRS - Modified Hoehn and Yahr Staging (UPD143)"
+    },
+    {
+      "column": "updrs1_on_medication",
+      "type": "STRING",
+      "assessment": "UPDRS",
+      "required": "NULLABLE",
+      "definition": "UPDRS Part 1 - Clinical State On Medication"
+    },
+    {
+      "column": "updrs2_on_medication",
+      "type": "STRING",
+      "assessment": "UPDRS",
+      "required": "NULLABLE",
+      "definition": "UPDRS Part 2 - Clinical State On Medication"
+    }
+  ],
+  "amp-pd-research:2020_v2release_1218.UPSIT": [
+    {
+      "column": "participant_id",
+      "type": "STRING",
+      "assessment": "UPSIT",
+      "required": "REQUIRED",
+      "definition": "Study Subject ID"
+    },
+    {
+      "column": "GUID",
+      "type": "STRING",
+      "assessment": "UPSIT",
+      "required": "NULLABLE",
+      "definition": "Global Unique ID (USUBJID)"
+    },
+    {
+      "column": "visit_name",
+      "type": "STRING",
+      "assessment": "UPSIT",
+      "required": "REQUIRED",
+      "definition": "Visit name: M - in months, SC - screening visit, LOG - records without visit; #2 or #3 define repated records at the same visit or repeated visit"
+    },
+    {
+      "column": "visit_month",
+      "type": "FLOAT",
+      "assessment": "UPSIT",
+      "required": "NULLABLE",
+      "definition": "Numeric visit in months; for visits prior baseline -1, -2 is an order of screening visits"
+    },
+    {
+      "column": "upsit_performed",
+      "type": "STRING",
+      "assessment": "UPSIT",
+      "required": "NULLABLE",
+      "definition": "UPSIT Performed Indicator"
+    },
+    {
+      "column": "score_from_booklet_1",
+      "type": "INTEGER",
+      "assessment": "UPSIT",
+      "required": "NULLABLE",
+      "definition": "UPSIT Score From Booklet #1"
+    },
+    {
+      "column": "score_from_booklet_2",
+      "type": "INTEGER",
+      "assessment": "UPSIT",
+      "required": "NULLABLE",
+      "definition": "UPSIT Score From Booklet #2"
+    },
+    {
+      "column": "score_from_booklet_3",
+      "type": "INTEGER",
+      "assessment": "UPSIT",
+      "required": "NULLABLE",
+      "definition": "UPSIT Score From Booklet #3"
+    },
+    {
+      "column": "score_from_booklet_4",
+      "type": "INTEGER",
+      "assessment": "UPSIT",
+      "required": "NULLABLE",
+      "definition": "UPSIT Score From Booklet #4"
+    },
+    {
+      "column": "upsit_total_score",
+      "type": "INTEGER",
+      "assessment": "UPSIT",
+      "required": "NULLABLE",
+      "definition": "UPSIT Total Score"
+    }
+  ],
+  "amp-pd-research:2020_v2release_1218_tier2.Clinically_Reported_Genetic_Status": [
+    {
+      "column": "participant_id",
+      "type": "STRING",
+      "assessment": "Clinically_Reported_Genetic_Status",
+      "required": "REQUIRED",
+      "definition": "Study Subject ID"
+    },
+    {
+      "column": "GUID",
+      "type": "STRING",
+      "assessment": "Clinically_Reported_Genetic_Status",
+      "required": "NULLABLE",
+      "definition": "Global Unique ID (USUBJID)"
+    },
+    {
+      "column": "visit_name",
+      "type": "STRING",
+      "assessment": "Clinically_Reported_Genetic_Status",
+      "required": "REQUIRED",
+      "definition": "Visit name: M - in months, SC - screening visit, LOG - records without visit; #2 or #3 define repated records at the same visit or repeated visit"
+    },
+    {
+      "column": "visit_month",
+      "type": "FLOAT",
+      "assessment": "Clinically_Reported_Genetic_Status",
+      "required": "NULLABLE",
+      "definition": "Numeric visit in months; for visits prior baseline -1, -2 is an order of screening visits"
+    },
+    {
+      "column": "genetic_status_enrollment",
+      "type": "STRING",
+      "assessment": "Clinically_Reported_Genetic_Status",
+      "required": "NULLABLE",
+      "definition": "Participant genetic status based on PD-associated mutations (LRRK2, GBA, or SNCA) at enrollment"
+    },
+    {
+      "column": "genetic_status_wgs",
+      "type": "STRING",
+      "assessment": "Clinically_Reported_Genetic_Status",
+      "required": "NULLABLE",
+      "definition": "Participant genetic status based on the determined by Whole Genome Sequencing selected PD-associated variants (LRRK2 G2019S, LRRK2 R1441G, GBA N370S, and SNCA A53T)"
+    }
+  ]
+}
