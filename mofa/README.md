@@ -16,5 +16,6 @@ This directory contains the pipeline for multi-group (sex-specific) factor analy
 
 - `prep_utils.py`: Contains `validate_and_intersect_views` for sample alignment (Task 1.2.4).
 - `proteomics_qc.py`: Handles median-centering and normalization.
+- `adjust_batch_effects.R` / `plate_correction.py`: Plate correction (limma `removeBatchEffect`), design `~ sex + diagnosis` by default; `--no_diagnosis` (`correct_plate(..., include_diagnosis=False)`) uses `~ sex` for the label-free cross-cohort ML preprocessing. The ML module (`ml/`) imports this and the other shared preprocessing through `ml/scripts/shared.py`.
 - `train_mofa.py`: Handles multi-seed training and stability diagnostics.
 - `mofa_wf.ipynb`: Main execution notebook.

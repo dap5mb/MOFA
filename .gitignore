@@ -17,3 +17,6 @@ admin/
 
 # Legacy material kept locally only
 archive/
+
+# Snakemake state
+.snakemake/

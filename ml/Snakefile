@@ -1,0 +1,23 @@
+# Cross-cohort ML (step 2). Run from the repository root:
+#   snakemake -s ml/Snakefile --cores 1
+# Outputs go under results/ml/ (git-ignored).
+
+SCRIPTS = workflow.basedir + "/scripts"
+
+rule all:
+    input:
+        expand("results/ml/synthetic/{scenario}/auc.tsv", scenario=["signal", "null"]),
+
+# Tracer bullet on synthetic cohorts: synthetic data -> frozen model -> PDBP scores -> AUC table
+rule synthetic_tracer:
+    output:
+        model="results/ml/synthetic/{scenario}/frozen_model.json",
+        scores="results/ml/synthetic/{scenario}/pdbp_scores.csv",
+        auc="results/ml/synthetic/{scenario}/auc.tsv",
+    wildcard_constraints:
+        scenario="signal|null",
+    params:
+        seed=0,
+    shell:
+        "python {SCRIPTS}/run_tracer.py --scenario {wildcards.scenario} --seed {params.seed} "
+        "--model {output.model} --scores {output.scores} --auc {output.auc}"

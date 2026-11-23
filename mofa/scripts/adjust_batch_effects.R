@@ -12,12 +12,16 @@ suppressPackageStartupMessages({
 args <- commandArgs(trailingOnly = TRUE)
 
 parse_args <- function(args) {
-  opts <- list(expression = NULL, metadata = NULL, output = "adjusted_rna_matrix.csv", plot_prefix = NULL)
+  opts <- list(expression = NULL, metadata = NULL, output = "adjusted_rna_matrix.csv", plot_prefix = NULL,
+               no_diagnosis = FALSE)
   for (i in seq_along(args)) {
     if (args[i] %in% c("-e", "--expression"))  opts$expression  <- args[i + 1]
     if (args[i] %in% c("-m", "--metadata"))    opts$metadata    <- args[i + 1]
     if (args[i] %in% c("-o", "--output"))      opts$output      <- args[i + 1]
     if (args[i] %in% c("-p", "--plot_prefix"))  opts$plot_prefix <- args[i + 1]
+    # Label-free correction (cross-cohort ML): diagnosis stays out of the design, and out of
+    # the data the script reads, so the classifier label never enters the features
+    if (args[i] == "--no_diagnosis")            opts$no_diagnosis <- TRUE
   }
   return(opts)
 }
@@ -47,12 +51,20 @@ logcpm_matrix <- as.matrix(logcpm_matrix[, metadata$participant_id])
 
 metadata$plate     <- as.factor(metadata$plate)
 metadata$sex       <- as.factor(metadata$sex)
-metadata$diagnosis <- as.factor(metadata$diagnosis)
+if (opt$no_diagnosis) {
+  metadata$diagnosis <- NULL
+} else {
+  metadata$diagnosis <- as.factor(metadata$diagnosis)
+}
 
 # ------------------------------------------------------------------------------
 # 3. Batch Adjustment
 # ------------------------------------------------------------------------------
-design_bio <- model.matrix(~ sex + diagnosis, data = metadata)
+if (opt$no_diagnosis) {
+  design_bio <- model.matrix(~ sex, data = metadata)
+} else {
+  design_bio <- model.matrix(~ sex + diagnosis, data = metadata)
+}
 
 adjusted_rna_matrix <- removeBatchEffect(
   x      = logcpm_matrix,
@@ -75,19 +87,23 @@ if (!is.null(opt$plot_prefix)) {
     # Perform PCA on filtered matrix
     pca <- prcomp(t(mat_filtered), scale. = TRUE)
     
-    data.frame(
+    df <- data.frame(
       PC1 = pca$x[, 1], PC2 = pca$x[, 2],
-      Plate = metadata$plate, Diagnosis = metadata$diagnosis,
+      Plate = metadata$plate,
       Stage = factor(label, levels = c("Before Adjustment", "After Adjustment"))
     )
+    if (!opt$no_diagnosis) df$Diagnosis <- metadata$diagnosis
+    df
   }
 
-  pca_df <- rbind(get_pca_df(logcpm_matrix, "Before Adjustment"), 
+  pca_df <- rbind(get_pca_df(logcpm_matrix, "Before Adjustment"),
                   get_pca_df(adjusted_rna_matrix, "After Adjustment"))
 
   pdf(paste0(opt$plot_prefix, "_pca.pdf"), width = 10, height = 4.5)
   print(ggplot(pca_df, aes(x = PC1, y = PC2, color = Plate)) + geom_point(size = 3, alpha = 0.8) + facet_wrap(~Stage) + theme_bw() + labs(title = "PCA colored by Plate"))
-  print(ggplot(pca_df, aes(x = PC1, y = PC2, color = Diagnosis)) + geom_point(size = 3, alpha = 0.8) + facet_wrap(~Stage) + theme_bw() + labs(title = "PCA colored by Diagnosis"))
+  if (!opt$no_diagnosis) {
+    print(ggplot(pca_df, aes(x = PC1, y = PC2, color = Diagnosis)) + geom_point(size = 3, alpha = 0.8) + facet_wrap(~Stage) + theme_bw() + labs(title = "PCA colored by Diagnosis"))
+  }
   dev.off()
   
   cat(sprintf("[SUCCESS] Saved PCA plots to %s_pca.pdf\n", opt$plot_prefix))
