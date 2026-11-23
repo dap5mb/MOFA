@@ -4,13 +4,13 @@
 
 **Blocked by:** 01
 
-**Status:** in progress (code built and tested locally on synthetic data, 2026-11-23; waiting for the Terra run)
+**Status:** done (2026-11-23)
 
-- [ ] Participant counts by cohort, sex and diagnosis match the MOFA write-up, less PPMI's "other" diagnoses. *(Report compares against the write-up; check on Terra.)*
-- [x] Carrier flags come from WGS-confirmed PD mutation and enrollment genetic status; how they were combined is documented. *(`analysis_set.py` docstring; to confirm on Terra: the enrollment vocabulary.)*
-- [ ] Coverage report: share of PDBP PD cases with duration and with medication status, by sex. *(`coverage_report.py`; needs the Terra run.)*
-- [ ] Duration bands and the PPMI-like-subset definition are written into the step-2 spec (dated addendum) before any PDBP scoring; the subset's size by sex is reported. *(Report lists candidate subset sizes; `analysis_set.FIXED_DEFINITIONS` stays `None`, and `require_fixed_definitions()` refuses to run until the addendum exists.)*
-- [ ] Runs on Terra; only aggregate counts leave Terra.
+- [x] Participant counts by cohort, sex and diagnosis match the MOFA write-up, less PPMI's "other" diagnoses. *(PDBP matches exactly: 1,248, i.e. 767 PD and 481 controls. PPMI: 1,308 RNA-seq participants, 753 PD and 555 controls, the same as the write-up; none of the 21 "other" had RNA-seq.)*
+- [x] Carrier flags come from WGS-confirmed PD mutation and enrollment genetic status; how they were combined is documented. *(`analysis_set.py` docstring. The flag rates look implausible; see the notes below before the carrier sensitivity analysis.)*
+- [x] Coverage report: share of PDBP PD cases with duration and with medication status, by sex. *(Duration 98.6% of women, 97.5% of men; medication 96.1% and 98.8%.)*
+- [x] Duration bands and the PPMI-like-subset definition are written into the step-2 spec (dated addendum) before any PDBP scoring; the subset's size by sex is reported. *(Addendum 2026-11-23: bands 0–1, 2–4, 5–9 and ≥ 10 years; PPMI-like = PD with duration ≤ 2 years and no medication criterion, which gives 99 women and 144 men, plus all controls. Coded as `analysis_set.FIXED_DEFINITIONS`, `duration_band()` and `ppmi_like()`.)*
+- [x] Runs on Terra; only aggregate counts leave Terra.
 
 ## Terra run (from the repository root; participant-level files stay under `results/`)
 
@@ -36,3 +36,16 @@ Only `coverage_report/` (counts, percentages, percentiles) leaves Terra.
 - Rules decided in the build, open to change before the addendum: ages are whole years, so a duration of −1 is read as 0 and anything below −1 is set to missing. Medication comes from the medical-history fields first, then the MDS-UPDRS 3a answer of the selected exam. A carrier is a participant positive in either source.
 - Any genetic-status or yes/no value the code does not recognize stops the run with the list of values, so the first Terra run may need its vocabulary extended.
 - PPMI reference: the write-up's 753 PD / 555 control / 21 other counts cover all 1,329 participants with any view; the RNA-seq analysis set (1,308) is compared against them as is.
+
+## Findings from the Terra report (2026-11-23)
+
+- **Hardly any PDBP PD cases are unmedicated:** 13 women and 12 men. Requiring "no medication" leaves 13 women and 9 men in the PPMI-like subset at ≤ 2 years, too few for a per-sex AUC. Reporting AUC by medication use within PDBP (story 33) has the same problem.
+- **PDBP duration bands:** the candidate bands (0–1, 2–4, 5–9 and ≥ 10 whole years) each hold at least 57 PD cases per sex.
+- **Carrier flags look wrong:**
+  - `has_known_PD_Mutation_in_WGS` is "yes" for 31% of PDBP participants, with almost the same rate in controls (28%) as in PD (33%).
+  - It is also "yes" for 67% of PPMI participants, including 243 of 290 female controls.
+  - PDBP has no `genetic_status_enrollment` at all.
+  - PPMI's genetic cohorts may explain part of the PPMI figure, since unaffected carriers count as controls, but not the PDBP figure.
+  - Before issue 09 (carrier-excluded sensitivity), check on Terra: the raw value counts of `has_known_PD_Mutation_in_WGS` and `genetic_status_enrollment`; the field's definition in the 2023_v4 schema; and how it agrees with `genetic_status_wgs` and the per-gene `has_known_{GBA,LRRK2,SNCA}_mutation_in_WGS` flags. If PPMI controls are mostly unaffected carriers, the write-up should say so.
+- **PPMI MoCA is mostly missing at baseline:** it is recorded for 58 of 316 PD women and 64 of 437 PD men, against 99% in PDBP. PPMI probably records MoCA at screening rather than at `visit_month = 0`. This affects issue 11 (MoCA regression trained in PPMI), and MOFA's query uses the same rule.
+- **PPMI baseline medication:** 44% of PD women and 27% of PD men are medicated, mostly according to the MDS-UPDRS 3a answer.

@@ -126,9 +126,26 @@ class TestDerivedFlags(unittest.TestCase):
                          ["medical_history", "medical_history", "updrs3_3a", "medical_history", None])
 
     def test_bands_and_subset_refuse_until_fixed(self):
-        self.assertIsNone(analysis_set.FIXED_DEFINITIONS)
-        with self.assertRaises(RuntimeError):
-            analysis_set.require_fixed_definitions()
+        saved = analysis_set.FIXED_DEFINITIONS
+        try:
+            analysis_set.FIXED_DEFINITIONS = None
+            with self.assertRaises(RuntimeError):
+                analysis_set.require_fixed_definitions()
+        finally:
+            analysis_set.FIXED_DEFINITIONS = saved
+
+    def test_fixed_bands_and_ppmi_like_subset(self):
+        # Addendum 2026-11-23: bands 0-1, 2-4, 5-9, >=10 years; PPMI-like = PD <= 2 years (any
+        # medication) plus all controls
+        df = self.build(
+            [{"age_at_baseline": 65}] * 6 + [{}],
+            [{"age_at_diagnosis": 64, "use_of_pd_medication": "Yes"}, {"age_at_diagnosis": 63},
+             {"age_at_diagnosis": 62}, {"age_at_diagnosis": 55}, {"age_at_diagnosis": 50},
+             {"age_at_diagnosis": np.nan}, {}])
+        df.loc[df.index[-1], "diagnosis"] = "Control"
+        self.assertEqual([None if pd.isna(v) else v for v in analysis_set.duration_band(df)],
+                         ["0-1", "2-4", "2-4", ">=10", ">=10", None, None])
+        self.assertEqual(analysis_set.ppmi_like(df).tolist(), [True, True, False, False, False, False, True])
 
 
 class TestCoverageReport(unittest.TestCase):

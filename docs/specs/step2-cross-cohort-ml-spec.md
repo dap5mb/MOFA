@@ -158,3 +158,18 @@ Snakemake is not allowed on Terra, and pytest is not installed there. This chang
 - **`ml/Snakefile` is optional and local only**, for rerunning the synthetic tracer and other synthetic checks. Nothing on Terra depends on it, and each of its rules only calls a script.
 - **Tests are `unittest` test cases**, so they run on Terra with `python -m unittest <file>` and locally with either `unittest` or pytest.
 - Story 42 and the "Location" decision above are read with these changes.
+
+## Addendum 2026-11-23: duration bands and the PPMI-like subset (issue 03)
+
+Fixed from the analysis-set coverage report (`results/ml/analysis_set/coverage_report/`, aggregate counts only, Terra run 2026-11-23) before any PDBP classifier score existed. These definitions are coded in `ml/scripts/analysis_set.py` (`FIXED_DEFINITIONS`). Disease duration is age at baseline minus age at diagnosis, in whole years.
+
+- **Duration bands** (PDBP PD cases, used for cohort-shift reporting): 0–1, 2–4, 5–9 and ≥ 10 years. Each band holds at least 57 PD cases per sex:
+
+  | Sex | 0–1 | 2–4 | 5–9 | ≥ 10 |
+  |---|---|---|---|---|
+  | Women | 68 | 81 | 71 | 57 |
+  | Men | 99 | 134 | 136 | 105 |
+
+- **PPMI-like subset:** PDBP PD cases with disease duration ≤ 2 years, scored against all PDBP controls of the same sex. PD cases with no recorded duration are left out. There is no medication criterion. That leaves 99 women and 144 men with PD, against 273 and 208 controls.
+- **Why there is no medication criterion:** only 13 women and 12 men with PD in PDBP were unmedicated at baseline. Requiring no medication would leave 13 women and 9 men at ≤ 2 years, too few for an AUC by sex. The subset therefore matches PPMI on disease stage (PPMI enrolled people within 2 years of diagnosis; median duration 1 year in this set) but not on treatment, and cannot separate a treatment effect from a cohort effect. PPMI is not wholly untreated either: 44% of PD women and 27% of PD men are recorded as medicated at baseline.
+- **Medication use (story 33):** with 25 unmedicated PD cases, PDBP AUC by medication use is reported descriptively only, pooled over sex, with its interval. It is not used to draw conclusions.

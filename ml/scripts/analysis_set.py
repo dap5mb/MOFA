@@ -35,8 +35,8 @@ Derived fields
 Any value outside the known vocabularies stops the run with the list of values, so a new
 coding is mapped on purpose rather than silently.
 
-Duration bands and the PPMI-like subset are fixed in the step-2 spec addendum from the coverage
-report; FIXED_DEFINITIONS stays None until then and require_fixed_definitions() refuses to run.
+Duration bands and the PPMI-like subset were fixed from the coverage report in the step-2 spec
+addendum of 2026-11-23 (FIXED_DEFINITIONS; duration_band() and ppmi_like() apply them).
 
     python3 ml/scripts/analysis_set.py --cohort PDBP --mofa_metadata data/metadata_m0_PDBP.csv \\
         --ml_fields results/ml/analysis_set/pdbp_ml_fields.csv \\
@@ -68,10 +68,16 @@ MEDICATION_HISTORY_FIELDS = ["use_of_pd_medication", "on_levodopa", "on_dopamine
                              "on_other_pd_medications"]
 UPDRS3_MEDICATION = "updrs3_medication_for_pd"
 
-# Set from the step-2 spec addendum once the coverage report is in, e.g.
-# {"duration_band_edges": [0, 2, 5, 10, inf], "ppmi_like_max_duration": 2,
-#  "ppmi_like_unmedicated": True, "addendum": "2026-11-xx"}
-FIXED_DEFINITIONS = None
+# Step-2 spec addendum 2026-11-23, fixed before any PDBP classifier score. Durations are whole
+# years: bands [0, 2), [2, 5), [5, 10), [10, inf) are 0-1, 2-4, 5-9 and >= 10 years. The PPMI-like
+# subset is PD with duration <= 2 years (no medication criterion) plus all controls.
+FIXED_DEFINITIONS = {
+    "addendum": "2026-11-23",
+    "duration_band_edges": [0, 2, 5, 10, np.inf],
+    "duration_band_labels": ["0-1", "2-4", "5-9", ">=10"],
+    "ppmi_like_max_duration": 2,
+    "ppmi_like_unmedicated": False,
+}
 
 
 REQUIRED_METADATA = ["sex", "age_at_baseline", "has_known_PD_Mutation_in_WGS",
@@ -92,6 +98,24 @@ def require_fixed_definitions() -> dict:
                            "coverage report, write the step-2 spec addendum, then set "
                            "analysis_set.FIXED_DEFINITIONS")
     return FIXED_DEFINITIONS
+
+
+def duration_band(participants: pd.DataFrame) -> pd.Series:
+    """Fixed duration band per PD case; missing for controls and PD without duration."""
+    d = require_fixed_definitions()
+    band = pd.cut(participants["disease_duration_years"], d["duration_band_edges"], right=False,
+                  labels=d["duration_band_labels"])
+    return band.where(participants["diagnosis"] == "PD")
+
+
+def ppmi_like(participants: pd.DataFrame) -> pd.Series:
+    """True for controls and for PD cases meeting the fixed PPMI-like definition."""
+    d = require_fixed_definitions()
+    is_pd = participants["diagnosis"] == "PD"
+    keep = is_pd & (participants["disease_duration_years"] <= d["ppmi_like_max_duration"])
+    if d["ppmi_like_unmedicated"]:
+        keep &= participants["pd_medication"].eq(False).fillna(False)
+    return (participants["diagnosis"] == "Control") | keep
 
 
 def _norm(v) -> str:
