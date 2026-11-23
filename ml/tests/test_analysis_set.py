@@ -85,11 +85,13 @@ class TestDerivedFlags(unittest.TestCase):
         df = self.build(
             [{"has_known_PD_Mutation_in_WGS": "Yes"}, {"has_known_PD_Mutation_in_WGS": "No"},
              {"has_known_PD_Mutation_in_WGS": "No"}, {"has_known_PD_Mutation_in_WGS": np.nan},
-             {"has_known_PD_Mutation_in_WGS": np.nan}],
+             {"has_known_PD_Mutation_in_WGS": np.nan}, {"has_known_PD_Mutation_in_WGS": "No"}],
             [{"genetic_status_enrollment": "No Mutation"}, {"genetic_status_enrollment": "LRRK2+"},
-             {}, {}, {"genetic_status_enrollment": "Not tested"}])
+             {}, {}, {"genetic_status_enrollment": "Not tested"},
+             {"genetic_status_enrollment": "Unknown/Not collected as enrollment criterion"}])
         self.assertEqual([None if pd.isna(v) else bool(v) for v in df["carrier"]],
-                         [True, True, False, None, None])
+                         [True, True, False, None, None, False])
+        self.assertTrue(pd.isna(df["carrier_enrollment"].iloc[5]))
 
     def test_unrecognized_vocabulary_stops_the_run(self):
         with self.assertRaisesRegex(ValueError, "genetic_status_enrollment"):

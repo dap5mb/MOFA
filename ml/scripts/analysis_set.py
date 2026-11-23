@@ -59,7 +59,7 @@ CONTROL_LABELS = {"ctrl", "control", "healthy control", "no pd nor other neurolo
 _YES = {"yes", "y", "1", "1.0", "true"}
 _NO = {"no", "n", "0", "0.0", "false"}
 _MISSING = {"", "nan", "unknown", "not tested", "na", "n/a", "not available", "not done",
-            "not applicable"}
+            "not applicable", "unknown/not collected as enrollment criterion"}
 _GENETIC_NEGATIVE = {"no mutation", "no mutations", "negative", "no", "non-carrier", "noncarrier",
                      "not a carrier", "wild type", "wildtype", "wt", "none", "no pd mutation"}
 _GENETIC_POSITIVE_TOKENS = ("lrrk2", "gba", "snca", "+", "positive", "carrier", "mutation")
