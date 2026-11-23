@@ -117,6 +117,7 @@ def coverage(df: pd.DataFrame) -> pd.DataFrame:
             "unmedicated_n": int(g["pd_medication"].eq(False).sum()),
             "both_n": int((dur & med).sum()), "both_pct": _pct((dur & med).sum(), n),
             "updrs3_n": int(g["updrs3"].notna().sum()), "moca_n": int(g["moca"].notna().sum()),
+            "moca_from_screening": int((g["moca"].notna() & (g["moca_visit_month"] < 0)).sum()),
         })
     return pd.DataFrame(rows)
 

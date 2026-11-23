@@ -49,3 +49,7 @@ Only `coverage_report/` (counts, percentages, percentiles) leaves Terra.
   - Before issue 09 (carrier-excluded sensitivity), check on Terra: the raw value counts of `has_known_PD_Mutation_in_WGS` and `genetic_status_enrollment`; the field's definition in the 2023_v4 schema; and how it agrees with `genetic_status_wgs` and the per-gene `has_known_{GBA,LRRK2,SNCA}_mutation_in_WGS` flags. If PPMI controls are mostly unaffected carriers, the write-up should say so.
 - **PPMI MoCA is mostly missing at baseline:** it is recorded for 58 of 316 PD women and 64 of 437 PD men, against 99% in PDBP. PPMI probably records MoCA at screening rather than at `visit_month = 0`. This affects issue 11 (MoCA regression trained in PPMI), and MOFA's query uses the same rule.
 - **PPMI baseline medication:** 44% of PD women and 27% of PD men are medicated, mostly according to the MDS-UPDRS 3a answer.
+
+## Follow-up 2026-11-23: screening-visit MoCA
+
+`query_ml_fields.py` now returns MoCA from baseline, else from the latest screening visit before baseline (`visit_month < 0`), with the visit recorded. `analysis_set.py` uses this score in place of MOFA's baseline-only one, and the coverage report counts how many scores came from screening (`moca_from_screening`). MOFA's own query is unchanged. To finish: rerun the query, analysis-set and report steps on Terra and check PPMI MoCA coverage. If coverage stays low, screening visits may be stored without a `visit_month`; check `visit_name` values in `MOCA`.

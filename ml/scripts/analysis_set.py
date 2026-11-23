@@ -31,6 +31,9 @@ Derived fields
                  use_of_pd_medication is no, or all three drug-class fields are no; otherwise the
                  MDS-UPDRS 3a answer (medication for PD) of the selected baseline exam; otherwise
                  missing. pd_medication_source records which.
+  moca           baseline MoCA, else the latest screening score (query_ml_fields.py); this
+                 replaces the baseline-only score in MOFA's metadata. moca_visit_month < 0
+                 marks a screening score.
 
 Any value outside the known vocabularies stops the run with the list of values, so a new
 coding is mapped on purpose rather than silently.
@@ -81,8 +84,9 @@ FIXED_DEFINITIONS = {
 
 
 REQUIRED_METADATA = ["sex", "age_at_baseline", "has_known_PD_Mutation_in_WGS",
-                     "mds_updrs_part_iii_summary_score", "moca_total_score"]
-REQUIRED_ML_FIELDS = ["participant_id", "age_at_diagnosis", "genetic_status_enrollment"] + MEDICATION_HISTORY_FIELDS
+                     "mds_updrs_part_iii_summary_score"]
+REQUIRED_ML_FIELDS = (["participant_id", "age_at_diagnosis", "genetic_status_enrollment", "moca_total_score",
+                       "moca_visit_month"] + MEDICATION_HISTORY_FIELDS)
 
 
 def _require(df, cols, what):
@@ -250,7 +254,9 @@ def build_participants(mofa_meta: pd.DataFrame, ml_fields: pd.DataFrame, cohort:
 
     out["pd_medication"], out["pd_medication_source"] = derive_medication(meta)
     out["updrs3"] = pd.to_numeric(meta["mds_updrs_part_iii_summary_score"], errors="coerce")
+    # MoCA from query_ml_fields.py (baseline, else screening), which replaces MOFA's baseline-only score
     out["moca"] = pd.to_numeric(meta["moca_total_score"], errors="coerce")
+    out["moca_visit_month"] = pd.to_numeric(meta["moca_visit_month"], errors="coerce")
     for col in ("medication_visit_name", "updrs3_clinical_state", "plate", "rnaseq_sample_id"):
         if col in meta:
             out[col] = meta[col]

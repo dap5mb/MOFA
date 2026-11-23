@@ -33,7 +33,8 @@ def ml_fields(rows):
     """ML-field rows: (participant_id, extra dict)."""
     base = {"age_at_diagnosis": 59, "use_of_pd_medication": "No", "on_levodopa": np.nan,
             "on_dopamine_agonist": np.nan, "on_other_pd_medications": np.nan,
-            "medication_visit_name": "M0", "genetic_status_enrollment": np.nan, "genetic_status_wgs": np.nan}
+            "medication_visit_name": "M0", "genetic_status_enrollment": np.nan, "genetic_status_wgs": np.nan,
+            "moca_total_score": 28, "moca_visit_name": "M0", "moca_visit_month": 0.0}
     return pd.DataFrame([dict(base, participant_id=pid, **extra) for pid, extra in rows])
 
 
@@ -124,6 +125,18 @@ class TestDerivedFlags(unittest.TestCase):
                          [True, False, True, False, None])
         self.assertEqual([None if pd.isna(v) else v for v in df["pd_medication_source"]],
                          ["medical_history", "medical_history", "updrs3_3a", "medical_history", None])
+
+    def test_moca_comes_from_ml_query_with_screening_fallback(self):
+        # MOFA's baseline-only score is replaced by the ML query's baseline-or-screening score
+        df = self.build(
+            [{"moca_total_score": np.nan}, {"moca_total_score": 22}, {"moca_total_score": np.nan}],
+            [{"moca_total_score": 26, "moca_visit_name": "SC", "moca_visit_month": -1.0},
+             {"moca_total_score": 22, "moca_visit_name": "M0", "moca_visit_month": 0.0},
+             {"moca_total_score": np.nan, "moca_visit_name": np.nan, "moca_visit_month": np.nan}])
+        self.assertEqual(df["moca"].iloc[0], 26)
+        self.assertEqual(df["moca_visit_month"].iloc[0], -1)
+        self.assertEqual(df["moca"].iloc[1], 22)
+        self.assertTrue(np.isnan(df["moca"].iloc[2]))
 
     def test_bands_and_subset_refuse_until_fixed(self):
         saved = analysis_set.FIXED_DEFINITIONS

@@ -16,6 +16,11 @@ and MoCA; this query adds only:
     medication_visit_name  which record the medication fields came from
   Clinically_Reported_Genetic_Status (tier 2)
     genetic_status_enrollment, genetic_status_wgs
+  MOCA (tier 1)
+    moca_total_score   the baseline score, else the latest screening score before baseline
+                       (visit_month < 0); PPMI gives MoCA mostly at screening, so MOFA's
+                       baseline-only rule leaves most PPMI participants without one
+    moca_visit_name, moca_visit_month  which record the score came from
 
 Raw values are written unchanged; analysis_set.py interprets them and stops on any value it
 does not recognize. The output is participant-level and stays on Terra.
@@ -58,14 +63,24 @@ def build_query(tier1_ds: str, tier2_ds: str) -> str:
         WHERE COALESCE({", ".join(GENETIC_FIELDS)}) IS NOT NULL
         QUALIFY ROW_NUMBER() OVER (
             PARTITION BY participant_id ORDER BY ABS(IFNULL(visit_month, 999)), visit_name) = 1
+    ),
+    moca AS (
+        SELECT participant_id, moca_total_score, visit_name AS moca_visit_name,
+               visit_month AS moca_visit_month
+        FROM `{tier1_ds}.MOCA`
+        WHERE visit_month <= 0 AND moca_total_score IS NOT NULL
+        QUALIFY ROW_NUMBER() OVER (
+            PARTITION BY participant_id ORDER BY visit_month DESC, visit_name) = 1
     )
     SELECT p.participant_id, dx_age.age_at_diagnosis,
            {", ".join("med." + c for c in MEDICATION_FIELDS)}, med.medication_visit_name,
-           {", ".join("gs." + c for c in GENETIC_FIELDS)}
+           {", ".join("gs." + c for c in GENETIC_FIELDS)},
+           moca.moca_total_score, moca.moca_visit_name, moca.moca_visit_month
     FROM `{tier1_ds}.amp_pd_participants` p
     LEFT JOIN dx_age ON p.participant_id = dx_age.participant_id
     LEFT JOIN med ON p.participant_id = med.participant_id
     LEFT JOIN gs ON p.participant_id = gs.participant_id
+    LEFT JOIN moca ON p.participant_id = moca.participant_id
     WHERE p.study = @cohort
     ORDER BY p.participant_id
     """
@@ -86,7 +101,7 @@ def query_ml_fields(cohort: str) -> pd.DataFrame:
 
     # Aggregate value counts only, so the vocabulary can be checked against analysis_set.py
     print(f"{cohort}: {len(df)} participants")
-    for col in MEDICATION_FIELDS + GENETIC_FIELDS + ["medication_visit_name"]:
+    for col in MEDICATION_FIELDS + GENETIC_FIELDS + ["medication_visit_name", "moca_visit_name"]:
         counts = df[col].value_counts(dropna=False)
         print(f"  {col}: " + ", ".join(f"{k} ({v})" for k, v in counts.items()))
     print(f"  age_at_diagnosis recorded: {df['age_at_diagnosis'].notna().sum()}")
