@@ -20,6 +20,7 @@ if MOFA_SCRIPTS not in sys.path:
 _EXPORTS = {
     # baseline metadata (BigQuery on Terra; MDS-UPDRS III off-medication exam rule)
     "query_master_clinical_metadata": "query_comprehensive_metadata",
+    "get_workspace_attributes": "query_comprehensive_metadata",
     "create_master_metadata": "create_master_metadata",
     "process_pdbp_metadata": "prepare_pdbp_metadata",
     # within-cohort RNA-seq normalization (size factors + log1p; n_top_genes=None keeps all genes)
