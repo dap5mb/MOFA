@@ -12,8 +12,10 @@ C is the inverse penalty strength (glmnet lambda = 1 / (C * n)).
 import numpy as np
 import pandas as pd
 import sklearn
+from sklearn.base import clone
 from sklearn.linear_model import LogisticRegression
-from sklearn.model_selection import GridSearchCV, StratifiedKFold, cross_val_score
+from sklearn.metrics import roc_auc_score
+from sklearn.model_selection import GridSearchCV, StratifiedKFold
 
 from features import require_training_cohort, standardize
 from frozen_model import FrozenModel
@@ -43,22 +45,41 @@ def labels(meta: pd.DataFrame, index) -> np.ndarray:
 
 def train_elastic_net(expr: pd.DataFrame, meta: pd.DataFrame, genes: list,
                       scaling_rule: str = "within_cohort_sex", grid: dict = None,
-                      outer_folds: int = 5, inner_folds: int = 10, seed: int = 0) -> FrozenModel:
+                      outer_folds: int = 5, inner_folds: int = 10, seed: int = 0,
+                      n_jobs: int = None, return_oof: bool = False):
+    """
+    Returns the FrozenModel, or (FrozenModel, out-of-fold PPMI scores) with return_oof.
+    internal_cv_auc holds the mean, SD and per-fold AUC over the outer folds, the AUC of the
+    pooled out-of-fold scores, and that pooled AUC within each sex (meta needs 'sex').
+    n_jobs parallelizes the inner grid search only; results do not depend on it.
+    """
     require_training_cohort(expr, meta, "Trainer")
     grid = {k: list(v) for k, v in (grid or DEFAULT_GRID).items()}
 
     X = standardize(expr[genes], meta, scaling_rule).to_numpy()
     y = labels(meta, expr.index)
+    sex = meta.loc[expr.index, "sex"].to_numpy()
 
     inner = StratifiedKFold(inner_folds, shuffle=True, random_state=seed)
     outer = StratifiedKFold(outer_folds, shuffle=True, random_state=seed + 1)
-    search = GridSearchCV(_elastic_net(seed), grid, scoring="roc_auc", cv=inner)
+    search = GridSearchCV(_elastic_net(seed), grid, scoring="roc_auc", cv=inner, n_jobs=n_jobs)
 
-    fold_auc = cross_val_score(search, X, y, cv=outer, scoring="roc_auc")
+    # Outer loop by hand (the splits cross_val_score would use) so the out-of-fold scores
+    # also give the internal AUC within each sex
+    oof = np.full(len(y), np.nan)
+    fold_auc = []
+    for train_idx, test_idx in outer.split(X, y):
+        fold = clone(search).fit(X[train_idx], y[train_idx])
+        oof[test_idx] = fold.predict_proba(X[test_idx])[:, 1]
+        fold_auc.append(roc_auc_score(y[test_idx], oof[test_idx]))
+    by_sex = {str(s): {"auc_pooled_oof": float(roc_auc_score(y[sex == s], oof[sex == s])),
+                       "n": int((sex == s).sum()), "n_pd": int(y[sex == s].sum())}
+              for s in sorted(pd.unique(sex))}
+
     search.fit(X, y)
     est = search.best_estimator_
 
-    return FrozenModel(
+    model = FrozenModel(
         model_type="elastic_net_logistic",
         genes=list(genes),
         scaling_rule=scaling_rule,
@@ -70,7 +91,11 @@ def train_elastic_net(expr: pd.DataFrame, meta: pd.DataFrame, genes: list,
         coefficients=[float(c) for c in est.coef_[0]],
         intercept=float(est.intercept_[0]),
         internal_cv_auc={"mean": float(np.mean(fold_auc)), "sd": float(np.std(fold_auc, ddof=1)),
-                         "folds": [float(a) for a in fold_auc]},
+                         "folds": [float(a) for a in fold_auc],
+                         "pooled_oof": float(roc_auc_score(y, oof)), "by_sex": by_sex},
         training={"cohort": "PPMI", "n": int(len(y)), "n_pd": int(y.sum()),
                   "n_control": int(len(y) - y.sum())},
     )
+    if return_oof:
+        return model, pd.Series(oof, index=expr.index, name="oof_score")
+    return model
