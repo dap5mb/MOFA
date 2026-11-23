@@ -6,6 +6,7 @@ import os
 import sys
 import tempfile
 import unittest
+from pathlib import Path
 
 import numpy as np
 import pandas as pd
@@ -71,9 +72,9 @@ class TestTrainScoreBoundary(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             path = os.path.join(tmp, "model.json")
             self.model.save(path)
-            before = open(path, "rb").read()
+            before = Path(path).read_bytes()
             score(FrozenModel.load(path), self.pdbp_expr, self.pdbp_meta)
-            self.assertEqual(open(path, "rb").read(), before)
+            self.assertEqual(Path(path).read_bytes(), before)
         with self.assertRaises(dataclasses.FrozenInstanceError):
             self.model.intercept = 0.0
         with self.assertRaises(TypeError):

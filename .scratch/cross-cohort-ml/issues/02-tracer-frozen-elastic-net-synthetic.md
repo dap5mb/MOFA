@@ -11,3 +11,5 @@
 - [x] Seam 2: changing PDBP values or labels leaves every frozen parameter unchanged; passing PDBP participants to the trainer or feature selector raises an error.
 - [x] Seam 1 (first case): a signal planted in both synthetic cohorts gives PDBP AUC clearly above 0.5; a null synthetic dataset gives AUC near 0.5.
 - [x] One Snakemake rule runs synthetic data → frozen model → PDBP scores → AUC table.
+
+*Amended 2026-11-23:* Snakemake is not allowed on Terra (spec addendum, same date). The rule stays as an optional local driver; the step it calls, `ml/scripts/run_tracer.py`, is a standalone script that runs on Terra without it. Tests verified on Terra with `python -m unittest` (scikit-learn 1.6.0).

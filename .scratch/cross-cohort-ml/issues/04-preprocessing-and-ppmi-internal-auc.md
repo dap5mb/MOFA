@@ -10,3 +10,4 @@
 - [ ] Diagnosis does not appear in any preprocessing design.
 - [ ] The overlap with MOFA's 5,000-gene list is reported (expected to be high).
 - [ ] Internal PPMI nested-CV AUC is reported, overall and per sex; no PDBP classifier scores exist yet.
+- [ ] Each step is a standalone script with explicit input and output paths; on Terra a notebook calls them in order (no Snakemake on Terra; spec addendum 2026-11-23).

@@ -78,13 +78,13 @@ A separate analysis module, alongside but not inside the MOFA code, that:
 41. As a writer, I want a separate write-up for this analysis, written to slot into the MOFA paper as a section, so that the two analyses stay physically separate but tell one story.
 
 ### Workflow
-42. As a workflow maintainer, I want the module in its own folder next to the MOFA code, as Snakemake rules with pytest tests, running on Terra, so that the AMP-PD data stays where the data use agreement requires and the pipeline reruns end to end.
+42. As a workflow maintainer, I want the module in its own folder next to the MOFA code, as Snakemake rules with pytest tests, running on Terra, so that the AMP-PD data stays where the data use agreement requires and the pipeline reruns end to end. *(Amended 2026-11-23: Snakemake cannot run on Terra; see Addendum.)*
 43. As a workflow maintainer, I want the module to consume MOFA outputs (projected factor scores, preprocessing utilities, baseline metadata) rather than copy them, so that there is one source of truth.
 
 ## Implementation Decisions
 
 - **Primary question:** Sex-specificity of the PD-vs-control predictive signal; classifier performance is reported but is not the headline (ADR-0002).
-- **Location:** A new module beside the MOFA code, not inside it. It reuses MOFA preprocessing, metadata and PDBP-projection utilities and reads MOFA factor scores as inputs. Python (scikit-learn, xgboost), Snakemake, pytest, run on Terra.
+- **Location:** A new module beside the MOFA code, not inside it. It reuses MOFA preprocessing, metadata and PDBP-projection utilities and reads MOFA factor scores as inputs. Python (scikit-learn, xgboost), Snakemake, pytest, run on Terra. *(Amended 2026-11-23: see Addendum.)*
 - **Data:** AMP-PD 2023_v4, baseline (`visit_month = 0`), whole-blood RNA-seq only. CSF proteomics is out (about 41 PDBP women with CSF).
 - **Analysis set:** The MOFA participant definition, restricted to PD and control. Carriers stay in the primary analysis; a sensitivity analysis excludes them.
 - **Validation direction:** PPMI trains and PDBP tests (primary); PDBP→PPMI is secondary. Pooled training is not used.
@@ -148,3 +148,13 @@ A separate analysis module, alongside but not inside the MOFA code, that:
 - Published as a local Markdown spec, like the step-1 spec; GitHub Issues were not used.
 - Fields to confirm on Terra at build time: how carriers are flagged (`has_known_PD_Mutation_in_WGS`, `genetic_status_enrollment`), `age_at_diagnosis`, `use_of_pd_medication`, `on_levodopa`. These are in the AMP-PD schema; their coverage in PDBP is not yet known.
 - Known glossary inconsistency (not fixed here): "Anchored factor training" in `CONTEXT.md` and ADR-0001 describe complete-case training, but the MOFA write-up trains on all participants with at least one view.
+
+## Addendum 2026-11-23: how the workflow runs on Terra
+
+Snakemake is not allowed on Terra, and pytest is not installed there. This changes how the pipeline is driven, not what it computes; no analysis decision, threshold or test in this spec changes, and no PDBP classifier score existed when it was made.
+
+- **Steps are scripts.** Every step is a standalone script with explicit input and output paths, which reads files and writes files. The analysis logic lives in the scripts and the modules they import, never in the driver.
+- **On Terra, a notebook drives the run**, calling the scripts in order, as `mofa_wf.ipynb` does for MOFA. This is the run of record for real data.
+- **`ml/Snakefile` is optional and local only**, for rerunning the synthetic tracer and other synthetic checks. Nothing on Terra depends on it, and each of its rules only calls a script.
+- **Tests are `unittest` test cases**, so they run on Terra with `python -m unittest <file>` and locally with either `unittest` or pytest.
+- Story 42 and the "Location" decision above are read with these changes.

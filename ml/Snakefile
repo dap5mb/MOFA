@@ -1,4 +1,7 @@
-# Cross-cohort ML (step 2). Run from the repository root:
+# Cross-cohort ML (step 2): optional LOCAL driver for synthetic runs only. Snakemake is not
+# allowed on Terra, where a notebook calls the same scripts (spec addendum 2026-11-23).
+# Every rule only calls a script; keep analysis logic out of this file.
+# Run from the repository root:
 #   snakemake -s ml/Snakefile --cores 1
 # Outputs go under results/ml/ (git-ignored).
 

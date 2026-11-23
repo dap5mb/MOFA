@@ -3,6 +3,7 @@ import os
 import re
 import sys
 import unittest
+from pathlib import Path
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../scripts")))
 import shared
@@ -19,7 +20,7 @@ class TestSharedPreprocessing(unittest.TestCase):
     def test_no_copies_under_ml(self):
         # The shared functions are defined in mofa/scripts only
         for path in glob.glob(os.path.join(ML_SCRIPTS, "*.py")):
-            src = open(path).read()
+            src = Path(path).read_text()
             for name in shared.__all__:
                 self.assertIsNone(re.search(rf"^\s*def {name}\(", src, re.M),
                                   f"{name} is defined in {os.path.basename(path)}; import it from shared")
